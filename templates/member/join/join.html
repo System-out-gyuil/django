@@ -1,0 +1,336 @@
+{% extends 'member/base.html' %}
+{% load static %}
+{% load socialaccount %}
+
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/join/join.css' %}" />
+{% endblock %}
+{% block title %}회원가입 | Selleaf{% endblock %}
+{% block content %}
+    <div class="register-wrap">
+      <div class="register-container">
+        <a href="javascript:void(0)">
+          <!-- 팀 로고 -->
+          <img
+            src="{% static 'public/web/images/common/logo-lettering-blk.png' %}" 
+            style="width: 88px"
+          />
+        </a>
+        <div class="except-logo-wrap">
+          <h1 class="register-text">회원가입</h1>
+          <!-- 개인정보 입력란 -->
+          <form action="{% url 'member:join' %}" method="post" name="join-form">
+            {% csrf_token %}
+            <!-- 이메일 입력란 -->
+            <div class="email-input-wrap">
+              <label class="email-input-text">이메일</label>
+              <div class="email-input-container">
+                <div class="email-input-group">
+                  <span class="email-input-local">
+                    <label>
+                      <!-- 원본의 클래스명은 form-control -->
+                      <!-- 나중에 form-control 클래스 가진 요소들 한 번에 조작하는 js 작업 필요할 수 있으니 참고 바람 -->
+                      <input
+                        class="email-form-control"
+                        name="member-email"
+                        size="1"
+                        type="email"
+                        value="{{ memberEmail }}"
+                      />
+                      <span class="email-form-control-blind">
+                        이메일 앞 주소 입력하기
+                      </span>
+                    </label>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 지역 입력란 -->
+            <div class="region-input-wrap">
+              <label class="region-input-text">주소지</label>
+              <div class="region-input-container">
+                <div class="region-input-group">
+                  <!-- "도" 지역이나 광역시, 서울, 제주 등을 선택하는 드롭박스 -->
+                  <span class="region-input-local">
+                    <label>
+                      <!-- 기본값은 서울특별시 -->
+                      <select class="region-form-control" name="address-city">
+                        <option value="서울특별시">서울특별시</option>
+                        <option value="인천광역시">인천광역시</option>
+                        <option value="대전광역시">대전광역시</option>
+                        <option value="세종특별자치시">세종특별자치시</option>
+                        <option value="광주광역시">광주광역시</option>
+                        <option value="부산광역시">부산광역시</option>
+                        <option value="대구광역시">대구광역시</option>
+                        <option value="울산광역시">울산광역시</option>
+                        <option value="제주특별자치도">제주특별자치도</option>
+                        <option value="경기도">경기도</option>
+                        <option value="강원도">강원도</option>
+                        <option value="충청북도">충청북도</option>
+                        <option value="충청남도">충청남도</option>
+                        <option value="전라북도">전라북도</option>
+                        <option value="전라남도">전라남도</option>
+                        <option value="경상북도">경상북도</option>
+                        <option value="경상남도">경상남도</option>
+                      </select>
+                      <span class="region-form-control-blind">
+                        시/도 선택하기
+                      </span>
+                    </label>
+                    <button
+                      class="region-select-button"
+                      aria-label="초기화"
+                      type="button"
+                      tabindex="-1"
+                    >
+                      <!-- 도메인 선택 버튼 -->
+                      <svg
+                        width="10"
+                        height="10"
+                        preserveAspectRatio="xMidYMid meet"
+                        style="fill: currentcolor"
+                      >
+                        <path fill-rule="evenodd" d="M0 3l5 5 5-5z"></path>
+                      </svg>
+                    </button>
+                  </span>
+                  <span class="region-seperator">&nbsp;</span>
+                  <!-- 위 드롭박스에서의 선택에 따라 서로 다른 세부 구역을 보여주는 드롭박스 -->
+                  <span class="region-input-domain">
+                    <label>
+                      <!-- 기본값은 서울을 기준으로 했지만, 위쪽 선택에 따라 다른 걸 보여줘야 됨(JS로) -->
+                      <!-- 아래의 서울 내 지역도 따로 배열로 제작 -->
+                      <select class="region-form-control" name="address-district">
+                        <option value="종로구">종로구</option>
+                        <option value="중구">중구</option>
+                        <option value="용산구">용산구</option>
+                        <option value="성동구">성동구</option>
+                        <option value="광진구">광진구</option>
+                        <option value="동대문구">동대문구</option>
+                        <option value="중랑구">중랑구</option>
+                        <option value="성북구">성북구</option>
+                        <option value="강북구">강북구</option>
+                        <option value="도봉구">도봉구</option>
+                        <option value="노원구">노원구</option>
+                        <option value="은평구">은평구</option>
+                        <option value="서대문구">서대문구</option>
+                        <option value="마포구">마포구</option>
+                        <option value="양천구">양천구</option>
+                        <option value="강서구">강서구</option>
+                        <option value="구로구">구로구</option>
+                        <option value="금천구">금천구</option>
+                        <option value="영등포구">영등포구</option>
+                        <option value="동작구">동작구</option>
+                        <option value="관악구">관악구</option>
+                        <option value="서초구">서초구</option>
+                        <option value="강남구">강남구</option>
+                        <option value="송파구">송파구</option>
+                        <option value="강동구">강동구</option>
+                      </select>
+                      <span class="region-form-control-blind">
+                        세부지역 선택
+                      </span>
+                    </label>
+                    <button
+                      class="region-select-button"
+                      aria-label="초기화"
+                      type="button"
+                      tabindex="-1"
+                    >
+                      <!-- 도메인 선택 버튼 -->
+                      <svg
+                        width="10"
+                        height="10"
+                        preserveAspectRatio="xMidYMid meet"
+                        style="fill: currentcolor"
+                      >
+                        <path fill-rule="evenodd" d="M0 3l5 5 5-5z"></path>
+                      </svg>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 닉네임 입력란 -->
+              <div class="address-wrap">
+              <label class="address-text">상세주소</label>
+              <div class="address-info">상세주소를 입력해주세요.</div>
+              <label>
+                <input
+                  class="address-input"
+                  name="address-detail"
+                  placeholder="상세주소"
+                />
+              </label>
+            </div>
+            <div class="nickname-wrap">
+              <label class="nickname-text">이름</label>
+              <div class="nickname-info">이름을 입력해주세요.</div>
+              <label>
+                <input
+                  class="nickname-input"
+                  name="member-name"
+                  value="{{ memberName }}"
+                />
+                <span class="nickname-hidden">이름 입력하기</span>
+              </label>
+            </div>
+            <!-- 약관동의 -->
+            <div class="terms-wrap">
+              <label class="terms-text">약관동의</label>
+              <div class="terms-container">
+                <div class="all-agree-wrap">
+                  <label class="all-agree-container">
+                    <div class="all-check-wrap">
+                      <div class="all-check-container">
+                        <span class="all-check-area"></span>
+                      </div>
+                      <input
+                        class="all-check-input"
+                        type="checkbox"
+                        value="false"
+                      />
+                    </div>
+                    <span class="all-check-text-wrap">
+                      <span class="all-check-text-container">
+                        전체동의
+                        <span class="all-check-detail">
+                          선택항목에 대한 동의 포함
+                        </span>
+                      </span>
+                    </span>
+                  </label>
+                </div>
+                <hr class="terms-seperator" />
+                <!-- 여기서부터는 필수 동의 사항 -->
+                <!-- 만 14세 이상 -->
+                <div class="essential-terms-wrap">
+                  <label class="essential-terms-container">
+                    <div class="essential-check-wrap">
+                      <div class="essential-check-container">
+                        <span class="essential-check-area"></span>
+                      </div>
+                      <input
+                        class="essential-check-input"
+                        type="checkbox"
+                        value="false"
+                      />
+                    </div>
+                    <span class="essential-text-wrap">
+                      <span class="essential-text-container" required>
+                        만 14세 이상입니다
+                      </span>
+                    </span>
+                  </label>
+                </div>
+                <!-- 이용약관 -->
+                <div class="essential-terms-wrap">
+                  <label class="essential-terms-container">
+                    <div class="essential-check-wrap">
+                      <div class="essential-check-container">
+                        <span class="essential-check-area"></span>
+                      </div>
+                      <input
+                        class="essential-check-input"
+                        type="checkbox"
+                        value="false"
+                      />
+                    </div>
+                    <span class="essential-text-wrap">
+                      <span class="essential-text-container" required>
+                        이용약관
+                      </span>
+                    </span>
+                  </label>
+                  <a href="#" class="terms-link-wrap">
+                    <span class="terms-link-container"></span>
+                  </a>
+                </div>
+                <!-- 개인정보수집 및 이용동의 -->
+                <div class="essential-terms-wrap">
+                  <label class="essential-terms-container">
+                    <div class="essential-check-wrap">
+                      <div class="essential-check-container">
+                        <span class="essential-check-area"></span>
+                      </div>
+                      <input
+                        class="essential-check-input"
+                        type="checkbox"
+                        value="false"
+                      />
+                    </div>
+                    <span class="essential-text-wrap">
+                      <span class="essential-text-container" required>
+                        개인정보수집 및 이용동의
+                      </span>
+                    </span>
+                  </label>
+                  <a href="#" class="terms-link-wrap">
+                    <span class="terms-link-container"></span>
+                  </a>
+                </div>
+                <!-- 여기서부터는 선택 동의 사항 -->
+                <!-- 개인정보 마케팅 활용 동의 -->
+                <div class="optional-terms-wrap">
+                  <label class="optional-terms-container">
+                    <div class="optional-check-wrap">
+                      <div class="optional-check-container">
+                        <span class="optional-check-area"></span>
+                      </div>
+                      <input
+                        class="optional-check-input"
+                        type="checkbox"
+                        name="marketing-agree"
+                        value="false"
+                      />
+                    </div>
+                    <span class="optional-text-wrap">
+                      <span class="optional-text-container">
+                        개인정보 마케팅 활용 동의
+                      </span>
+                    </span>
+                  </label>
+                  <a href="#" class="terms-link-wrap">
+                    <span class="terms-link-container"></span>
+                  </a>
+                </div>
+                <!-- 이벤트, 특가, 쿠폰 알림 및 SMS 등 수신 -->
+                <div class="optional-terms-wrap">
+                  <label class="optional-terms-container">
+                    <div class="optional-check-wrap">
+                      <div class="optional-check-container">
+                        <span class="optional-check-area"></span>
+                      </div>
+                      <input
+                        class="optional-check-input"
+                        type="checkbox"
+                        name="sms-agree"
+                        value="false"
+                      />
+                    </div>
+                    <span class="optional-text-wrap">
+                      <span class="optional-text-container">
+                        이벤트, 특가, 쿠폰 알림 및 SMS 등 수신
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="member-profile" value="{{ memberProfile }}"/>
+            <input type="hidden" name="member-type" value="{{ memberType }}"/>
+            <button class="register-button">회원가입하기</button>
+          </form>
+          <!-- 나중에 로그인 페이지랑 연결 -->
+          <p class="already-registered-wrap">
+            이미 아이디가 있으신가요?
+            <a href="#" class="login-link">로그인</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'member/js/join/join.js' %}"></script>
+{% endblock %}

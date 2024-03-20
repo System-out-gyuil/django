@@ -1,0 +1,187 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my_profile/my-reviews.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 리뷰 페이지{% endblock %}
+{% block content %}
+    <div class="whole-page-wrap">
+      <div class="whole-page-container">
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <div class="main-wrap">
+          <!-- 마이페이지 내 네비게이션 바 -->
+          <div class="navigation-wrap">
+            <div class="main-category-wrap">
+              <ul
+                class="main-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="main-category-item">
+                  <a href="/member/mypage/show/" class="active">내 활동</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="/member/mypage/trades/">거래 내역</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="/member/mypage/lectures/" >수강 내역</a>
+                </li>
+                {% if teacher.count == 0 %}
+                    <li class="main-category-item">
+                      <a href="/member/mypage/settings/">설정</a>
+                    </li>
+                {% else %}
+                    <li class="main-category-item ">
+                      <a href="/member/mypage/teachers/">강의 현황</a>
+                    </li>
+                    <li class="main-category-item">
+                      <a href="/member/mypage/settings/">설정</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+            <div class="sub-category-wrap">
+              <ul
+                class="sub-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="sub-category-item">
+                      <a href="/member/mypage/show">모두보기</a>
+                    </li>
+                    <li class="sub-category-item">
+                      <a href="/member/mypage/posts">내 게시글</a>
+                    </li>
+                    <li class="sub-category-item">
+                      <a href="/member/mypage/replies">내 댓글</a>
+                    </li>
+                    <li class="sub-category-item">
+                      <a href="/member/mypage/reviews"  class="active">내 리뷰</a>
+                    </li>
+                    <li class="sub-category-item">
+                      <a href="/member/mypage/likes">좋아요</a>
+                    </li>
+                    <li class="sub-category-item">
+                      <a href="/member/mypage/scraplectures">스크랩북</a>
+                    </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 마이페이지 내 탭 별 내용 - 이 탭은 리뷰 -->
+          <div class="content-wrap">
+            <div class="content-container">
+              <div class="sidebar-wrap">
+                    <div
+                      class="sidebar-container"
+                      style="
+                        position: sticky;
+                        top: 80.75px;
+                        transition: top 0.1s ease 0s;
+                      "
+                    >
+                      <div class="sidebar-content" style="position: relative">
+                        <div>
+                          <div class="my-info-wrap">
+                            <div class="my-profile-wrap">
+                              <div class="profile-image-wrap">
+                                {% if memberProfile %}
+                                  {% if 'http' in memberProfile %}
+                                     <img src="{{ memberProfile }}" alt="" class="current-profile-image">
+                                  {% else %}
+                                     <img src="/upload/{{ memberProfile }}" alt="" class="current-profile-image">
+                                  {% endif %}
+                                {% else %}
+                                  <img src="{% static 'member/images/mypage/base-profile-image.avif' %}" alt="" class="current-profile-image">
+                                {% endif %}
+                              </div>
+                              <div class="personal-info-wrap">
+                                <div class="user-nickname">{{ request.session.member.member_name }}</div>
+                                <div class="follow-settings-wrap">
+                                  <div class="settings-button-wrap">
+                                    <a class="settings-button" href="/member/mypage/settings">설정</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- 스크랩, 좋아요, 마일리지, 쿠폰 -->
+                            <div class="scraps-likes-wrap">
+                              <div class="scraps-likes-container">
+                                <!-- 스크랩 -->
+                                <a class="scraps-likes-content-wrap" href="/member/mypage/scraplectures/">
+                                  <div class="scraps-likes-icon">
+                                    <img alt=""
+                                      src="{% static 'public/web/images/common/scrap-off-blk.png' %}
+    "
+                                    />
+                                  </div>
+                                  <div class="scraps-likes-text">스크랩북</div>
+                                  <div class="scraps-likes-count">{{ scrap_count }}</div>
+                                </a>
+                                <!-- 좋아요 -->
+                                <a class="scraps-likes-content-wrap" href="/member/mypage/likes">
+                                  <div class="scraps-likes-icon">
+                                    <img alt="" src="{% static 'public/web/images/common/like-off.png' %}" />
+                                  </div>
+                                  <div class="scraps-likes-text">좋아요</div>
+                                  <div class="scraps-likes-count">{{ like_count }}</div>
+                                </a>
+                                <!-- 마일리지 -->
+                                <div class="scraps-likes-content-wrap">
+                                  <div class="scraps-likes-icon">
+                                    <img alt=""
+                                      src="{% static 'member/images/mypage/mileage.png' %}"
+                                    />
+                                  </div>
+                                  <div class="scraps-likes-text">마일리지</div>
+                                  <div class="scraps-likes-count">{{ mileage }}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              <div class="seperator-wrap">
+                <div class="content-seperator"></div>
+              </div>
+              <!-- 사진 등의 내용물이 표시되는 공간 -->
+              <div class="main-content-wrap">
+                <div class="content-title-wrap">
+                    <h1 class="content-title">리뷰
+                        <span class="content-count post-count">{{ lecture_reply.count }}</span>
+                    </h1>
+                        <div class="title-empty-area"></div>
+                </div>
+                  {% if lecture_reply.count == 0 %}
+                      <div class="no-content-wrap">
+                        <div
+                          class="no-contents"
+                          style="
+                              padding-top: 0;
+                              padding-bottom: 0;
+                              transform: translateY(0px);
+                            "
+                        ></div>
+                        <p class="user-feed-empty">올린 리뷰가 없어요.</p>
+                      </div>
+                      <div class="post-wrap">
+                      </div>
+                  {% else %}
+                      <div class="post-wrap">
+                      </div>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <footer style="height: 320px"></footer>
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        const memberId = {{ member.id }}
+    </script>
+    <script src="{% static 'member/js/mypage/my_profile/myprofile-module.js' %}"></script>
+    <script src="{% static 'member/js/mypage/my_profile/my-reviews.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,399 @@
+{% extends 'teacher/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'teacher/css/teacher-entry/teacher-entry.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 강사신청안내{% endblock %}
+{% block content %}
+  <body>
+    <!-- 강사 신청 안내 페이지 내용 -->
+    <div class="whole-page-wrap" id="introduce">
+      <header>
+        <div class="sticky-header-wrap">
+          <div class="sticky-header-container">
+            <div class="header-content-wrap">
+              <!-- 앱에서만 표시되는 메뉴 버튼 -->
+              <div class="app-menu-button-wrap"></div>
+              <!-- 로고 -->
+              <div class="logo-wrap">
+                <a href="#" class="logo-container">
+                  <img
+                    src="{% static 'public/web/images/common/logo-lettering-blk.png' %}"
+                    class="selleaf-logo"
+                  />
+                </a>
+              </div>
+              <!-- 페이지 내 빠른 이동 메뉴 - JS 이벤트 처리 대상 -->
+              <div class="quick-menu-wrap">
+                <a href="#introduce" class="quick-menus">
+                  <span class="quick-menu-text" title="강사 신청 소개">
+                    강사 신청 소개
+                  </span>
+                </a>
+                <a href="#faq" class="quick-menus">
+                  <span class="quick-menu-text" title="자주 묻는 질문">
+                    자주 묻는 질문
+                  </span>
+                </a>
+                <a href="#terms" class="quick-menus">
+                  <span class="quick-menu-text" title="신청약관">
+                    신청약관
+                  </span>
+                </a>
+              </div>
+              <!-- 강사 신청 버튼 -->
+              {% if teacher_check %}
+              {% else %}
+                  <div class="header-entry-button-wrap">
+                    <div class="header-entry-button-container">
+                      <a href="/teacher/sub">
+                        <button type="button" class="header-entry-button">
+                          강사자격 신청
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- 페이지 내용 -->
+      <div class="main-content-wrap">
+        <!-- 머릿글 -->
+        <div class="introduction-wrap">
+          <div class="introduction-container">
+            <div class="introduction-content">
+              <div class="main-header">
+                <h2 class="main-header-title">
+                  지금 Selleaf에서
+                  <span class="title-emphasis">나만의 강의</span>를 시작해보세요
+                </h2>
+                <div class="main-header-summary">
+                  다양한 수강생들과 지금 만나보세요.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 강의 사진 슬라이드 배너 -->
+        <div class="main-secondcontanier">
+          <div class="main-secondcontanier-wrap">
+            <div class="main-secondcontanier-imgwrap">
+              <div class="main-secondcontanier-imgwraplist">
+                {% for lp in lectures %}
+                    <div class="main-secondcontanier-imgWrapDiv">
+                      <picture>
+                        <img
+                          src="/upload/{{ lp.lecture_photo }}"
+                          class="main-secondcontanier-img"
+                        />
+                      </picture>
+                      <div class="main-secondcontanier-contentWrap">
+                        <span>{{ lp.teacher__member__member_name }}님의 {{ lp.lecture_title }}강의</span>
+                      </div>
+                    </div>
+                {% endfor %}
+{#                <div class="main-secondcontanier-imgWrapDiv">#}
+{#                  <picture>#}
+{#                    <img#}
+{#                      src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                      class="main-secondcontanier-img"#}
+{#                    />#}
+{#                  </picture>#}
+{#                  <div class="main-secondcontanier-contentWrap">#}
+{#                    <span>강의 사진</span>#}
+{#                    예시#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="main-secondcontanier-imgWrapDiv">#}
+{#                  <picture>#}
+{#                    <img#}
+{#                      src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                      class="main-secondcontanier-img"#}
+{#                    />#}
+{#                  </picture>#}
+{#                  <div class="main-secondcontanier-contentWrap">#}
+{#                    <span>강의 사진</span>#}
+{#                    예시#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="main-secondcontanier-imgWrapDiv">#}
+{#                  <picture>#}
+{#                    <img#}
+{#                      src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                      class="main-secondcontanier-img"#}
+{#                    />#}
+{#                  </picture>#}
+{#                  <div class="main-secondcontanier-contentWrap">#}
+{#                    <span>강의 사진</span>#}
+{#                    예시#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="main-secondcontanier-imgWrapDiv">#}
+{#                  <picture>#}
+{#                    <img#}
+{#                      src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                      class="main-secondcontanier-img"#}
+{#                    />#}
+{#                  </picture>#}
+{#                  <div class="main-secondcontanier-contentWrap">#}
+{#                    <span>강의 사진</span>#}
+{#                    예시#}
+{#                  </div>#}
+{#                </div>#}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 혜택 소개 -->
+        <div class="benefit-section-wrap">
+          <div class="benefit-section-container">
+            <h2 class="benefit-title">
+              Selleaf 강사가 되면<br />
+              이런 점이 좋아요
+            </h2>
+            <div class="benefits-wrap">
+              <div class="benefits-container">
+                <!-- 각 혜택 사항들 -->
+                <div class="each-benefits">
+                  <h3 class="each-benefits-title">온라인 강의</h3>
+                  <div class="each-benefits-summary">
+                    다양한 지역의 수강생들과 온라인으로 소통할 수 있습니다.
+                  </div>
+                </div>
+                <div class="each-benefits">
+                  <h3 class="each-benefits-title">오프라인 강의</h3>
+                  <div class="each-benefits-summary">
+                    같은 지역구의 수강생들과는 직접 만나보실 수도 있습니다.
+                  </div>
+                </div>
+                <div class="each-benefits">
+                  <h3 class="each-benefits-title">특별 프로필</h3>
+                  <div class="each-benefits-summary">
+                    또한, 강사 자격을 얻으신 분들께는 프로필에 특별한 표식을
+                    달아드립니다.
+                  </div>
+                </div>
+              </div>
+              <!-- 수강 페이지 링크 - 팀 회의 후 제거 여부 결정 -->
+              <div id="faq"></div>
+              <a href="/lecture/main" target="_blank" class="class-page-link">수강 페이지 보러가기</a>
+            </div>
+          </div>
+        </div>
+        <!-- 자주 묻는 질문 -->
+        <div class="faq-section-wrap">
+          <div class="faq-section-container">
+            <h2 class="faq-section-title">자주 묻는 질문</h2>
+            <div class="list-section"></div>
+            <!-- 각 질문 사항들 -->
+{#            <div class="each-questions-wrap">#}
+{#              <div class="question-title-wrap">#}
+{#                Q. 질문 예시 1#}
+{#                <span class="expansion-button-wrap">#}
+{#                  <!-- JS - 클릭하면 답변 펼쳐짐 + 버튼 180도 회전 -->#}
+{#                  <img#}
+{#                    class="expansion-button"#}
+{#                    src="{% static 'public/web/images/common/button-down.png' %}"#}
+{#                  />#}
+{#                </span>#}
+{#              </div>#}
+{#              <!-- 답변 - 평소에는 height 0 -->#}
+{#              <div class="answer-wrap">#}
+{#                <div class="answer-container">#}
+{#                  답변 예시입니다.<br />#}
+{#                  자세한 내용은 추후에 수정 바랍니다.#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="each-questions-wrap">#}
+{#              <div class="question-title-wrap">#}
+{#                Q. 질문 예시 2#}
+{#                <span class="expansion-button-wrap">#}
+{#                  <img#}
+{#                    class="expansion-button"#}
+{#                    src="{% static 'public/web/images/common/button-down.png' %}"#}
+{#                  />#}
+{#                </span>#}
+{#              </div>#}
+{#              <div class="answer-wrap">#}
+{#                <div class="answer-container">#}
+{#                  답변 예시입니다.<br />#}
+{#                  자세한 내용은 추후에 수정 바랍니다.#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="each-questions-wrap">#}
+{#              <div class="question-title-wrap">#}
+{#                Q. 질문 예시 3#}
+{#                <span class="expansion-button-wrap">#}
+{#                  <img#}
+{#                    class="expansion-button"#}
+{#                    src="{% static 'public/web/images/common/button-down.png' %}"#}
+{#                  />#}
+{#                </span>#}
+{#              </div>#}
+{#              <div class="answer-wrap">#}
+{#                <div class="answer-container">#}
+{#                  답변 예시입니다.<br />#}
+{#                  자세한 내용은 추후에 수정 바랍니다.#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="each-questions-wrap">#}
+{#              <div class="question-title-wrap">#}
+{#                Q. 질문 예시 4#}
+{#                <span class="expansion-button-wrap">#}
+{#                  <img#}
+{#                    class="expansion-button"#}
+{#                    src="{% static 'public/web/images/common/button-down.png' %}"#}
+{#                  />#}
+{#                </span>#}
+{#              </div>#}
+{#              <div class="answer-wrap">#}
+{#                <div class="answer-container">#}
+{#                  답변 예시입니다.<br />#}
+{#                  자세한 내용은 추후에 수정 바랍니다.#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="each-questions-wrap">#}
+{#              <div class="question-title-wrap">#}
+{#                Q. 질문 예시 5#}
+{#                <span class="expansion-button-wrap">#}
+{#                  <img#}
+{#                    class="expansion-button"#}
+{#                    src="{% static 'public/web/images/common/button-down.png' %}"#}
+{#                  />#}
+{#                </span>#}
+{#              </div>#}
+{#              <div class="answer-wrap">#}
+{#                <div class="answer-container">#}
+{#                  답변 예시입니다.<br />#}
+{#                  자세한 내용은 추후에 수정 바랍니다.#}
+{#                </div>#}
+{#              </div>#}
+{#              <div id="terms"></div>#}
+{#            </div>#}
+          </div>
+        </div>
+        <!-- 신청약관 -->
+        <div class="terms-wrap">
+          <div class="terms-container">
+            <h2 class="terms-title">신청약관</h2>
+            <div class="terms-content">
+              <h1>제 1장 기본 사항</h1>
+              <h2>제 1조 (목적)</h2>
+              <p>
+                본 약관은 앞으로의 약관 작성에 대한 예시로서 제작되었습니다.
+                약관에 필요한 CSS 스타일들은 미리 작성되어 있지만, 만약 스타일의
+                추가 또는 변경이 필요하신 경우 페이지 담당자에게 문의 주시기
+                바랍니다.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- 페이지 마지막의 강사자격 신청 section -->
+        <div class="teacher-entry-section-wrap">
+          <div class="teacher-entry-section-container">
+            <div class="entry-title-wrap">
+              <div class="entry-title">
+                지금 신청하고 수강생들과 만나보세요!
+              </div>
+            </div>
+            <div class="entry-link-wrap">
+              <a href="/teacher/sub" class="entry-link">
+                강사자격 신청하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 신청에 필요한 모달창 모음 -->
+    <div class="entry-modal">
+      <!-- 강사자격 신청하면 나오는 모달창 -->
+      <div class="entry-modal-wrap" style="display: none">
+        <div class="entry-modal-container">
+          <div class="entry-modal-title-wrap">
+            <span class="entry-modal-title">이용자 확인</span>
+            <button type="button" class="close-button">
+              <span class="cancel-image-wrap">
+                <img src="{% static 'public/web/images/common/cancel.png' %}" alt="" />
+              </span>
+            </button>
+          </div>
+          <!-- 아이디, 비밀번호 입력창 -->
+          <div class="entry-modal-main-wrap">
+            <div class="entry-modal-main-container">
+              <div class="entry-input-wrap">
+                <!-- 이메일 -->
+                <!-- <div class="email-input-area">
+                  <div class="entry-input-title-wrap">
+                    <div class="entry-input-title">이메일</div>
+                  </div>
+                  <div class="email-input-wrap">
+                    <span class="email-input-local">
+                      <input
+                        class="local-input-form"
+                        placeholder="이메일"
+                        size="1"
+                      />
+                    </span>
+                    <span class="email-seperator">@</span>
+                    <span class="email-input-domain">
+                      <select class="domain-input-form">
+                        <option value="naver.com">naver.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="hotmail.com">hotmail.com</option>
+                        <option value="outlook.com">outlook.com</option>
+                        <option value="icloud.com">icloud.com</option>
+                      </select>
+                    </span>
+                  </div>
+                  <div class="error-text" style="display: none">
+                    필수 입력 사항입니다.
+                  </div>
+                </div> -->
+                <!-- 비밀번호 -->
+                <div class="password-input-area">
+                  <div class="entry-input-title-wrap">
+                    <div class="entry-input-title">비밀번호 확인</div>
+                  </div>
+                  <div class="password-input-wrap">
+                    <input
+                      class="password-input-form"
+                      type="password"
+                      placeholder="비밀번호"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="error-text" style="display: none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 강사자격 신청 버튼 -->
+          <div class="entry-button-wrap">
+            <div class="entry-button-container">
+              <button type="button" class="entry-button">강사자격 신청</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include 'fix/footer.html' %}
+  </body>
+{% endblock %}
+{% block js %}
+  <script>  
+      const csrf_token = '{{ csrf_token }}'
+      const teacher_check = '{{ teacher_check }}'
+  </script>
+  <script src="{% static 'qna/js/qna-module.js' %}"></script>
+  <script src="{% static 'teacher/js/teacher-entry/teacher-entry.js' %}"></script>
+{% endblock %}

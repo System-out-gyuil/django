@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style data-emotion="css-global" data-s="">
+      @import "https://assets.ohou.se/design-system/bbf3fca1e650ee6d.css";
+      @import "https://assets.ohou.se/fonts/pretendard/v1.3.8/pretendardvariable-dynamic-subset.css";
+      @font-face {
+        font-family: OhouseIcon;
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot);
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot#iefix)
+            format("embedded-opentype"),
+          url(https://assets.ohou.se/design-system/d8923b386a66fd50.woff2)
+            format("woff2"),
+          url(https://assets.ohou.se/design-system/9e79341d6a2fe0d2.woff)
+            format("woff"),
+          url(https://assets.ohou.se/design-system/5355f736e6a7bc5b.ttf)
+            format("truetype"),
+          url(https://assets.ohou.se/design-system/3ba7913eab100858.svg#OhouseIcon)
+            format("svg");
+      }
+      html {
+        font-family: "Pretendard Variable", sans-serif;
+        letter-spacing: -0.3px;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <link
+      rel="shortcut icon"
+      href="../../../staticfiles/images/selleaf.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../../staticfiles/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="../../../staticfiles/css/community/app/create-knowhow.css"
+    />
+    <title>게시물 만들기</title>
+  </head>
+  <body>
+    <div class="create-post-wrap">
+      <div class="create-post-container">
+        <div
+          class="sticky-container"
+          style="
+            position: sticky;
+            top: 0px;
+            transition: top 0.1s ease 0s;
+            z-index: 500;
+          "
+        >
+          <div class="header-wrap" style="position: relative;">
+            <div class="header-container">
+              <div class="nav-wrap">
+                <div class="nav-back-btn-box">
+                  <button type="button" title="뒤로" class="back-btn">
+                    <svg
+                      width="24"
+                      height="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon css-0 epfj33z0"
+                    >
+                      <path
+                        d="M3.7 12.5h18.8v-1H3.7l7.8-7.8-.7-.7L2 11.7l.3.3-.3.3 8.8 8.7.7-.7-7.8-7.8z"
+                        fill="#000"
+                        fill-opacity="0.7"
+                        fill-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+                <h1 class="nav-text">글쓰기</h1>
+                <div class="publish-save-btn-box">
+                  <button type="button" class="save-btn">
+                    저장
+                  </button>
+                  <button type="button" class="publish-btn">
+                    발행
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-wrap">
+          <div class="main-container">
+            <div class="main-slide-box">
+              <div class="main-slide-item">
+                <button type="button" id="drop-box-guide" class="slide-btn">
+                  <div class="slide-text-box">
+                    <div class="slide-icon-box">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        viewBox="0 0 25 25"
+                        class="slide-icon"
+                      >
+                        <rect
+                          width="25"
+                          height="25"
+                          fill="#6ADFC4"
+                          rx="10"
+                        ></rect>
+                        <g fill="#FFF" transform="translate(7 8)">
+                          <rect width="7" height="1.5" rx="0.8"></rect>
+                          <rect width="11" height="1.5" y="4" rx="0.8"></rect>
+                          <rect width="11" height="1.5" y="8" rx="0.8"></rect>
+                        </g>
+                      </svg>
+                    </div>
+                    <div class="slide-text">게시물 작성 가이드</div>
+                  </div>
+                  <div class="down-arrow-box">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="down-arrow"
+                    >
+                      <path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M2.87 4L1.33 5.5 8 12l6.67-6.5L13.13 4 8 9z"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+                <div class="expanded" style="overflow: hidden;">
+                  <div class="guide-content-wrap">
+                    <ul class="guide-content-list">
+                      <li>
+                        홈 가드닝과 관련하여 정보를 나누고 공유하는 모든
+                        게시물을 환영합니다.
+                      </li>
+                      <li>
+                        게시물에는 홈 가드닝과 관련된 다양한 주제에 대한 정보,
+                        팁, 경험 등을 자유롭게 작성할 수 있습니다.
+                      </li>
+                      <li>
+                        게시물 작성 시 필수 정보를 꼼꼼히 입력해주세요.
+                        <ul>
+                          <li>
+                            게시물 작성 가이드 (<a
+                              href="#"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              >바로가기</a
+                            >)
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        사진 첨부 시 용량은 장당 최대 20MB까지 업로드할 수
+                        있으며, jpg, png, webp, heif, heic, gif 포맷을
+                        지원합니다.
+                      </li>
+                      <li>
+                        게시물 작성과 이미지 업로드 시, 타인의 지식재산권을
+                        존중하여 주세요.
+                      </li>
+                      <li>
+                        게시물은 커뮤니티의 풍요로움을 높이는데 기여할 수 있도록
+                        자유롭게 작성해주세요.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="main-slide-item">
+                <button type="button" id="drop-box-required" class="slide-btn">
+                  <div class="slide-text-box">
+                    <div class="slide-icon-box">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="26"
+                        height="26"
+                        viewBox="0 0 26 26"
+                        class="slide-icon"
+                      >
+                        <rect
+                          width="26"
+                          height="26"
+                          fill="#F8C332"
+                          rx="10"
+                        ></rect>
+                        <g fill="none" stroke="#FFF">
+                          <path
+                            stroke-linejoin="round"
+                            stroke-width="1.2"
+                            d="M15.06 8.65l-6.9 6.88L7 18.98l3.45-1.15 6.9-6.9-2.3-2.28z"
+                          ></path>
+                          <path
+                            stroke-width="1.2"
+                            d="M15.04 8.64l1.45-1.45a.65.65 0 01.93 0l1.37 1.38a.65.65 0 010 .92l-1.45 1.45"
+                          ></path>
+                          <path d="M8.27 15.2l2.48 2.47"></path>
+                        </g>
+                      </svg>
+                    </div>
+                    <div class="slide-text">필수 정보 입력</div>
+                  </div>
+                  <div class="down-arrow-box">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="down-arrow"
+                    >
+                      <path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M2.87 4L1.33 5.5 8 12l6.67-6.5L13.13 4 8 9z"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+                <div class="expanded" style="overflow: hidden;">
+                  <div class="required-info-wrap">
+                    <div class="required-info-container">
+                      <div class="required-info-item">
+                        <div class="required-info-item-title-box">
+                          카테고리<span class="required-info-item-title"
+                            >*</span
+                          >
+                        </div>
+                        <div class="required-info-item-wrap">
+                          <div class="required-info-item">
+                            <div class="required-info-item-inner">
+                              <span class="required-info-item-box">
+                                <div class="input-group select-input">
+                                  <select name="plant" class="form-control">
+                                    <option value="" disabled selected
+                                      >선택해주세요.</option
+                                    >
+                                    <option value="0">식물 키우기</option>
+                                    <option value="1">관련 제품</option>
+                                    <option value="2">스타일링</option>
+                                  </select>
+                                  <span class="select-input__icon">
+                                    <svg
+                                      width="10"
+                                      height="10"
+                                      preserveAspectRatio="xMidYMid meet"
+                                      style="fill: currentcolor;"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M0 3l5 5 5-5z"
+                                      ></path>
+                                    </svg>
+                                  </span>
+                                </div>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="required-info-item">
+                        <div class="required-info-item-title-box">
+                          식물 종류<span class="required-info-item-title"
+                            >*</span
+                          >
+                        </div>
+                        <div class="required-info-item-wrap">
+                          <div class="required-info-item-container">
+                            <div class="required-info-item-inner">
+                              <span class="required-info-item-box">
+                                <div class="input-group select-input">
+                                  <select name="plant" class="form-control">
+                                    <option value="" disabled selected
+                                      >선택해주세요.</option
+                                    >
+                                    <option value="0">관엽식물</option>
+                                    <option value="1">침엽식물</option>
+                                    <option value="2">희귀식물</option>
+                                    <option value="3">다육선인장</option>
+                                    <option value="3">테라리움</option>
+                                    <option value="3">기타</option>
+                                  </select>
+                                  <span class="select-input__icon">
+                                    <svg
+                                      width="10"
+                                      height="10"
+                                      preserveAspectRatio="xMidYMid meet"
+                                      style="fill: currentcolor;"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M0 3l5 5 5-5z"
+                                      ></path>
+                                    </svg>
+                                  </span>
+                                </div>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="required-info-item">
+                        <div class="required-info-item-title-box">
+                          인스타
+                        </div>
+                        <div class="required-info-item-wrap">
+                          <div class="required-info-item-container">
+                            <div class="required-info-item-inner">
+                              <span class="required-info-item-box">
+                                <div class="instar-input-box">
+                                  <input
+                                    class="instar-input"
+                                    placeholder="인스타 아이디"
+                                    name="instar"
+                                    maxlength="10"
+                                    value=""
+                                  />
+                                </div>
+                              </span>
+                              <span class="empty-value" style="display: none;">
+                                필수 항목 입니다.
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="required-info-item">
+                        <div class="required-info-item-title-box">
+                          태그
+                        </div>
+                        <div class="required-info-item-wrap">
+                          <div class="required-info-item-container">
+                            <div class="required-info-item-inner">
+                              <span class="required-info-item-box">
+                                <div class="tag-input-box">
+                                  <input
+                                    class="tag-input"
+                                    placeholder="# 태그"
+                                    name="tags"
+                                    maxlength="10"
+                                    value=""
+                                  />
+                                </div>
+                              </span>
+                              <span class="empty-value" style="display: none;">
+                                필수 항목 입니다.
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="required-info-item">
+                        <div class="tag-list"></div>
+                      </div>
+                      <div class="required-info-item">
+                        <div class="required-info-item-title-box">
+                          추천 상품 링크
+                        </div>
+                        <div class="required-info-item-wrap">
+                          <div class="required-info-item-container">
+                            <div class="required-info-item-inner">
+                              <div class="double-info-item-box">
+                                <div class="double-input-wrap">
+                                  <div class="double-input-left-box">
+                                    <input
+                                      class="url-input"
+                                      value=""
+                                      placeholder="URL 주소를 입력해주세요."
+                                    />
+                                  </div>
+                                </div>
+                                <div class="double-input-wrap">
+                                  <div class="link-input-box">
+                                    <input
+                                      class="url-input"
+                                      value=""
+                                      placeholder="표시할 내용"
+                                    />
+                                  </div>
+                                  <div class="add-delete-btn-box">
+                                    <button
+                                      type="button"
+                                      title="추가"
+                                      class="add-and-delete-btn"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="29"
+                                        height="29"
+                                        viewBox="-3 -5 29 29"
+                                        class="icon"
+                                      >
+                                        <path
+                                          d="M10.8 3.8v5H5.7c-.4 0-.7.3-.7.7 0 .4.3.7.7.7h5.1v5c0 .4.3.7.7.7.4 0 .7-.3.7-.7v-5h5.1c.4 0 .7-.3.7-.7 0-.4-.3-.7-.7-.7h-5.1v-5c0-.4-.3-.7-.7-.7-.4 0-.7.3-.7.7z"
+                                          fill="#525B61"
+                                          stroke="#525B61"
+                                          stroke-width="0.5"
+                                        ></path>
+                                      </svg>
+                                    </button>
+                                    <button
+                                      type="button"
+                                      title="삭제"
+                                      class="add-and-delete-btn"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="29"
+                                        height="29"
+                                        viewBox="-3 -11 29 29"
+                                        class="icon"
+                                      >
+                                        <path
+                                          d="M10.8 2.8H5.7c-.4 0-.7.3-.7.7 0 .4.3.7.7.7h11.6c.4 0 .7-.3.7-.7 0-.4-.3-.7-.7-.7h-6.5z"
+                                          fill="#525B61"
+                                          stroke="#525B61"
+                                          stroke-width="0.5"
+                                        ></path>
+                                      </svg>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                              <p class="guide-text">
+                                URL은 최대 3개까지 입력할 수 있습니다.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="upload-wrap">
+              <div class="prev-img-box">
+                <img
+                  src="../../../staticfiles/images/cancel.png"
+                  class="cancel"
+                  width="30px"
+                  height="30px"
+                  alt=""
+                />
+              </div>
+              <div class="upload-container">
+                <input
+                  type="file"
+                  id="img-file"
+                  name="img-file"
+                  style="display: none;"
+                />
+                <label
+                  for="img-file"
+                  style="cursor: pointer;"
+                  class="upload-btn"
+                >
+                  <p class="top-text-box">
+                    <span class="top-text">커버 사진을 업로드해주세요.</span>
+                  </p>
+                  <p class="bottom-text-box">
+                    *권장 사이즈<br />모바일: 1920 x 1920, 최소 1400 x 1400(1:1
+                    비율)<br />PC: 1920 x 1080, 최소 1400 x 787(16:9 비율)<br />
+                  </p>
+                  <div class="cover-add-coment">커버 사진 추가하기</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="title-input-box">
+              <input
+                type="text"
+                placeholder="제목을 입력해주세요."
+                maxlength="80"
+                class="title-input"
+                value=""
+              />
+              <div class="title-count"><span class="count">0</span> / 80</div>
+            </div>
+          </div>
+        </div>
+        <div class="content-text-input-wrap">
+          <div class="content-text-input-container">
+            <div class="content-text-input-inner">
+              <div class="content-text-input-box">
+                <p
+                  class="content-text-area"
+                  contenteditable="true"
+                  data-ph="내용을 입력해주세요."
+                ></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../../../staticfiles/js/community/app/create-knowhow.js"></script>
+</html>

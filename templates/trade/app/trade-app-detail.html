@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 여기서부터 -->
+    <style data-emotion="css-global" data-s="">
+      @import "https://assets.ohou.se/design-system/bbf3fca1e650ee6d.css";
+      @import "https://assets.ohou.se/fonts/pretendard/v1.3.8/pretendardvariable-dynamic-subset.css";
+      @font-face {
+        font-family: OhouseIcon;
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot);
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot#iefix)
+            format("embedded-opentype"),
+          url(https://assets.ohou.se/design-system/d8923b386a66fd50.woff2)
+            format("woff2"),
+          url(https://assets.ohou.se/design-system/9e79341d6a2fe0d2.woff)
+            format("woff"),
+          url(https://assets.ohou.se/design-system/5355f736e6a7bc5b.ttf)
+            format("truetype"),
+          url(https://assets.ohou.se/design-system/3ba7913eab100858.svg#OhouseIcon)
+            format("svg");
+      }
+      html {
+        font-family: "Pretendard Variable", sans-serif;
+        letter-spacing: -0.3px;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <link rel="stylesheet" href="/staticfiles/css/common.css" />
+    <!-- 여기까지는 무조건 고정으로 모든 페이지에 복붙하세요 -->
+    <!-- 여기는 각자 css 파일 link하시면 됩니다 -->
+    <link
+      rel="shortcut icon"
+      href="/staticfiles/images/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="/staticfiles/css/transaction/app/transaction-app-detail.css"
+    />
+    <title>모바일 상세보기 홈</title>
+  </head>
+  <body>
+    <div class="transaction-detail-page-wrap">
+      <div class="overview-wrap">
+        <nav class="category-nav-wrap">
+          <ol class="category-nav-container">
+            <li class="category-nav-inner">
+              <a class="link" href="#">가전·디지털</a>
+              <svg
+                class="icon"
+                width="8"
+                height="8"
+                viewBox="0 0 8 8"
+                fill="currentColor"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <path
+                  d="M4.95 4L2.12 1.19l.7-.71 3.54 3.54-3.53 3.53-.7-.7z"
+                ></path>
+              </svg>
+            </li>
+            <li class="category-nav-inner">
+              <a class="link" href="#">모니터</a>
+            </li>
+          </ol>
+        </nav>
+        <div class="overview-container">
+          <div class="overview-image-wrap">
+            <div class="overview-image-container">
+              <div
+                class="overview-image-carousel-wrap"
+                role="region"
+                aria-roledescription="carousel"
+              >
+                <div class="overview-image-carousel-container">
+                  <div
+                    class="carousel-list"
+                    aria-live="polite"
+                    style="transform: translateX(0%)"
+                  >
+                    <div
+                      class="carousel-image-wrap"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="1 of 6"
+                      style="width: 100%"
+                    >
+                      <img
+                        class="carousel-image"
+                        tabindex="0"
+                        alt="상품의 대표 이미지"
+                        src="/staticfiles/images/blank-image.png"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <ul class="carousel-image-list-wrap">
+                  <li class="carousel-image-list">
+                    <button
+                      class="carousel-image-button"
+                      type="button"
+                      aria-label="6개 중 1번째 항목"
+                    >
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt="상품의 대표 이미지"
+                      />
+                    </button>
+                  </li>
+                  <li class="carousel-image-list">
+                    <button
+                      class="carousel-image-button"
+                      type="button"
+                      aria-label="6개 중 2번째 항목"
+                    >
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt="상품의 서브 이미지"
+                      />
+                    </button>
+                  </li>
+                  <li class="carousel-image-list">
+                    <button
+                      class="carousel-image-button"
+                      type="button"
+                      aria-label="6개 중 3번째 항목"
+                    >
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt="상품의 서브 이미지"
+                      />
+                    </button>
+                  </li>
+                  <li class="carousel-image-list">
+                    <button
+                      class="carousel-image-button"
+                      type="button"
+                      aria-label="6개 중 4번째 항목"
+                    >
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt="상품의 서브 이미지"
+                      />
+                    </button>
+                  </li>
+                  <li class="carousel-image-list">
+                    <button
+                      class="carousel-image-button"
+                      type="button"
+                      aria-label="6개 중 5번째 항목"
+                    >
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt="상품의 서브 이미지"
+                      />
+                    </button>
+                  </li>
+                  <li class="carousel-image-list">
+                    <button
+                      class="carousel-image-button"
+                      type="button"
+                      aria-label="6개 중 6번째 항목"
+                    >
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt="상품의 서브 이미지"
+                      />
+                    </button>
+                  </li>
+                </ul>
+                <div class="carousel-paginator-wrap">
+                  <ul class="carousel-paginator">
+                    <li>
+                      <span
+                        class="carousel-paginator-page selected"
+                        data-key="1"
+                      ></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="2"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="3"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="4"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="5"></span>
+                    </li>
+                    <li>
+                      <span
+                        class="carousel-paginator-page small"
+                        data-key="6"
+                      ></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="overview-contents-wrap">
+            <div class="overview-contents-container">
+              <h1 class="contents-title">
+                <p class="contents-seller">
+                  <a class="contents-seller-link" href="#">삼성전자</a>
+                </p>
+                <div class="contents-product-title">
+                  <span class="contents-product-title-text">
+                    삼성 81cm M5 S32CM501 삼탠바이미 패키지 OTT
+                  </span>
+                  <div class="contents-icon-wrap">
+                    <div class="share-button-wrap">
+                      <button class="share-button" type="button">
+                        <svg
+                          class="icon"
+                          aria-label="공유하기"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <path
+                            d="M9.64 14.646a4.5 4.5 0 1 1 0-5.292l4.54-2.476a4.5 4.5 0 1 1 .63.795l-4.675 2.55c.235.545.365 1.146.365 1.777s-.13 1.232-.365 1.777l4.675 2.55a4.5 4.5 0 1 1-.63.795l-4.54-2.476zM18 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM6 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM18 23a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </h1>
+              <div class="contents-price-wrap">
+                <div class="contents-price-container">
+                  <span class="contents-price-inner">
+                    <div class="contents-price-box">
+                      <div class="price-wrap">
+                        <span class="number">439,000</span
+                        ><span class="won">원</span>
+                      </div>
+                    </div></span
+                  >
+                </div>
+              </div>
+              <a class="seller-home-link" href="#">
+                <div class="seller-name-wrap">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <path
+                      d="M3.972 8.694c0-.26.212-.472.472-.472h12.278a.472.472 0 010 .945H4.444a.472.472 0 01-.472-.473z"
+                      fill="#35C5F0"
+                    ></path>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M17.51 5.5H6.492a1 1 0 00-.93.632l-.99 2.5A1 1 0 005.498 10h13.004a1 1 0 00.927-1.368l-.99-2.5a1 1 0 00-.93-.632zM3.642 8.263a2.002 2.002 0 001.397 2.684V17.5a2.5 2.5 0 002.5 2.5H16.474a2.5 2.5 0 002.487-2.5v-6.553a2.002 2.002 0 001.398-2.684l-.99-2.5a2 2 0 00-1.86-1.263H6.493a2 2 0 00-1.86 1.263l-.99 2.5zM6.04 17.5V11h11.921v6.5a1.5 1.5 0 01-1.487 1.5v-4a2 2 0 00-2-2h-.97a2 2 0 00-2 2v4H7.54a1.5 1.5 0 01-1.5-1.5zm6.464 1.5h2.97v-4a1 1 0 00-1-1h-.97a1 1 0 00-1 1v1h.847a.5.5 0 110 1h-.847v2zM8 13h1.5v1.5H8V13zm-1 0a1 1 0 011-1h1.5a1 1 0 011 1v1.5a1 1 0 01-1 1H8a1 1 0 01-1-1V13z"
+                      fill="#3F474D"
+                    ></path>
+                  </svg>
+                  <div class="seller-name-container">
+                    <span class="seller-name">삼성전자</span>
+                  </div>
+                </div>
+                <div class="seller-home-button-wrap">
+                  <span>브랜드홈</span>
+                  <svg
+                    width="14"
+                    height="14"
+                    fill="none"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <path
+                      d="M4.083 11.375L8.312 7 4.083 2.625l.803-.875L9.916 7l-5.03 5.25-.803-.875z"
+                      fill="#828C94"
+                    ></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seperate-border"></div>
+      <div
+        class="nav-wrap"
+        style="position: sticky; top: -1px; transition: top 0.1s ease 0s"
+      >
+        <div class="nav-container" style="position: relative">
+          <nav class="nav-inner">
+            <ol class="nav-list">
+              <li>
+                <a class="nav-item" href="#detail-info">상품정보</a>
+              </li>
+              <li>
+                <a class="nav-item" href="#term">배송/환불</a>
+              </li>
+              <li>
+                <a class="nav-item" href="#suggestion">추천</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- 상품 상세 -->
+      <div class="detail-contents-page-wrap">
+        <div class="detail-contents-page-container">
+          <div class="detail-contents-page-inner">
+            <div class="detail-contentes-page">
+              <a id="detail-info"></a>
+              <section class="detail-info-section">
+                <div class="detail-info-wrap">
+                  <img
+                    class="detail-image"
+                    src="/staticfiles/images/blank-image.png"
+                    alt="판매자 공지 이미지"
+                  />
+                  <div class="upload-content">
+                    <p style="text-align: center">&nbsp;</p>
+
+                    <p style="text-align: center">&nbsp;</p>
+
+                    <p style="text-align: center">&nbsp;</p>
+                    <p style="text-align: center">
+                      <img
+                        style="
+                          display: block;
+                          margin-left: auto;
+                          margin-right: auto;
+                        "
+                        src="https://gi.esmplus.com/daodacom/SAMSUNG_monitor/LS32CM501EKXKR/S32CM501_DELAY.jpg"
+                        alt="상품의 상세 설명 이미지"
+                      />
+                    </p>
+                    <p style="text-align: center">&nbsp;</p>
+
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                  </div>
+                </div>
+              </section>
+              <a id="term"></a>
+              <section class="term-section">
+                <header class="term-header">
+                  <h1 class="term-title">교환/환불</h1>
+                </header>
+                <div class="term-info-wrap">
+                  <table class="term-info-table">
+                    <tbody>
+                      <tr>
+                        <th>반품배송비</th>
+                        <td>
+                          22,000원 (최초 배송비가 무료인 경우 44,000원 부과)
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>교환배송비</th>
+                        <td>22,000원</td>
+                      </tr>
+                      <tr>
+                        <th>보내실 곳</th>
+                        <td>
+                          (10441) 경기 고양시 덕양구 강매로 124-32 (강매동)
+                          오제플러스
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <a id="suggestion"></a>
+              <div>
+                <section class="suggestion-section">
+                  <header class="suggestion-header">
+                    <h1 class="suggestion-title">판매자가 판매중인 상품</h1>
+                  </header>
+                  <div class="scroller-wrap">
+                    <div class="scroller">
+                      <div class="scroller-content-wrap" tabindex="-1">
+                        <div
+                          class="scroller-content"
+                          style="transform: translateX(0px)"
+                        >
+                          <ul class="suggestion-list">
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                            <div class="suggestion-item-wrap">
+                              <article class="suggestion-item">
+                                <a class="suggestion-item-overlay" href="#"></a>
+                                <div class="suggestion-item-image-wrap">
+                                  <div
+                                    class="suggestion-item-image-container"
+                                  ></div>
+                                  <img
+                                    class="suggestion-item-image"
+                                    alt=""
+                                    src="/staticfiles/images/blank-image.png"
+                                  />
+                                  <button class="scrap-button" type="button">
+                                    <img
+                                      src="/staticfiles/images/scrap-off.png"
+                                      alt
+                                      class="scrap-off"
+                                    />
+                                  </button>
+                                  <div
+                                    class="suggestion-item-dark-overlay"
+                                  ></div>
+                                </div>
+                                <div class="suggestion-item-contents-wrap">
+                                  <h1 class="suggestion-item-header">
+                                    <span class="suggestion-item-seller">
+                                      삼성전자
+                                    </span>
+                                    <span class="suggestion-item-title">
+                                      스마트모니터 M7 S32BM701 화이트 80cm UHD
+                                      4K
+                                    </span>
+                                  </h1>
+                                  <span class="suggestion-item-price-wrap">
+                                    <span class="suggestion-item-price">
+                                      472,000
+                                    </span>
+                                  </span>
+                                  <span class="suggestion-item-badge-list">
+                                  </span>
+                                </div>
+                              </article>
+                            </div>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 문의 버튼 -->
+      <div
+        class="contact-button-wrap"
+        style="position: sticky; bottom: 0px; transition: bottom 0.1s ease 0s"
+      >
+        <div class="contact-button-container" style="position: relative">
+          <div class="contact-button-inner">
+            <button class="post-scrap-button" type="button">
+              <img
+                src="/staticfiles/images/scrap-off.png"
+                alt
+                class="scrap-off"
+              />
+              <span class="count">303</span>
+            </button>
+            <button class="contact-button" type="button">
+              판매자 채팅하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/staticfiles/js/transaction/app/transaction-app-detail.js"></script>
+</html>

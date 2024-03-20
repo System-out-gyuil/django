@@ -1,0 +1,182 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'public/web/css/manager/lecture/lecture-detail/lecture-detail-student.css' %}">
+{% endblock %}
+{% block title %}수강생 목록 관리{% endblock %}
+{% block content %}
+  <body class="overflow-hidden">
+    <div class="next">
+      <div class="full-screen">
+        {% include 'manager/fix/manager-header.html' %}
+        <div class="under-container">
+          {% include 'manager/fix/manager-sidebar.html' %}
+          <div class="content-wap">
+            <div class="content-container">
+              <div class="content-inner">
+                <div class="content-box">
+                  <div class="header">
+                    <h1 class="header-name">수강생 목록 관리</h1>
+                    <div>
+                      <div class="compose-button">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="header-function-container">
+                    <ul class="header-function-inner">
+                      <li class="header-relative-1">
+                        <a
+                          class="lecture-info"
+                          aria-label="tab button"
+                          href="/admin/lecture/review/?id={{ lecture.id }}"
+                        >
+                          <div>
+                            <div class="flex">
+                              <p class="review-info">리뷰 정보</p>
+                              <div class="review-info-num">
+                                <p class="review-info-num">{{ review_count }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                        <div class="lecture-underbar"></div>
+                      </li>
+                      <li class="header-relative-2">
+                        <a
+                          class="lecture-info my_lecture-checked"
+                          aria-label="tab button"
+                          href="/admin/lecture/trainees/?id={{ lecture.id }}"
+                        >
+                          <div>
+                            <div class="flex">
+                              <p class="review-info">수강생 목록</p>
+                              <div class="review-info-num">
+                                <p class="review-info-num">{{ trainees_count }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                        <div class="lecture-underbar underbar-checked"></div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="all-list">
+                    <div>
+                      <span class="all-name">전체</span>
+                      <span class="all-num">{{ trainees_count }}</span>
+                    </div>
+                    <div class="list-order">
+                      <div class="search-bar">
+                        <label class="search-bar">
+                          <input
+                            class="search-bar"
+                            placeholder="수강생 검색"
+                            type="text"
+                            value
+                          />
+                          <button
+                            aria-label="search button"
+                            class="search-bar"
+                            type="button"
+                          >
+                            <img
+                              class="search-logo"
+                              src="{% static 'public/web/images/common/search_icon.png' %}"
+                            />
+                            <img
+                              class="cancel-logo"
+                              src="{% static 'public/web/images/common/cancel.png' %}"
+                            />
+                          </button>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="category-benner">
+                  <div class="category-wrap">
+                    <div class="category-inner">수강생 이름</div>
+                    <div class="category-inner">대표 신청자</div>
+                    <div class="category-inner">수강 날짜</div>
+                    <div class="category-inner">수강 시간</div>
+                    <div class="category-inner">수강 상태</div>
+                    <div class="category-inner">신청일</div>
+                  </div>
+                </div>
+                <ul class="list-content">
+{#                    리스트 예시 #}
+{#                  <li class="list-content">#}
+{#                    <input type="checkbox" class="checkbox-input" />#}
+{#                    <div class="trainee-info-wrap">#}
+{#                      <div class="trainee-info">김광협</div>#}
+{#                      <div class="trainee-info">GH Kim</div>#}
+{#                      <div class="trainee-info">2024.03.14</div>#}
+{#                      <div class="trainee-info">12:00</div>#}
+{#                      <div class="trainee-info">신청 완료</div>#}
+{#                      <div class="trainee-info">2024.02.14</div>#}
+{#                    </div>#}
+{#                  </li>#}
+                </ul>
+                {# 페이지네이션 버튼 #}
+                <div class="page-count-wrap">
+                  <button class="page-count" aria-label="page turning button" disabled type="button">
+                    <svg class="page-count" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z"></path>
+                    </svg>
+                  </button>
+                  <button class="page-count-num page-count-num-choice" aria-label="page number button" type="button">
+                    <span class="page-count-num">1</span>
+                  </button>
+                  <button class="page-count-num" aria-label="page number button" type="button">
+                    <span class="page-count-num">2</span>
+                  </button>
+                  <button class="page-count" aria-label="page turning button" disabled type="button">
+                    <svg class="page-count" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="delete-modal-wrap">
+        <div class="delete-modal-container">
+          <h4 class="delete-modal">수강생 삭제</h4>
+          <div class="delete-modal-inner">해당 수강생을 삭제하시겠습니까?</div>
+          <div class="delete-modal-box">
+            <div class="modal-cancel">
+              <button class="modal-cancel" aria-label="button" type="button">
+                취소
+              </button>
+            </div>
+            <div class="modal-confirm">
+              <button class="modal-confirm" aria-label="button" type="button">
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="delete-modal-bgcolor"></div>
+      </div>
+    </div>
+  </body>
+{% endblock %}
+{% block js %}
+  <script>
+    const csrf_token = '{{ csrf_token }}';
+    
+    // 강의 id
+    const lectureId = '{{ lecture.id }}';
+    
+    // 수강생 목록 페이지 - 초기값 1
+    let page = 1;
+    
+    // 검색 키워드 - 초기값 빈 문자열
+    let keyword = '';
+  </script>
+  <script src="{% static 'public/web/js/manager/lecture/lecture/lecture-module.js' %}"></script>
+  <script src="{% static 'public/web/js/manager/lecture/lecture-detail/show-trainees.js' %}"></script>
+  <script src="{% static 'public/web/js/manager/lecture/lecture-detail/lecture-detail-student.js' %}"></script>
+{% endblock %}

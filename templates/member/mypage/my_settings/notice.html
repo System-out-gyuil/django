@@ -1,0 +1,98 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my_settings/notice.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 알림 설정{% endblock %}
+{% block content %}
+    <div class="whole-page-wrap">
+      <div class="whole-page-container">
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <header style="height: 80.75px"></header>
+        <div class="main-wrap">
+          <!-- 마이페이지 내 네비게이션 바 -->
+          <div class="navigation-wrap">
+            <div class="main-category-wrap">
+              <ul
+                class="main-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="main-category-item">
+                  <a href="#">내 활동</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="#">거래 내역</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="#">수강 내역</a>
+                </li>
+                <li class="main-category-item teacher">
+                  <a href="#">강의 현황</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="#" class="active">설정</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sub-category-wrap">
+              <ul
+                class="sub-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="sub-category-item">
+                  <a href="#">회원정보수정</a>
+                </li>
+                <li class="sub-category-item">
+                  <a href="#" class="active">알림 설정</a>
+                </li>
+                <li class="sub-category-item">
+                  <a href="#">비밀번호 변경</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 알림 설정 페이지 내용 -->
+          <div class="notice-page-wrap">
+            <h1 class="notice-page-title">SNS 알림 설정</h1>
+            <p class="notice-page-explain">
+              Selleaf의 소식을 더욱 빠르게 접해보세요.
+            </p>
+            <ul class="sns-options-wrap">
+              <li class="sns-options-container">
+                <span class="sns-type-text">이메일</span>
+                <span class="notice-option-wrap">
+                  <input
+                    type="checkbox"
+                    class="notice-option-input"
+                    name="이메일 수신 동의"
+                  />
+                  <span class="visual-notice-option"></span>
+                </span>
+              </li>
+              <li class="sns-options-container">
+                <span class="sns-type-text">문자 메세지</span>
+                <span class="notice-option-wrap">
+                  <input
+                    type="checkbox"
+                    class="notice-option-input"
+                    name="문자 수신 동의"
+                  />
+                  <span class="visual-notice-option"></span>
+                </span>
+              </li>
+            </ul>
+            <p class="notice-page-info">
+              알림 수신에 동의하시면
+              <a href="#">개인 정보의 마케팅 활용</a>에 동의하는 것으로
+              간주됩니다.
+            </p>
+          </div>
+        </div>
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <footer style="height: 320px"></footer>
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+  <script src="\{% static 'member/js/mypage/my_settings/notice.js' %}"></script>
+{% endblock %}

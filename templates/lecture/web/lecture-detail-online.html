@@ -1,0 +1,1393 @@
+{% extends 'lecture/web/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'lecture/css/lecture/web/lecture-detail.css' %}">
+{% endblock %}
+{% block title %}온라인 강의 상세보기{% endblock %}
+{% block content %}
+<form action="" method="post" name="">
+  <body>
+    {% include 'fix/header.html' %}
+    <form action="{% url 'lecture:report' %}" method="post" name="lecture-report" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="lecture-id" value="{{ lecture.id }}">
+        <div class="declaration-modal-wrap">
+          <div class="declaration-modal-container">
+            <div class="declaration-modal-title-box">
+              <span class="declaration-modal-title">신고 사유를 선택해주세요</span>
+              <button type="button" class="declaration-modal-cancel-btn">
+                <span class="cancel-btn-icon"></span>
+              </button>
+            </div>
+            <div class="declaration-modal-content">
+              <ul class="declaration-list">
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box declaration-choice">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="주제와 맞지 않음"
+                      />
+                    </div>
+                    <span class="declaration-text">주제와 맞지 않음</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="정보가 부정확함"
+                      />
+                    </div>
+                    <span class="declaration-text">정보가 부정확함</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="지나친 광고성 게시물"
+                      />
+                    </div>
+                    <span class="declaration-text">지나친 광고성 게시물</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="도배 및 중복 게시물"
+                      />
+                    </div>
+                    <span class="declaration-text">도배 및 중복 게시물</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="저작권 침해가 우려됨"
+                      />
+                    </div>
+                    <span class="declaration-text">저작권 침해가 우려됨</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="욕설/비방이 심함"
+                      />
+                    </div>
+                    <span class="declaration-text">욕설/비방이 심함</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="외설적인 게시물"
+                      />
+                    </div>
+                    <span class="declaration-text">외설적인 게시물</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="개인정보노출"
+                      />
+                    </div>
+                    <span class="declaration-text">개인정보노출</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="declaration-btn-wrap">
+              <div class="declaration-btn-container">
+                <button class="declaration-btn" type="submit">신고하기</button>
+                <button class="declaration-btn" type="button">취소하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    <a id="top"></a>
+    <div class="category-wrap-" style="height: 52px">
+      <div
+        class="category-container"
+        style="
+          position: fixed;
+          z-index: 1101;
+          transition: top 0.1s ease 0s;
+          top: auto;
+          width: 106%;
+        "
+      >
+        <div class="category-inner">
+          <div class="category-button-space">
+            <nav class="category-button-collection">
+              <span class="category-button">
+                <div class="button-space">
+                  <a href="/lecture/main/" class="button-link-unclick">
+                    <div class="button">
+                      <p class="button-letter-unclick">강의홈</p>
+                    </div>
+                  </a>
+                </div>
+              </span>
+              <span class="category-button">
+                <div class="button-space">
+                  <a href="/lecture/total/" class="button-link-unclick">
+                    <div class="button">
+                      <p class="button-letter-unclick">원데이클래스</p>
+                    </div>
+                  </a>
+                </div>
+              </span>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form action="{% url 'lecture:detail-online' %}" method="post" name="apply" enctype="multipart/form-data">
+    <div class="product-selling-wrap">
+      <div class="product-overview-wrap">
+        <nav class="product-category-wrap">
+          <span>{{ lecture.teacher__member__member_name }}님의 {{ lecture.lecture_title }} 상품을 보고있어요🤗</span>
+        </nav>
+        <div class="product-overview-container">
+          <div class="product-overview-image-wrap">
+            <div class="product-overview-image-container">
+              <div
+                class="product-overview-image-inner"
+                role="region"
+                aria-roledescription="carousel"
+              >
+                <div class="product-overview-main-image">
+                  <div
+                    class="carousel-list-wrap"
+                    aria-live="polite"
+                    style="
+                      transform: translateX(-100%);
+                      transition: transform 0s ease 0s;
+                    "
+                  >
+                    <div
+                      class="carousel-list-container"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="1 of 4"
+                      style="width: 100%"
+                    >
+{#                      <img#}
+{#                        class="product-cover-image"#}
+{#                        tabindex="0"#}
+{#                        src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                        alt="상품서브이미지"#}
+{#                      />#}
+                    </div>
+                    <div
+                      class="carousel-list-container"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="2 of 4"
+                      style="width: 100%"
+                    >
+                      <img
+                        class="product-cover-image"
+                        tabindex="0"
+                        src="/upload/{{ lecture_file.file_url }}"
+                        alt="상품서브이미지"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <ul class="product-small-image-list">
+                    {% for lecture_file in lecture_files %}
+                      <li class="product-small-image-item">
+                        <button
+                          class="product-small-image-button"
+                          type="button"
+                          aria-label="1 of 8"
+                        >
+                          <img
+                            class="product-small-image"
+                            src="/upload/{{ lecture_file.file_url }}"
+                            alt="상품 이미지"
+                          />
+                        </button>
+                      </li>
+                  {% endfor %}
+                </ul>
+                <div class="product-image-paginator">
+                  <ul class="carousel-paginator">
+                    <li>
+                      <span class="carousel-paginator-page" data-key="1"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="2"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="3"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="4"></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-overview-contents-wrap">
+            <div class="product-overview-contents-header">
+              <h1 class="product-overview-contents-title">
+                <p class="product-overview-user-wrap">
+                  <a href="해당유저페이지" class="product-overview-user"
+                    >{{ lecture.teacher__member__member_name }}</a
+                  >
+                </p>
+                <div class="product-overview-title">
+                  <span class="product-title">{{ lecture.lecture_title }}</span>
+                  <div class="product-title-icon-wrap {{ lecture.id }}">
+                    {% if request.session.member.id == lecture.teacher__member_id %}
+                        <a href="/lecture/update/online/?id={{ lecture.id }}">
+                            <button class="update-button" type="button">
+                              <img
+                                class="update-icon"
+                                src="{% static 'public/web/images/common/update_icon.png' %}"
+                              />
+                              <span class="update-label">수정</span>
+                            </button>
+                        </a>
+                        <a href="/lecture/delete/?id={{ lecture.id }}">
+                          <button class="update-button" type="button">
+                            <img
+                            class="update-icon"
+                            src="{% static 'public/web/images/common/remove-icon.png' %}"
+                          />
+                          <span class="update-label">삭제</span>
+                          </button>
+                        </a>
+                    {% endif %}
+                    <button class="scrap-button" type="button">
+                      <img
+                        class="scrap-off"
+                        src="{% if lecture.lecture_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off-blk.png' %}{% endif %}"
+                      />
+                      <span class="scrap-count"></span>
+                    </button>
+                  </div>
+                </div>
+              </h1>
+              <div class="product-overview-contents-container">
+                <p class="product-contents-review-wrap">
+                  <a href="#product-review" class="product-review">
+                   <span class="rating" aria-label="별점3.9점">
+                          <svg
+                            fill="{% if average_rating >= 1 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-115"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-115">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-115"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-115)"
+                              xlink:href="#star-path-115"
+                            ></use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 2 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-116"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-116">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-116"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-116)"
+                              xlink:href="#star-path-116"
+                            ></use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 3 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-117"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-117">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-117"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-117)"
+                              xlink:href="#star-path-117"
+                            ></use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 4 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-118"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-118">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-118"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-118)"
+                              xlink:href="#star-path-118"
+                            ></use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 5 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-119"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-119">
+                                <rect
+                                  x="0"
+                                  y="0"
+                                  width="18.548148148148158"
+                                  height="24"
+                                ></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-119"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-119)"
+                              xlink:href="#star-path-119"
+                            ></use>
+                          </svg> </span
+                        >
+                    <span class="review-counting-text">
+                      <span class="review-counting">{{ review_count }}</span>
+                      <span class="review-text">개 리뷰</span>
+                    </span>
+                  </a>
+                </p>
+                <div class="product-contents-price-wrap">
+                  <span class="product-contents-price-container">
+                    <span class="product-price-info">
+                      <button class="product-price-info-button"></button>
+                    </span>
+                    <span class="product-price-separator"></span>
+                    <div class="product-final-price-wrap">
+                      <div class="product-final-price-container">
+                        <span class="final-price-number">{{ lecture.lecture_price }}</span>
+                        <span class="krw">원</span>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="product-overview-info-wrap">
+                <div class="product-info-container">
+                  <div class="product-info-title">
+                    <span>정보</span>
+                  </div>
+                  <div class="product-info-contents">
+                    <span class="main-info-keyword">
+                      <b>키워드</b>
+                    </span>
+                      <span class="info-type">
+                        {% for lte in lectures %}
+                          {% if lte.id == lecture.id %}
+                              {% for pN in lte.plant_name %}
+                                <span class="info-tag">#{{ pN }}</span>
+                              {% endfor %}
+                          {% endif %}
+                        {% endfor %}
+                      </span>
+{#                      <span>주문제작</span>#}
+{#                      <span>일반배송</span>#}
+{#                    </span>#}
+{#                    <span class="info-particulars-wrap">#}
+{#                      <span class="info-particulars-container">#}
+{#                        <img#}
+{#                          src="{% static 'public/web/images/common/button-down.png' %}"#}
+{#                          class="check-icon"#}
+{#                        />#}
+{#                        <span>파손주의 등등</span>#}
+{#                      </span>#}
+{#                    </span>#}
+                  </div>
+                </div>
+              </div>
+              <a href='#' class="user-info-link">
+                <div class="user-link-name-wrap">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <path
+                      d="M3.972 8.694c0-.26.212-.472.472-.472h12.278a.472.472 0 010 .945H4.444a.472.472 0 01-.472-.473z"
+                      fill="#35C5F0"
+                    ></path>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M17.51 5.5H6.492a1 1 0 00-.93.632l-.99 2.5A1 1 0 005.498 10h13.004a1 1 0 00.927-1.368l-.99-2.5a1 1 0 00-.93-.632zM3.642 8.263a2.002 2.002 0 001.397 2.684V17.5a2.5 2.5 0 002.5 2.5H16.474a2.5 2.5 0 002.487-2.5v-6.553a2.002 2.002 0 001.398-2.684l-.99-2.5a2 2 0 00-1.86-1.263H6.493a2 2 0 00-1.86 1.263l-.99 2.5zM6.04 17.5V11h11.921v6.5a1.5 1.5 0 01-1.487 1.5v-4a2 2 0 00-2-2h-.97a2 2 0 00-2 2v4H7.54a1.5 1.5 0 01-1.5-1.5zm6.464 1.5h2.97v-4a1 1 0 00-1-1h-.97a1 1 0 00-1 1v1h.847a.5.5 0 110 1h-.847v2zM8 13h1.5v1.5H8V13zm-1 0a1 1 0 011-1h1.5a1 1 0 011 1v1.5a1 1 0 01-1 1H8a1 1 0 01-1-1V13z"
+                      fill="#3F474D"
+                    ></path>
+                  </svg>
+                  <div class="user-link-name-container">
+                    <span class="user-link-name">{{ lecture.teacher__member__member_name }}님의 판매상품</span>
+                  </div>
+                </div>
+                <div class="user-link-icon-wrap">
+                  <span>{{ lecture.lecture_category__lecture_category_name }}</span>
+{#                  <svg#}
+{#                    width="14"#}
+{#                    height="14"#}
+{#                    fill="none"#}
+{#                    preserveAspectRatio="xMidYMid meet"#}
+{#                  >#}
+{#                    <path#}
+{#                      d="M4.083 11.375L8.312 7 4.083 2.625l.803-.875L9.916 7l-5.03 5.25-.803-.875z"#}
+{#                      fill="#828C94"#}
+{#                    ></path>#}
+{#                  </svg>#}
+                </div>
+              </a>
+            </div>
+            <div class="product-option-wrap">
+              <section class="product-option-container">
+                <div class="product-option-inner">
+                  <div class="product-option-input">
+                    <div class="product-option-first-wrap">
+                      <span class="info-dropdown-box">
+                        <span class="info-title">날짜 선택</span>
+                        <div class="info-dropdown-wrap">
+                          {% for date in lecture_order_date %}
+                            <label class="weekday-selection">
+                              <input type="radio" style="display: none" name="date-input" value="{{ date.date|date:"Y-m-d" }}" ><span>{{ date.date|date:"Y-m-d" }}</span>
+                            </label>
+                          {% endfor %}
+                        </div>
+                      </span>
+                    </div>
+                    <div class="product-option-second-wrap">
+                      <span class="info-dropdown-box">
+                        <span class="info-title">시간 선택</span>
+                        <div class="info-dropdown-wrap">
+                          {% for time in lecture_order_time %}
+                            <label class="time-selection">
+                              <input type="radio" style="display: none" name="time-input" value="{{ time.time }}" ><span>{{ time.time }}</span>
+                            </label>
+                          {% endfor %}
+                        </div>
+                      </span>
+                    </div>
+                    <div class="product-option-third-wrap">
+                      <span class="info-dropdown-box">
+                        <span class="info-title">DIY 키트 선택</span>
+                          <div class="info-dropdown-wrap">
+                              {% for kit in kits %}
+                                <label class="kit-selection">
+                                  <input type="radio" style="display: none" name="kit-input" value="{{ kit.kit_name }}">
+                                  <div class="kit-title">{{ kit.kit_name }}</div>
+                                  <div>{{ kit.kit_content }}</div>
+                                </label>
+                              {% endfor %}
+                          </div>
+                        </span>
+                    </div>
+                  </div>
+                  <article class="selected-product-list-container" style="display: none">
+                    <h2 class="selected-product-name">
+                      <span>날짜:</span>
+                      <span class="selected-date">선택한 날짜</span>
+                      /
+                      <span>시간:</span>
+                      <span class="selected-time">선택한 시간</span>
+                      /
+                      <span>키트:</span>
+                      <span class="selected-kit">선택한 키트</span>
+                    </h2>
+                    <button class="delete-button-wrap" aria-label="삭제" type="button">
+                      <span class="delete-button-container">
+                        <img src="{% static 'public/web/images/common/cancel.png' %}" alt="" />
+                      </span>
+                    </button>
+                    <div class="student-count-title">수량</div>
+                    <div class="selected-product-botton-wrap">
+                      <div class="selected-product-count">
+                        <span class="sub-count">
+                          <img src="{% static 'public/web/images/common/sub.png' %}" alt="" />
+                        </span>
+                        <div class="counted-number">0</div>
+                        <span class="add-count">
+                          <img src="{% static 'public/web/images/common/add.png' %}" alt="" />
+                        </span>
+                      </div>
+                      <div class="selected-price-wrap">
+                        <span class="selected-price">{{ lecture.lecture_price }}</span>
+                        <span class="won">원</span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+              <p class="product-total-price">
+                <span class="product-order-text">주문금액</span>
+                <span class="product-order-price">
+                  <span class="total-price">{{ lecture.lecture_price }}원</span>
+                </span>
+              </p>
+              <div class="product-order-button-wrap">
+                <button class="add-cart-button" type="button">장바구니</button>
+                <button class="order-button" type="button">바로구매</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-detail-nav-wrap" style="position: sticky; top: 131.5px; transition: top 0.1s ease 0s">
+        <div class="product-detail-nav-container" style="position: relative">
+          <nav class="product-detail-nav-inner">
+            <ol class="product-detail-nav-list">
+              <li>
+                <a class="product-detail-nav-item active" href="#detail-info">상품정보</a>
+              </li>
+              <li>
+                <a class="product-detail-nav-item" href="#product-review">
+                  리뷰
+                  <span class="review-counting">{{ review_count }}</span>
+                </a>
+              </li>
+              <li>
+                <a class="product-detail-nav-item" href="#product-ask">문의</a>
+              </li>
+              <li>
+                <a class="product-detail-nav-item" href="#product-suggestion">추천</a>
+              </li>
+              <li>
+                <a class="product-detail-nav-item" href="#product-extra-info">반품/기타</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="product-detail-wrap">
+        <div class="product-detail-container">
+          <div class="product-detail-inner">
+            <div class="product-detail-contents-wrap">
+              <a id="detail-info"></a>
+              <section class="detail-info-wrap">
+                <header class="detail-info-title">
+                  <h1 class="detail-info-title-text">상품정보</h1>
+                </header>
+                <div class="detail-info-contents-wrap">
+                  <div class="detail-info-contents-thumbnail">
+                  </div>
+                  {% for lecture_file in lecture_files %}
+                    <img class="detail-info-image" src="/upload/{{ lecture_file.file_url }}" alt="판매자 등록이미지"/>
+                  {% endfor %}
+                </div>
+                <p class="product-review-description">{{ lecture.lecture_content }}</p>
+              </section>
+              <a id="product-review"></a>
+              <section class="product-review-wrap">
+                <header class="detail-header">
+                  <h1 class="detail-title-text">
+                    리뷰
+                    <span class="review-counting">{{ review_count }}</span>
+                  </h1>
+                  <div class="review-post-button-wrap">
+                    <button type="button" class="review-post-button">
+                      리뷰쓰기
+                    </button>
+                  </div>
+                </header>
+                <div class="product-review-feed-wrap">
+                  <div class="product-review-feed-container">
+                    <div class="product-review-feed-rating-wrap">
+                      <div class="product-review-feed-total-rating">
+                        <span class="icon" aria-label="별점3.9점">
+                          <svg
+                            fill="{% if average_rating >= 1 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24">
+                            <defs>
+                              <path
+                                id="star-path-115"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-115">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-115"
+                              fill="#DBDBDB">
+                            </use>
+                            <use
+                              clip-path="url(#star-clip-115)"
+                              xlink:href="#star-path-115">
+                            </use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 2 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-116"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-116">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-116"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-116)"
+                              xlink:href="#star-path-116"
+                            ></use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 3 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-117"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-117">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-117"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-117)"
+                              xlink:href="#star-path-117"
+                            ></use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 4 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-118"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-118">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-118"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-118)"
+                              xlink:href="#star-path-118"
+                            ></use>
+                          </svg>
+                          <svg
+                            fill="{% if average_rating >= 5 %}#135f2c{% else %}#DBDBDB{% endif %}"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <defs>
+                              <path
+                                id="star-path-119"
+                                d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"
+                              ></path>
+                              <clipPath id="star-clip-119">
+                                <rect
+                                  x="0"
+                                  y="0"
+                                  width="18.548148148148158"
+                                  height="24"
+                                ></rect>
+                              </clipPath>
+                            </defs>
+                            <use
+                              xlink:href="#star-path-119"
+                              fill="#DBDBDB"
+                            ></use>
+                            <use
+                              clip-path="url(#star-clip-119)"
+                              xlink:href="#star-path-119"
+                            ></use>
+                          </svg> </span
+                        ><span class="total-rating">{{ average_rating }}</span>
+                      </div>
+
+                      <div class="detail-rating-wrap">
+                        {% for rating, count in rating_counts.items %}
+                          <div class="detail-rating-inner">
+                              <div class="detail-rating-label">{{ rating }}점</div>
+                              <div class="detail-rating-label-bar">
+                                  <div class="detail-rating-label-full"></div>
+                                  <div class="detail-rating-label-gauging" style="width: {{ count }}%"></div>
+                              </div>
+                              <div class="detail-rating-number">{{ count }}</div>
+                          </div>
+                      {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-filter-wrap">
+                    <div class="review-filter-container">
+                      <div class="review-filter-inner">
+                        <div class="review-filter-preview-wrap">
+                          <button
+                            class="review-filter-preview-button"
+                            aria-pressed="false"
+                            type="button"
+                          >
+                            최신순
+                          </button>
+                          <button
+                            class="review-filter-preview-button preview-active"
+                            aria-pressed="true"
+                            type="button"
+                          >
+                            별점순
+                          </button>
+                        </div>
+                        <ul class="review-filter-list-button">
+                          <li class="review-filter-list-rating">
+                            <div class="review-filter-rating">
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-review-list-wrap">
+                    <div class="product-review-list-container">
+                      {% for review in reviews %}
+                        <article class="product-review-list-inner">
+                        <div class="product-review-user-wrap">
+                          <a href="/사용자 마이페이지"
+                            ><img
+                              src="https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-users-profile_images-169503542042594135.jpeg/80/80"
+                              class="product-reveiw-user-img"
+                              alt=""
+                          /></a>
+                          <a id="product-ask"></a>
+                          <div class="product-review-user-info-wrap">
+                            <p class="product-review-user-name">{{ review.member.member_name }}</p>
+                            <button
+                              class="product-review-rating-wrap"
+                              type="button"
+                            >
+                              <span
+                                class="product-review-rating-container"
+                                aria-label=""
+                              >
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= review.review_rating %}
+                                        <svg class="star" fill="#135f2c" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                            <path d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"></path>
+                                        </svg>
+                                    {% else %}
+                                        <svg class="star" fill="#DBDBDB" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                            <path d="M11.9996 19.7201L6.32294 22.1251C5.5626 22.4472 5.005 22.0311 5.0755 21.2188L5.60855 15.0767L1.5671 10.421C1.02579 9.79745 1.24924 9.13855 2.04358 8.95458L8.04973 7.56354L11.2287 2.28121C11.6545 1.57369 12.3502 1.5826 12.7706 2.28121L15.9496 7.56354L21.9557 8.95458C22.7602 9.1409 22.9667 9.8053 22.4322 10.421L18.3907 15.0767L18.9238 21.2188C18.9952 22.0414 18.4271 22.4432 17.6764 22.1251L11.9996 19.7201Z"></path>
+                                        </svg>
+                                    {% endif %}
+                                {% endfor %}
+                              </span>
+                              <svg
+                                class="product-review-rating-down"
+                                width="10"
+                                height="10"
+                                viewBox="0 0 10 10"
+                                fill="currentColor"
+                                preserveAspectRatio="xMidYMid meet"
+                              >
+                                <path
+                                  d="M1.8 2.5l-.97.94L5 7.5l4.17-4.06-.97-.94L5 5.63z"
+                                ></path>
+                              </svg>
+                            </button>
+                            <span class="product-review-date">
+                              2024.01.14 구매
+                            </span>
+                          </div>
+                        </div>
+                        <div class="product-review-item-name">
+                          <p class="product-review-item-text">
+                              {{ review.review_title }}
+                          </p>
+                        </div>
+                        <p class="product-review-description">
+                          {{ review.review_content }}
+                        </p>
+                        <div class="product-review-help">
+                        </div>
+                      </article>
+                      {% endfor %}
+                    </div>
+                  <button class="review-more-button" id="load-more-btn">더 보기</button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="product-ask-wrap">
+                <header class="product-ask-container">
+                  <h1 class="product-ask-title">문의</h1>
+                  <div class="product-ask-link">
+                    <h3 style="color: #134F2C">{{ lecture.teacher__member__member_email }}</h3>
+{#                    <button type="button" class="product-ask-button">#}
+{#                      판매자 문의#}
+{#                    </button>#}
+                  </div>
+                </header>
+              </section>
+
+              <div>
+                <section class="product-suggestion-wrap">
+                  <header class="product-suggestion-header">
+                    <h1 class="product-suggestion-title">강사의 다른 강의추천</h1>
+                  </header>
+                  <div class="product-suggestion-scroller-wrap">
+                    <div class="product-suggestion-scroller-container">
+                      <div class="scroller-contents-wrap" tabindex="-1">
+                        <div
+                          class="scroller-contents-container"
+                          style="transform: translateX(0px)"
+                        >
+                          <ul class="scroller-list-contents-inner">
+                            {% for lecture in lectures %}
+                                <div class="product-suggestion-each-contents {{ lecture.id }}">
+                                  <article class="product-suggestion-contents-wrap">
+                                    {% if lecture.online_status %}
+                                        <a class="product-suggestion-contents-overlay" href="/lecture/detail/offline?id={{ lecture.id }}"></a>
+                                    {% else %}
+                                        <a class="product-suggestion-contents-overlay" href="/lecture/detail/online?id={{ lecture.id }}"></a>
+                                    {% endif %}
+                                    <div class="product-suggestion-contents-image">
+                                      <img
+                                        class="image"
+                                        alt=""
+                                        src="/upload/{{ lecture.product_img }}"
+{#                                        srcset="#}
+{#                                          https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                          https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                          https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                        "#}
+                                      />
+                                      <button
+                                        class="img-scrap-button"
+                                        type="button"
+                                      >
+                                        <img
+                                          src="{% if lecture.lecture_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off.png' %}{% endif %}"
+                                          alt=""
+                                        />
+                                      </button>
+                                      <div class="product_dark-overlay"></div>
+                                    </div>
+                                    <div class="product-suggestion-content">
+                                      <h1
+                                        class="product-suggestion-contents-header"
+                                      >
+                                        <span class="product-suggestion-user">
+                                          {{ lecture.lecture_title }}
+                                        </span>
+                                        <span class="product-suggestion-name">
+                                          {{ lecture.lecture_content }}
+                                        </span>
+                                      </h1>
+                                      <span class="product-suggestion-price-wrap">
+                                        <span class="product-suggestion-price">
+                                          {{ lecture.lecture_price }}원
+                                        </span>
+                                      </span>
+                                      <span class="info-type">
+                                          {% for plant_name in lecture.plant_name %}
+                                            <span class="info-tag">#{{ plant_name }}</span>
+                                          {% endfor %}
+                                      </span>
+                                    </div>
+                                  </article>
+                                </div>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="scroller-ui">
+                        <div
+                          class="scroller-ui-prev"
+                          style="top: 108.662px; display: none"
+                        >
+                          <svg
+                            class="prev-icon"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#FFF"
+                                class="circle"
+                              ></circle>
+                              <path
+                                fill="#424242"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                                class="arrow"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="active"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#97a38c"
+                              ></circle>
+                              <path
+                                fill="#FFF"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                              ></path>
+                            </g>
+                          </svg>
+                        </div>
+                        <div
+                          class="scroller-ui-next"
+                          style="top: 108.662px; display: block"
+                        >
+                          <svg
+                            class="inactive"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none" transform="matrix(-1 0 0 1 40 0)">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#FFF"
+                                class="circle"
+                              ></circle>
+                              <path
+                                fill="#424242"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                                class="arrow"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="active"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none" transform="matrix(-1 0 0 1 40 0)">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#97a38c"
+                              ></circle>
+                              <path
+                                fill="#FFF"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                              ></path>
+                            </g>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <a id="product-extra-info"></a>
+              <section class="product-extra-info-wrap">
+                <header class="product-extra-info-title">
+                  <h1 class="product-extra-info-title-text">교환/환불</h1>
+                </header>
+                <div class="product-refund-wrap">
+                  <table class="product-info-table">
+                    <tbody>
+                      <tr>
+                        <th>반품배송비</th>
+                        <td>
+                          3,000원 (최초 배송비가 무료인 경우 6,000원 부과)
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>교환배송비</th>
+                        <td>6,000원</td>
+                      </tr>
+                      <tr>
+                        <th>보내실 곳</th>
+                        <td>
+                          <span>{{ lecture.teacher.member.member_email }}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h2 class="product-detail-title">
+                    반품/교환 사유에 따른 요청 가능 기간
+                  </h2>
+                  <p class="product-detail-note">
+                    반품 시 먼저 판매자와 연락하셔서 반품사유, 택배사, 배송비,
+                    반품지 주소 등을 협의하신 후 반품상품을 발송해 주시기
+                    바랍니다.
+                  </p>
+                  <ol class="product-detail-list">
+                    <li>
+                      구매자 단순 변심은 상품 수령 후 7일 이내&nbsp;<small
+                        >(구매자 반품배송비 부담)</small
+                      >
+                    </li>
+                    <li>
+                      표시/광고와 상이, 계약내용과 다르게 이행된 경우 상품 수령
+                      후 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날로부터
+                      30일 이내.<br />둘 중 하나 경과 시 반품/교환
+                      불가&nbsp;<small>(판매자 반품배송비 부담)</small>
+                    </li>
+                  </ol>
+                  <h2 class="product-detail-title">
+                    반품/교환 사유에 따른 요청 가능 기간
+                  </h2>
+                  <p class="product-detail-note">
+                    반품 시 먼저 판매자와 연락하셔서 반품사유, 택배사, 배송비,
+                    반품지 주소 등을 협의하신 후 반품상품을 발송해 주시기
+                    바랍니다.
+                  </p>
+                  <ol class="product-detail-list">
+                    <li>
+                      구매자 단순 변심은 상품 수령 후 7일 이내&nbsp;<small
+                        >(구매자 반품배송비 부담)</small
+                      >
+                    </li>
+                    <li>
+                      표시/광고와 상이, 계약내용과 다르게 이행된 경우 상품 수령
+                      후 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날로부터
+                      30일 이내.<br />둘 중 하나 경과 시 반품/교환
+                      불가&nbsp;<small>(판매자 반품배송비 부담)</small>
+                    </li>
+                  </ol>
+                </div>
+              </section>
+              <section>
+                <header class="product-extra-info-title">
+                  <h1 class="product-extra-info-title-text">판매자 정보</h1>
+                  <button type="button" class="report-button">신고</button>
+                </header>
+                <div class="product-refund-wrap">
+                  <table class="product-info-table">
+                    <tbody>
+                      <tr>
+                        <th>반품배송비</th>
+                        <td>
+                          3,000원 (최초 배송비가 무료인 경우 6,000원 부과)
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>교환배송비</th>
+                        <td>6,000원</td>
+                      </tr>
+                      <tr>
+                        <th>보내실 곳</th>
+                        <td>
+                          (42697) 대구 달서구 성서로68길 39 (갈산동) 그래이불
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+          <!-- 사이드바 -->
+          <div class="product-detail-sidebar-wrap">
+            <div
+              class="product-detail-sidebar-container"
+              style="height: 598.25px"
+            >
+              <div
+                class="product-detail-sidebar-inner"
+                style="
+                  position: absolute;
+                  height: 598.25px;
+                  box-sizing: border-box;
+                  transition: top 0.1s ease 0s;
+                  top: 131.75px;
+                  width: 365.25px;
+                "
+              >
+                <section class="sidebar-contents-wrap">
+                  <div class="sidebar-content-container">
+                    <section class="sidebar-option-list-wrap">
+                      <ul class="sidebar-selected-product-wrap">
+                        <li>
+                          <article
+                            class="sidebar-selected-product-container"
+                          >
+                            <h2 class="sidebar-selected-product-option">
+                              <span>날짜:</span>
+                              <span class="selected-date">선택한 날짜</span>
+                              /
+                              <span>시간:</span>
+                              <span class="selected-time">선택한 시간</span>
+                              /
+                              <span>키트:</span>
+                              <span class="selected-kit">선택한 키트</span>
+                            </h2>
+                            <button
+                              type="button"
+                              aria-label="삭제"
+                              class="sidebar-delete-button-wrap"
+                            >
+                              <span class="sidebar-delete-button">
+                                <img
+                                  src="{% static 'public/web/images/common/cancel.png' %}"
+                                  alt=""
+                                />
+                              </span>
+                            </button>
+                            <div class="sidebar-student-count-title">수량</div>
+                            <div class="sidebar-selected-botton-wrap">
+                              <div class="sidebar-selected-count-wrap">
+                                <span class="sidebar-sub-count">
+                                  <img src="{% static 'public/web/images/common/sub.png' %}" />
+                                </span>
+                                <button class="sidebar-count-number">0</button>
+                                <span class="sidebar-add-count">
+                                  <img
+                                    src="{% static 'public/web/images/common/add.png' %}"
+                                    alt=""
+                                  />
+                                </span>
+                              </div>
+                              <div class="sidebar-selected-price-wrap">
+                                <span class="sidebar-selected-price"
+                                  >{{ lecture.lecture_price }}원</span
+                                >
+                              </div>
+                            </div>
+                          </article>
+                        </li>
+                      </ul>
+                    </section>
+                    <p class="sidebar-total-price-wrap">
+                      <span class="sidebar-total-text">주문금액</span>
+                      <span class="sidebar-total-price">
+                        <span>{{ lecture.lecture_price }}</span>
+                        원
+                      </span>
+                    </p>
+                    <div class="sidebar-button-wrap">
+                      <button class="sidebar-addcart-button" type="button">
+                        장바구니
+                      </button>
+                      <button class="sidebar-buy-button" type="button">
+                        바로구매
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#top">
+        <div class="top-button-wrap">
+          <button type="button" class="top-button-container">
+            <span class="arrow-up">
+              <img src="{% static 'public/web/images/common/button-down.png' %}" alt="" />
+            </span>
+          </button>
+        </div>
+      </a>
+    </div>
+    </form>
+  {% include 'fix/footer.html' %}
+  </body>
+{% endblock %}
+{% block js %}
+<script>
+    const csrf_token = '{{ csrf_token }}'
+    const lecture_id = '{{ lecture.id }}'
+    const lecture_count = '{{ lecture_count }}'
+</script>
+<script src="{% static 'lecture/js/lecture/web/lecture-module.js' %}"></script>  
+<script src="{% static 'lecture/js/lecture/web/lecture-detail-online.js' %}"></script>
+<script src="{% static 'lecture/js/lecture/web/lecture-detail.js' %}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+const contentImg = document.querySelector(".product-cover-image");
+const prevImgs = document.querySelectorAll(".product-small-image");
+prevImgs.forEach((item) => {
+    item.addEventListener("click", (e) => {
+        const imgSrc = e.target.getAttribute("src");
+        contentImg.setAttribute("src", imgSrc);
+        });
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const reviewList = document.querySelector(".product-review-list-container");
+  const reviews = reviewList.querySelectorAll(".product-review-list-inner");
+  const loadMoreBtn = document.getElementById("load-more-btn");
+
+  const reviewsPerPage = 3; // 한 번에 로드될 리뷰의 개수
+
+  // 처음에 리뷰가 없는 경우 더보기 버튼을 숨깁니다.
+  if (reviews.length === 0) {
+    loadMoreBtn.style.display = "none";
+  } else {
+    // 리뷰가 있는 경우 처음에 3개의 리뷰만 표시
+    reviews.forEach((review, index) => {
+      if (index < reviewsPerPage) {
+        review.style.display = "block";
+      } else {
+        review.style.display = "none";
+      }
+    });
+
+    // 더보기 버튼 클릭 시 추가 리뷰 표시
+    loadMoreBtn.addEventListener("click", function() {
+      const hiddenReviews = reviewList.querySelectorAll(
+        ".product-review-list-inner:not([style='display: block;'])"
+      );
+
+      let count = 0;
+      hiddenReviews.forEach((review, index) => {
+        if (count < reviewsPerPage) {
+          review.style.display = "block";
+          count++;
+        }
+      });
+
+      // 더 이상 추가 리뷰가 없을 때 버튼 숨기기
+      if (
+        reviewList.querySelectorAll(
+          ".product-review-list-inner:not([style='display: block;'])"
+        ).length === 0
+      ) {
+        loadMoreBtn.style.display = "none";
+      }
+    });
+  }
+});
+
+</script>
+{% endblock %}
+

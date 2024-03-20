@@ -1,0 +1,423 @@
+{% extends 'community/web/knowhow/../base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'knowhow/css/web/knowhow-detail.css' %}">
+{% endblock %}
+{% block title %}노하우 상세보기{% endblock %}
+{% block content %}
+  <body>
+    <div class="knowhow-detail-wrap">
+      <div class="knowhow-detail-container">
+        <main class="knowhow-detail-inner">
+          <div class="content-wrap">
+            <div class="content-container">
+              <div class="content-inner">
+                <div class="content-title-box">
+                  <p class="content-title">
+                      {{ knowhow.knowhow_title }}
+                  </p>
+                  <div class="uploader-data-wrap">
+                    <div class="uploader-data-container">
+                      <button class="uploader-profile-btn">
+                        <figure class="uploader-img-box">
+                          <img
+                            src= "{{ member_profile.file_url }}"
+                            height="0"
+                            class="uploader-img"
+                          />
+                        </figure>
+                        <div class="uploader-name-box">
+                          <span class="uploader-name">{{ knowhow.member.member_name }}</span>
+                          <span class="uploader-sub-description">
+                            {{ knowhow.member.member_email }}
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="content-wrap blind">
+                    <p class="content-top-space"></p>
+                    <span>
+                      <div class="content-img-wrap">
+                        <div class="content-img-container">
+                          <div class="content-img-inner">
+                            <img
+                              src="/upload/{{ knowhow_file.file_url }}"
+                              class="content-img"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                    <div class="prev-img-box">
+                      {% for knowhow_file in knowhow_files %}
+                      <div class="prev-img-item">
+                        <img
+                          src="/upload/{{ knowhow_file.file_url }}"
+                          alt=""
+                          class="prev-img"
+                        />
+                      </div>
+                      {% endfor %}
+                    </div>
+                    <p class="content-text">
+                        {{ knowhow.knowhow_content }}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <div class="content-data-container">
+                    <dl class="content-data">
+                      <span class="week-data"></span>
+                      <dt class="like">좋아요</dt>
+                      <dd class="like-data"></dd>
+                      <dt class="scrap">스크랩</dt>
+                      <dd class="scrap-data"></dd>
+                      <dt class="check">조회</dt>
+                      <dd class="check-data">{{ knowhow.knowhow_count }}</dd>
+                    </dl>
+                      {% if request.session.member.id != knowhow.member.id %}
+                      
+                    <div class="declaration-btn-box">
+                      <button type="button" class="content-declaration-btn">
+                        신고하기
+                      </button>
+                    </div>
+                      {% endif %}
+                      
+                  </div>
+                </div>
+                <hr class="content-split-top" />
+                <div class="another-tag-box">
+                  <div class="another-tag-box-title">다른 노하우 둘러보기</div>
+                    {% for tag in knowhow_tags %}
+                  <div class="tag">
+                    <span class="tag-text"># {{ tag.tag_name }}</span>
+                  </div>
+                    {% endfor %}
+                </div>
+                <hr class="content-split-top" />
+{#                <div class="uploader-bottom-data-wrap">#}
+{#                  <button class="uploader-bottom-data-btn">#}
+{#                    <figure class="uploader-bottom-img-box">#}
+{#                      <img#}
+{#                        src=""#}
+{#                        height="0"#}
+{#                        class="uploader-bottom-img"#}
+{#                      />#}
+{#                    </figure>#}
+{#                    <div class="uploader-bottom-data-box">#}
+{#                      <span class="uploade-bottom-name">작성자</span>#}
+{#                    </div>#}
+{#                  </button>#}
+{#                </div>#}
+{#                <hr class="content-split-bottom" />#}
+                <div>
+                  <div class="comment-section" id="comment-section">
+                    <h1 class="comment-section-title">
+                      댓글<span class="comment-count"></span>개
+                    </h1>
+                    <div class="comment-input-wrap">
+                      <div class="comment-input-container">
+                        <figure class="comment-user-icon-box">
+                            {# 프로필 사진#}
+                          <img
+                            src="{{ session_profile.file_url }}"
+                            height="0"
+                            class="comment-user-icon"
+                          />
+                        </figure>
+                        <div class="input-wrap">
+                          <div class="input-container">
+                            <div class="input-inner">
+                              <input
+                                type="text"
+                                placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)"
+                                class="comment-input"
+                                size="44"
+                                id="reply-content"
+                              />
+                              <div class="comment-submit-btn-box">
+                                <button
+                                  type="button"
+                                  class="comment-submit-btn"
+                                  disabled
+
+                                >
+                                  입력
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <section class="reply-section">
+                    </section>
+                    <div class="pagination-box">
+                        <button type="button" id="more-replies">
+                            <div>더보기</div>
+                        </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sticky-wrap">
+                <div
+                  class="sticky-container"
+                  style="
+                    position: sticky;
+                    top: 235px;
+                    transition: top 0.1s ease 0s;
+                  "
+                >
+                  <div style="position: relative;">
+                    <div class="sticky-inner">
+                      <button title="좋아요" class="sticky-btn">
+                          {% if knowhow_like %}
+                        <span class="sticky-icon-box like-check-on" id="like-box">
+                          <img
+                            class="sticky-icon"
+                            src= "{%  static 'public/web/images/common/like-on.png' %}"
+                            alt=""
+                            id="like-icon"
+                          />
+                        </span>
+                      {% else %}
+                          <span class="sticky-icon-box like-check-off" id="like-box">
+                          <img
+                            class="sticky-icon"
+                            src= "{%  static 'public/web/images/common/like-off.png' %}"
+                            alt=""
+                            id="like-icon"
+                          />
+                        </span>
+                      {% endif %}
+                        
+                        <span class="sticky-data" id="like-count"></span>
+                      </button>
+                    
+                      <button title="저장" class="sticky-btn">
+                      
+                      {% if knowhow_scrap %}
+                        <span class="sticky-icon-box scrap-check-on" id="scrap-box">
+                          <img
+                            class="sticky-icon"
+                            src="{% static 'public/web/images/common/scrap-on.png' %}"
+                            alt=""
+                            id="scrap-icon"
+                          />
+                        
+                        </span>
+                      {% else %}
+                          <span class="sticky-icon-box scrap-check-off" id="scrap-box">
+                          <img
+                            class="sticky-icon"
+                            src="{% static 'public/web/images/common/scrap-off.png' %}"
+                            alt=""
+                            id="scrap-icon"
+                          />
+                        
+                        </span>
+                      {% endif %}
+                        <span class="sticky-data" id="scrap-count"></span>
+                      </button>
+                      <hr class="sticky-btn-split" />
+                        
+                      <button title="댓글" class="sticky-btn background-color">
+                        <a href="#comment-section">
+                          <span class="sticky-icon-box background-color">
+                            <span class="sticky-icon sticky-icon-comment">
+                            </span>
+                          </span>
+                        </a>
+                        <span class="sticky-data" id="reply-count"></span>
+                      </button>
+                      {% if request.session.member.id == knowhow.member.id %}
+                      <a href="/knowhow/update/?id={{ knowhow.id }}">
+                          <button type="button" title="공유" class="sticky-btn background-color">
+                            <span class="sticky-icon-box background-color">
+                              <span class="sticky-icon sticky-icon-share">
+                                  <img src="{% static '/public/web/images/common/rewrite.png' %}" alt="">
+                              </span>
+                            </span>
+                            <span class="sticky-data" id="share">수정하기</span>
+                          </button>
+                      </a>
+                      <a href="/knowhow/delete/?id={{ knowhow.id }}">
+                          <button type="button" title="공유" class="sticky-btn background-color">
+                            <span class="sticky-icon-box background-color">
+                              <span class="sticky-icon sticky-icon-share">
+                                  <img src="{% static '/public/web/images/common/remove-btn.png' %}" alt="">
+                              </span>
+                            </span>
+                            <span class="sticky-data" id="share">삭제하기</span>
+                          </button>
+                      </a>
+                      {% endif %}
+                        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    
+    <form action="/knowhow/report/?id={{ knowhow.id }}" method="post" name="report">
+        {% csrf_token %}
+    <div class="declaration-modal-wrap">
+      <div class="declaration-modal-container">
+        <div class="declaration-modal-title-box">
+          <span class="declaration-modal-title">신고 사유를 선택해주세요</span>
+          <button type="button" class="declaration-modal-cancel-btn">
+            <span class="cancel-btn-icon"></span>
+          </button>
+        </div>
+        <div class="declaration-modal-content">
+          <ul class="declaration-list">
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box declaration-choice">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                    checked
+                  />
+                </div>
+                <span class="declaration-text">주제와 맞지 않음</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">정보가 부정확함</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">지나친 광고성 게시물</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">도배 및 중복 게시물</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">저작권 침해가 우려됨</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">욕설/비방이 심함</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">외설적인 게시물</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">개인정보노출</span>
+              </label>
+            </li>
+            <li class="declaration-item">
+              <label class="declaration-label">
+                <div class="declaration-input-box">
+                  <input
+                    type="radio"
+                    class="declaration-input"
+                    name="declaration"
+                  />
+                </div>
+                <span class="declaration-text">기타</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <input type="hidden" class="report-content" name="report-content" value=""/>
+        <div class="report-declaration-btn-wrap">
+          <div class="report-declaration-btn-container">
+            <button type="submit" class="report-declaration-btn" id="report">신고하기</button>
+          </div>
+          <div class="cancel-declaration-btn-container">
+            <button type="button" class="cancel-declaration-btn" id="cancel">취소하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </body>
+{% endblock %}
+{% block js %}
+    <script>
+        const csrf_token = '{{ csrf_token }}'
+        const knowhow_id = '{{ knowhow.id }}'
+        const member_Id = '{{ request.session.member.id }}'
+        const replyCount = '{{ reply_count }}'
+        const knowhow_member_id = '{{ knowhow.member.id }}'
+    </script>
+
+    <script src="{% static 'knowhow/js/web/knowhow-detail.js' %}"></script>
+    <script src="{% static 'knowhow/js/web/reply-module.js' %}"></script>
+    <script src="{% static 'knowhow/js/web/knowhow-module.js' %}"></script>
+    <script src="{% static 'knowhow/js/web/knowhow-detail-reply.js' %}"></script>
+    <script src="{% static 'knowhow/js/web/knowhow-like.js' %}"></script>
+{% endblock %}

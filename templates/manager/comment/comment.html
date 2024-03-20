@@ -1,0 +1,106 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'public/web/css/manager/comment/comment.css' %}">
+{% endblock %}
+{% block title %}댓글 관리{% endblock %}
+{% block content %}
+    <body class="overflow-hidden">
+        <div class="next">
+            <div class="full-screen">
+                {% include 'manager/fix/manager-header.html' %}
+                <div class="under-container">
+                    {% include 'manager/fix/manager-sidebar.html' %}
+                    <div class="content-wap">
+                        <div class="content-container">
+                            <div class="content-inner">
+                                <div class="content-box">
+                                    <div class="header">
+                                        <h1 class="header-name">댓글 관리</h1>
+                                        <div>
+                                            <div class="compose-button">
+                                                <button class="delete-button" aria-label="delete button" type="button">
+                                                    <svg class="edit-button" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="all-list">
+                                        <div>
+                                            <span class="all-name">전체</span>
+                                            <span class="all-num">1</span>
+                                        </div>
+                                        <div class="list-order">
+                                            <!-- 여기에 검색 창 추가 -->
+                                            <div class="search-bar">
+                                                <label class="search-bar">
+                                                    <input class="search-bar" placeholder="댓글 검색" type="text" value/>
+                                                    <button aria-label="search button" class="search-bar" type="button">
+                                                        <img class="search-logo" src="{% static 'public/web/images/common/search_icon.png' %}"/>
+                                                        <img class="cancel-logo" src="{% static 'public/web/images/common/cancel.png' %}"/>
+                                                    </button>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category-benner">
+                                    <input type="checkbox" class="all-check" />
+                                    <div class="category-inner" style="width: 80px">작성자</div>
+                                    <div class="category-inner" style="width: 80px">구분</div>
+                                    <div class="category-inner" style="width: 150px">게시글 제목</div>
+                                    <div class="category-inner" style="width: 250px">댓글 내용</div>
+                                    <div class="category-inner">게시일</div>
+                                </div>
+                                <!-- 댓글 목록이 들어가는 부분 -->
+                                <ul class="list-content"></ul>
+                                <!-- 페이지네이션 버튼이 들어가는 부분 -->
+                                <div class="page-count-wrap">
+                                    <button class="page-count" aria-label="page turning button" disabled type="button">
+                                        <svg class="page-count" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="page-count-num page-count-num-choice" aria-label="page number button" type="button">
+                                        <span class="page-count-num">1</span>
+                                    </button>
+                                    <button class="page-count-num" aria-label="page number button" type="button">
+                                        <span class="page-count-num">2</span>
+                                    </button>
+                                    <button class="page-count" aria-label="page turning button" disabled type="button">
+                                        <svg class="page-count" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="delete-modal-wrap">
+                <div class="delete-modal-container">
+                    <h4 class="delete-modal">댓글 삭제</h4>
+                    <div class="delete-modal-inner"></div>
+                    <div class="delete-modal-box">
+                        <div class="modal-cancel">
+                            <button class="modal-cancel" aria-label="button" type="button">취소</button>
+                        </div>
+                        <div class="modal-confirm">
+                            <button class="modal-confirm" aria-label="button" type="button">확인</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="delete-modal-bgcolor"></div>
+            </div>
+        </div>
+    </body>
+{% endblock %}
+{% block js %}
+    <script>const csrf_token = `{{ csrf_token }}`</script>
+    <script src="{% static 'public/web/js/manager/comment/comment-module.js' %}"></script>
+    <script src="{% static 'public/web/js/manager/comment/comment.js' %}"></script>
+{% endblock %}

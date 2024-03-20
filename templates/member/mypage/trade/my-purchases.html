@@ -1,0 +1,423 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my_trade/my-purchases.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 나의 구매내역{% endblock %}
+{% block content %}
+    <div class="whole-page-wrap">
+      <div class="whole-page-container">
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <header style="height: 80.75px"></header>
+        <div class="main-wrap">
+          <!-- 마이페이지 내 네비게이션 바 -->
+          <div class="navigation-wrap">
+            <div class="main-category-wrap">
+              <ul
+                class="main-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="main-category-item">
+                  <a href="#">내 활동</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="#" class="active">거래 내역</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="#">수강 내역</a>
+                </li>
+                <li class="main-category-item teacher">
+                  <a href="#">강의 현황</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="#">설정</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sub-category-wrap">
+              <ul
+                class="sub-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="sub-category-item">
+                  <a href="#" class="active">내 거래</a>
+                </li>
+                <li class="sub-category-item">
+                  <a href="#">거래 스크랩북</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 거래페이지 내 탭 별 내용 - 이 탭은 내 거래 -->
+          <div class="content-wrap">
+            <div class="content-container">
+              <div class="sidebar-wrap">
+                <div
+                  class="sidebar-container"
+                  style="
+                    position: sticky;
+                    top: 80.75px;
+                    transition: top 0.1s ease 0s;
+                  "
+                >
+                  <div class="sidebar-content" style="position: relative">
+                    <div>
+                      <div class="my-info-wrap">
+                        <div class="share-drop-down-wrap">
+                          <div class="share-drop-down-container">
+                            <!-- 클릭하면 요소(모달창) 추가 -->
+                            <button
+                              class="share-drop-down-button"
+                              type="button"
+                              aria-pressed="false"
+                              aria-label="공유"
+                            >
+                              <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                preserveAspectRatio="xMidYMid meet"
+                              >
+                                <path
+                                  d="M9.64 14.646a4.5 4.5 0 1 1 0-5.292l4.54-2.476a4.5 4.5 0 1 1 .63.795l-4.675 2.55c.235.545.365 1.146.365 1.777s-.13 1.232-.365 1.777l4.675 2.55a4.5 4.5 0 1 1-.63.795l-4.54-2.476zM18 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM6 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM18 23a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
+                                ></path>
+                              </svg>
+                            </button>
+                            <div class="modal-wrap">
+                              <div
+                                class="modal-container"
+                                style="
+                                  position: absolute;
+                                  z-index: 1000;
+                                  transform: translateX(-40%);
+                                "
+                              >
+                                <div class="share-modal-wrap">
+                                  <div class="share-modal-container">
+                                    <!-- 카카오 공유 버튼 -->
+                                    <button
+                                      type="button"
+                                      class="kakao-share-button"
+                                    > 
+                                      <img alt=""
+                                        src="{% static 'member/images/login/kakao-logo.svg' %}"
+                                      />
+                                    </button>
+                                    <!-- 클립보드 복사 버튼 -->
+                                    <button
+                                      type="button"
+                                      class="cilpboard-button"
+                                    >
+                                      <svg
+                                        class="icon"
+                                        aria-label="주소 복사"
+                                        width="40"
+                                        height="40"
+                                        viewBox="0 0 40 40"
+                                        fill="none"
+                                        preserveAspectRatio="xMidYMid meet"
+                                      >
+                                        <circle
+                                          cx="20"
+                                          cy="20"
+                                          r="20"
+                                          fill="#EAEDEF"
+                                        ></circle>
+                                        <path
+                                          d="M25.0001 20.65H15.0001V19.35H25.0001V20.65Z"
+                                          fill="#2F3438"
+                                        ></path>
+                                        <path
+                                          d="M10.3501 20C10.3501 17.4319 12.432 15.35 15.0001 15.35H18.0001V16.65H15.0001C13.1499 16.65 11.6501 18.1498 11.6501 20C11.6501 21.8501 13.1499 23.35 15.0001 23.35H18.0001V24.65H15.0001C12.432 24.65 10.3501 22.5681 10.3501 20Z"
+                                          fill="#2F3438"
+                                        ></path>
+                                        <path
+                                          d="M29.6501 20C29.6501 17.4319 27.5682 15.35 25.0001 15.35H22.0001V16.65H25.0001C26.8503 16.65 28.3501 18.1498 28.3501 20C28.3501 21.8501 26.8503 23.35 25.0001 23.35H22.0001V24.65H25.0001C27.5682 24.65 29.6501 22.5681 29.6501 20Z"
+                                          fill="#2F3438"
+                                        ></path>
+                                      </svg>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="my-profile-wrap">
+                          <div class="profile-image-wrap">
+                            <img alt=""
+                              class="profile-image"
+                              src="{% static 'member/images/mypage/base-profile-image.avif' %}"
+                            />
+                          </div>
+                          <div class="personal-info-wrap">
+                            <div class="user-nickname">Selleaf Test</div>
+                            <div class="follow-settings-wrap">
+                              <!-- 나중에 팔로우 페이지랑 연결 -->
+                              <!-- <dl class="follow-wrap">
+                                <dt class="follow-text">팔로워</dt>
+                                <dd class="follow-count">
+                                  <a href="#" class="follow-num">123</a>
+                                </dd>
+                                <dt class="follow-text">팔로잉</dt>
+                                <dd class="follow-count">
+                                  <a href="#" class="follow-num">45</a>
+                                </dd>
+                              </dl> -->
+                              <!-- 나중에 설정 페이지랑 연결 -->
+                              <div class="settings-button-wrap">
+                                <a class="settings-button" href="#">설정</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 스크랩, 좋아요, 마일리지, 쿠폰 -->
+                        <div class="scraps-likes-wrap">
+                          <div class="scraps-likes-container">
+                            <!-- 스크랩 -->
+                            <a class="scraps-likes-content-wrap" href="#">
+                              <div class="scraps-likes-icon">
+                                <img alt=""
+                                  src="{% static 'public/web/images/common/scrap-off-blk.png' %}
+"
+                                />
+                              </div>
+                              <div class="scraps-likes-text">스크랩북</div>
+                              <div class="scraps-likes-count">0</div>
+                            </a>
+                            <!-- 좋아요 -->
+                            <a class="scraps-likes-content-wrap" href="#">
+                              <div class="scraps-likes-icon">
+                                <img alt="" src="{% static 'public/web/images/common/like-off.png' %}
+" />
+                              </div>
+                              <div class="scraps-likes-text">좋아요</div>
+                              <div class="scraps-likes-count">0</div>
+                            </a>
+                            <!-- 마일리지 -->
+                            <a class="scraps-likes-content-wrap" href="#">
+                              <div class="scraps-likes-icon">
+                                <img alt=""
+                                  src="{% static 'member/images/mypage/mileage.png' %}"
+                                />
+                              </div>
+                              <div class="scraps-likes-text">마일리지</div>
+                              <div class="scraps-likes-count">0</div>
+                            </a>
+                            <!-- 쿠폰 -->
+                            <!-- <a class="scraps-likes-content-wrap" href="#">
+                              <div class="scraps-likes-icon">
+                                <svg
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  preserveAspectRatio="xMidYMid meet"
+                                >
+                                  <path
+                                    fill="#424242"
+                                    fill-rule="nonzero"
+                                    d="M22.588 3H1.413C.633 3 0 3.638 0 4.426L0 9.53l.605-.088c.12-.017.243-.026.367-.026 1.413 0 2.558 1.157 2.558 2.584S2.385 14.584.972 14.584c-.124 0-.247-.009-.367-.026L0 14.47l.001 5.104C.001 20.362.633 21 1.413 21h21.175c.78 0 1.412-.638 1.412-1.426V4.426C24 3.638 23.368 3 22.588 3zM1.413 4.07h21.175c.195 0 .353.159.353.356v15.148c0 .197-.158.357-.353.357H1.413l-.071-.008c-.161-.033-.282-.176-.282-.349l-.002-3.923-.086.002c1.997 0 3.617-1.635 3.617-3.653l-.004-.182C4.493 9.945 3.006 8.443 1.152 8.35l-.094-.003.002-3.922c0-.197.158-.357.353-.357zm14.646 2.138c.293 0 .53.237.53.53v1.614c0 .292-.237.53-.53.53-.292 0-.53-.238-.53-.53V6.737c0-.292.238-.53.53-.53zm0 4.455c.293 0 .53.237.53.53v1.614c0 .293-.237.53-.53.53-.292 0-.53-.237-.53-.53v-1.614c0-.293.238-.53.53-.53zm0 4.456c.293 0 .53.237.53.53v1.614c0 .292-.237.53-.53.53-.292 0-.53-.238-.53-.53v-1.615c0-.292.238-.53.53-.53z"
+                                  ></path>
+                                </svg>
+                              </div>
+                              <div class="scraps-likes-text">쿠폰</div>
+                              <div class="scraps-likes-count">0</div>
+                            </a> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="seperator-wrap">
+                <div class="content-seperator"></div>
+              </div>
+              <!-- 사진 등의 내용물이 표시되는 공간 -->
+              <!-- 이 부분은 복붙하면서 내용물 교체 -->
+              <div class="main-content-wrap">
+                <!-- 프로필- 질문과답변 페이지 기반으로 제작 -->
+                <!-- 게시글은 질문과답변 페이지 들어가면 볼 수 있는 게시물들로 -->
+                <!-- 구매, 판매 페이지 서식은 공통 -->
+                <div class="main-content-container">
+                  <div class="menu-bar-wrap">
+                    <!-- 구매, 판매 내역 탭 -->
+                    <div class="menu-bar-container">
+                      <a href="#" class="trades-tab active">구매 내역</a>
+                      <a href="#" class="trades-tab">판매 내역</a>
+                    </div>
+                    <div class="trade-page-link-wrap">
+                      <a href="#" class="trade-page-link">거래 바로가기</a>
+                    </div>
+                  </div>
+                  <!-- 왜 있는 건지는 아직 모르겠음 -->
+                  <div
+                    class="empty-space"
+                    style="
+                      padding-top: 0;
+                      padding-bottom: 0;
+                      transform: translateY(0px);
+                    "
+                  ></div>
+                  <div class="trade-history-wrap">
+                    <!-- 아무것도 없을 때 표시할 태그 -->
+                    <h1>아직 구매한 상품이 없어요.</h1>
+                    <p>더 많은 이용자들과 거래해보세요!</p>
+                    <!-- 내역이 있을 때는 여기를 표시 -->
+                    <div class="trade-history-item-wrap">
+                      <a href="#" class="trade-history-link"></a>
+                      <div class="trade-history-item-container">
+                        <div class="trade-item-image-wrap">
+                          <img alt=""
+                            class="trade-item-image"
+                            src="{% static 'public/web/images/common/blank-image.png' %}"
+                          />
+                        </div>
+                        <div class="trade-item-title-wrap">
+                          <span>거래 내역 1</span>
+                        </div>
+                        <div class="trade-item-article-wrap">
+                          <span>거래 내역 본문 예시입니다.</span>
+                        </div>
+                        <!-- 작성자, 조회수, 지역, 태그까지 모두 감싸는 부분 -->
+                        <div class="trade-item-info-wrap">
+                          <div class="article-info-wrap">
+                            <!-- 작성자 -->
+                            <div class="user-info-wrap">
+                              <div class="user-profile-wrap">
+                                <img alt=""
+                                  class="user-profile-image"
+                                  src="{% static 'member/images/mypage/base-profile-image.avif' %}"
+                                />
+                              </div>
+                              Selleaf 테스트 1
+                            </div>
+                            <!-- 올린 시간, 조회수, 지역 -->
+                            <div class="item-info-wrap">
+                              <div class="item-infos">1시간 전</div>
+                              <div class="item-infos">조회 3</div>
+                              <div class="item-infos">경기도 광주시</div>
+                            </div>
+                          </div>
+                          <!-- 태그 -->
+                          <div class="item-tags-wrap">
+                            <ul class="item-tags-container">
+                              <li class="item-tags">
+                                <div>
+                                  <button
+                                    class="item-tags-button"
+                                    type="button"
+                                  >
+                                    침엽식물
+                                  </button>
+                                </div>
+                              </li>
+                              <li class="item-tags">
+                                <div>
+                                  <button
+                                    class="item-tags-button"
+                                    type="button"
+                                  >
+                                    소나무
+                                  </button>
+                                </div>
+                              </li>
+                              <li class="item-tags">
+                                <div>
+                                  <button
+                                    class="item-tags-button"
+                                    type="button"
+                                  >
+                                    테스트 태그 1
+                                  </button>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 각 내역 사이의 구분선 -->
+                    <hr class="items-seperator" />
+                    <!-- 새로운 내역 -->
+                    <div class="trade-history-item-wrap">
+                      <a href="#" class="trade-history-link"></a>
+                      <div class="trade-history-item-container">
+                        <div class="trade-item-image-wrap">
+                          <img alt=""
+                            class="trade-item-image"
+                            src="{% static 'public/web/images/common/blank-image.png' %}"
+                          />
+                        </div>
+                        <div class="trade-item-title-wrap">
+                          <span>거래 내역 2</span>
+                        </div>
+                        <div class="trade-item-article-wrap">
+                          <span>거래 내역 2 본문 예시입니다.</span>
+                        </div>
+                        <!-- 작성자, 조회수, 지역, 태그까지 모두 감싸는 부분 -->
+                        <div class="trade-item-info-wrap">
+                          <div class="article-info-wrap">
+                            <!-- 작성자 -->
+                            <div class="user-info-wrap">
+                              <div class="user-profile-wrap">
+                                <img alt=""
+                                  class="user-profile-image"
+                                  src="{% static 'member/images/mypage/base-profile-image.avif' %}"
+                                />
+                              </div>
+                              Selleaf 테스트 2
+                            </div>
+                            <!-- 올린 시간, 조회수, 지역 -->
+                            <div class="item-info-wrap">
+                              <div class="item-infos">20시간 전</div>
+                              <div class="item-infos">조회 7</div>
+                              <div class="item-infos">서울특별시 강남구</div>
+                            </div>
+                          </div>
+                          <!-- 태그 -->
+                          <div class="item-tags-wrap">
+                            <ul class="item-tags-container">
+                              <li class="item-tags">
+                                <div>
+                                  <button
+                                    class="item-tags-button"
+                                    type="button"
+                                  >
+                                    다육/선인장
+                                  </button>
+                                </div>
+                              </li>
+
+                              <li class="item-tags">
+                                <div>
+                                  <button
+                                    class="item-tags-button"
+                                    type="button"
+                                  >
+                                    테스트 태그 2
+                                  </button>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 각 내역 사이의 구분선 -->
+                    <hr class="items-seperator" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <footer style="height: 320px"></footer>
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+  <script src="\{% static 'member/js/mypage/my_trade/my-purchases.js' %}"></script>
+{% endblock %}

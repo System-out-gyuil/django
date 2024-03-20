@@ -1,0 +1,679 @@
+{% extends 'community/web/knowhow/../base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'post/css/web/post-detail-logout.css' %}">
+{% endblock %}
+{% block title %}노하우{% endblock %}
+{% block content %}
+  <body>
+    <div class="post-detail-wrap">
+      <div class="post-detail-container">
+        <div class="post-detail-inner">
+          <div class="post-detail-box">
+            <div class="content-wrap">
+              <div class="content-container">
+                <div class="content-sub-description-box">
+                  <div class="content-sub-description">
+                    <button class="content-top-btn">식물 키우기</button>
+                    <button class="content-top-btn">관엽식물</button>
+                  </div>
+                </div>
+                <div class="blind" style="position: relative;">
+                  <div class="content-section">
+                    <div>
+                      <div class="img-box">
+                        <div class="img-inner">
+                          <img
+                            src="../../../staticfiles/images/blank-image.png"
+                            alt=""
+                            class="content-img"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-text-box">
+                      <p class="content-text">
+                        너무 귀여운 오늘의가든 몬스테라 ❤️ 열심히 게임으로
+                        물줘서 마지막레벨까지 해서 얻은 몬스테라! 너무 쪼꼼하니
+                        귀엽다 🥹🥹🥹
+                        <a class="hashtag" href="javascript:void(0)">#태그 </a>
+                        <a class="hashtag" href="javascript:void(0)">#태그 </a>
+                        <a class="hashtag" href="javascript:void(0)">#태그 </a>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="content-section">
+                    <div>
+                      <div class="img-box">
+                        <div class="img-inner">
+                          <img
+                            src="../../../staticfiles/images/blank-image.png"
+                            alt=""
+                            class="content-img"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-text-box">
+                      <p class="content-text">
+                        너무 귀여운 오늘의가든 몬스테라 ❤️ 열심히 게임으로
+                        물줘서 마지막레벨까지 해서 얻은 몬스테라! 너무 쪼꼼하니
+                        귀엽다 🥹🥹🥹
+                        <a
+                          class="hashtag"
+                          hashtagkeyword="몬스테라"
+                          href="javascript:void(0)"
+                          >#태그
+                        </a>
+                        <a
+                          class="hashtag"
+                          hashtagkeyword="몬스테라"
+                          href="javascript:void(0)"
+                          >#태그
+                        </a>
+                        <a
+                          class="hashtag"
+                          hashtagkeyword="몬스테라"
+                          href="javascript:void(0)"
+                          >#태그
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                  <div height="666" class="blind-screen-wrap">
+                    <div height="400" class="blind-screen-gradient"></div>
+                    <div>
+                      <div class="blind-content-box">
+                        <p class="blind-content-text">
+                          이 게시물이 궁금한가요? selleaf 회원이면 수천 개<br />게시물을
+                          모두 볼 수 있어요.
+                        </p>
+                        <button type="button" class="blind-login-btn">
+                          로그인하고 모두 보기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-data-wrap">
+                  <div>
+                    <div class="content-data-container">
+                      <dl class="content-data">
+                        <span class="week-data">2주</span>
+                        <dt class="like">좋아요</dt>
+                        <dd class="like-data">446</dd>
+                        <dt class="scrap">스크랩</dt>
+                        <dd class="scrap-data">27</dd>
+                        <dt class="check">조회</dt>
+                        <dd class="check-data">3,624</dd>
+                      </dl>
+                      <div class="declaration-btn-box">
+                        <button type="button" class="declaration-btn">
+                          신고하기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="uploader-data-wrap">
+                  <button class="uploader-data-btn">
+                    <figure class="uploader-img-box">
+                      <img
+                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/users/profile_images/170410117290522562.jpeg?w=50"
+                        height="0"
+                        class="uploader-img"
+                      />
+                    </figure>
+                    <div class="uploader-data-box">
+                      <span class="uploader-name">작성자</span
+                      ><span class="uploader-sub-description"
+                        >작성자 소개글</span
+                      >
+                    </div>
+                  </button>
+                </div>
+                <div class="uploader-another-post-wrap">
+                  <ul class="uploader-another-post-container">
+                    <li class="uploader-another-post">
+                      <a href="javascript:void(0)">
+                        <img
+                          src="../../../staticfiles/images/blank-image.png"
+                          class="uploader-another-post-img"
+                      /></a>
+                    </li>
+                    <li class="uploader-another-post">
+                      <a href="javascript:void(0)">
+                        <img
+                          src="../../../staticfiles/images/blank-image.png"
+                          class="uploader-another-post-img"
+                      /></a>
+                    </li>
+                    <li class="uploader-another-post">
+                      <a href="javascript:void(0)">
+                        <img
+                          src="../../../staticfiles/images/blank-image.png"
+                          class="uploader-another-post-img"
+                      /></a>
+                    </li>
+                    <li class="uploader-another-post">
+                      <a href="javascript:void(0)">
+                        <img
+                          src="../../../staticfiles/images/blank-image.png"
+                          class="uploader-another-post-img"
+                      /></a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="comment-section" id="comment-section">
+                    <h1 class="comment-section-title">
+                      댓글<span class="comment-count">164</span>
+                    </h1>
+                    <div class="comment-input-wrap">
+                      <div class="comment-input-container">
+                        <figure class="comment-user-icon-box">
+                          <img
+                            src="../../../staticfiles/images/blank-image.png"
+                            height="0"
+                            class="comment-user-icon"
+                          />
+                        </figure>
+                        <div class="input-wrap">
+                          <div class="input-container">
+                            <div class="input-inner">
+                              <input
+                                type="text"
+                                placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)"
+                                class="comment-input"
+                                size="44"
+                              />
+                              <div class="comment-submit-btn-box">
+                                <button
+                                  type="submit"
+                                  class="comment-submit-btn"
+                                  disabled=""
+                                >
+                                  입력
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-item-box">
+                      <div class="comment-item">
+                        <div class="comment-user-img-wrap">
+                          <figure class="comment-user-img-container">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              height="0"
+                              class="comment-user-img"
+                            />
+                          </figure>
+                        </div>
+                        <div class="comment-content-box">
+                          <div class="comment-user-name-box">
+                            <div role="link" class="commment-user-name">
+                              댓글 장성자
+                            </div>
+                          </div>
+                          <div class="comment">
+                            댓글 내용
+                          </div>
+                          <div class="comment-data">
+                            <div class="time-before">1시간</div>
+                            <div class="comment-like-btn-box">
+                              <div class="comment-split">・</div>
+                              <button type="button" class="comment-like-btn">
+                                <img
+                                  src="/staticfiles/images/like-off.png"
+                                  class="comment-like-icon"
+                                  alt=""
+                                /><span class="comment-like-text">좋아요</span>
+                              </button>
+                            </div>
+                            <div class="comment-declaration-btn-box">
+                              <div class="comment-split">・</div>
+                              <button class="comment-declaration-btn">
+                                신고
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-item-box">
+                      <div class="comment-item">
+                        <div class="comment-user-img-wrap">
+                          <figure class="comment-user-img-container">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              height="0"
+                              class="comment-user-img"
+                            />
+                          </figure>
+                        </div>
+                        <div class="comment-content-box">
+                          <div class="comment-user-name-box">
+                            <div role="link" class="commment-user-name">
+                              댓글 장성자
+                            </div>
+                          </div>
+                          <div class="comment">
+                            댓글 내용
+                          </div>
+                          <div class="comment-data">
+                            <div class="time-before">1시간</div>
+                            <div class="comment-like-btn-box">
+                              <div class="comment-split">・</div>
+                              <button type="button" class="comment-like-btn">
+                                <img
+                                  src="/staticfiles/images/like-off.png"
+                                  class="comment-like-icon"
+                                  alt=""
+                                /><span class="comment-like-text">좋아요</span>
+                              </button>
+                            </div>
+                            <div class="comment-declaration-btn-box">
+                              <div class="comment-split">・</div>
+                              <button class="comment-declaration-btn">
+                                신고
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-item-box">
+                      <div class="comment-item">
+                        <div class="comment-user-img-wrap">
+                          <figure class="comment-user-img-container">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              height="0"
+                              class="comment-user-img"
+                            />
+                          </figure>
+                        </div>
+                        <div class="comment-content-box">
+                          <div class="comment-user-name-box">
+                            <div role="link" class="commment-user-name">
+                              댓글 장성자
+                            </div>
+                          </div>
+                          <div class="comment">
+                            댓글 내용
+                          </div>
+                          <div class="comment-data">
+                            <div class="time-before">1시간</div>
+                            <div class="comment-like-btn-box">
+                              <div class="comment-split">・</div>
+                              <button type="button" class="comment-like-btn">
+                                <span class="comment-like-icon"></span>
+                                <span class="comment-like-text">좋아요</span>
+                              </button>
+                            </div>
+                            <div class="comment-declaration-btn-box">
+                              <div class="comment-split">・</div>
+                              <button class="comment-declaration-btn">
+                                신고
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-item-box">
+                      <div class="comment-item">
+                        <div class="comment-user-img-wrap">
+                          <figure class="comment-user-img-container">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              height="0"
+                              class="comment-user-img"
+                            />
+                          </figure>
+                        </div>
+                        <div class="comment-content-box">
+                          <div class="comment-user-name-box">
+                            <div role="link" class="commment-user-name">
+                              댓글 장성자
+                            </div>
+                          </div>
+                          <div class="comment">
+                            댓글 내용
+                          </div>
+                          <div class="comment-data">
+                            <div class="time-before">1시간</div>
+                            <div class="comment-like-btn-box">
+                              <div class="comment-split">・</div>
+                              <button type="button" class="comment-like-btn">
+                                <span class="comment-like-icon"></span>
+                                <span class="comment-like-text">좋아요</span>
+                              </button>
+                            </div>
+                            <div class="comment-declaration-btn-box">
+                              <div class="comment-split">・</div>
+                              <button class="comment-declaration-btn">
+                                신고
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-item-box">
+                      <div class="comment-item">
+                        <div class="comment-user-img-wrap">
+                          <figure class="comment-user-img-container">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              height="0"
+                              class="comment-user-img"
+                            />
+                          </figure>
+                        </div>
+                        <div class="comment-content-box">
+                          <div class="comment-user-name-box">
+                            <div role="link" class="commment-user-name">
+                              댓글 장성자
+                            </div>
+                          </div>
+                          <div class="comment">
+                            댓글 내용
+                          </div>
+                          <div class="comment-data">
+                            <div class="time-before">1시간</div>
+                            <div class="comment-like-btn-box">
+                              <div class="comment-split">・</div>
+                              <button type="button" class="comment-like-btn">
+                                <span class="comment-like-icon"></span>
+                                <span class="comment-like-text">좋아요</span>
+                              </button>
+                            </div>
+                            <div class="comment-declaration-btn-box">
+                              <div class="comment-split">・</div>
+                              <button class="comment-declaration-btn">
+                                신고
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pagination-box">
+                      <button class="pagination-prev-btn" disabled="">
+                        <span class="pagination-prev-btn-icon"></span>
+                      </button>
+                      <button type="button" class="pagination-btn select">
+                        1
+                      </button>
+                      <button type="button" class="pagination-btn">2</button>
+                      <button type="button" class="pagination-btn">3</button>
+                      <button type="button" class="pagination-btn">4</button>
+                      <button type="button" class="pagination-btn">5</button>
+                      <button type="button" class="pagination-btn">6</button>
+                      <button type="button" class="pagination-btn">7</button>
+                      <button type="button" class="pagination-btn">8</button>
+                      <button type="button" class="pagination-btn">9</button>
+                      <button type="button" class="pagination-btn">10</button>
+                      <button class="pagination-next-btn">
+                        <span class="pagination-next-btn-icon"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <hr class="content-spiit" />
+                <div class="similar-posts-box">
+                  <p class="similar-posts-title">
+                    유저들의 비슷한 공간 베스트
+                  </p>
+                  <div
+                    class="similar-posts"
+                    style="padding-top: 0px; transform: translateY(0px);"
+                  >
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div>
+                      <span>
+                        <div class="similar-post">
+                          <a href="javascript:void(0)">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="similar-post-box">
+                      <span>
+                        <div class="similar-post">
+                          <a href="#" class="similar-post-link">
+                            <img
+                              src="../../../staticfiles/images/blank-image.png"
+                              class="similar-post-img"
+                            />
+                          </a>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sticky-wrap">
+                <div
+                  class="sticky-container"
+                  style="
+                    position: sticky;
+                    top: 183px;
+                    transition: top 0.1s ease 0s;
+                  "
+                >
+                  <div style="position: relative;">
+                    <div class="sticky-inner">
+                      <button title="좋아요" class="sticky-btn">
+                        <span class="sticky-icon-box">
+                          <img
+                            class="sticky-icon"
+                            src="../../../staticfiles/images/like-off.png"
+                            alt=""
+                          />
+                        </span>
+                        <span class="sticky-data">449</span>
+                      </button>
+                      <button title="저장" class="sticky-btn">
+                        <span class="sticky-icon-box">
+                          <img
+                            class="sticky-icon"
+                            src="../../../staticfiles/images/scrap-off-blk.png"
+                            alt=""
+                          />
+                        </span>
+                        <span class="sticky-data">449</span>
+                      </button>
+                      <hr class="sticky-btn-split" />
+                      <button title="댓글" class="sticky-btn background-color">
+                        <a href="#comment-section">
+                          <span class="sticky-icon-box background-color">
+                            <span class="sticky-icon sticky-icon-comment">
+                            </span>
+                          </span>
+                        </a>
+                        <span class="sticky-data">449</span>
+                      </button>
+                      <button title="공유" class="sticky-btn background-color">
+                        <span class="sticky-icon-box background-color">
+                          <span class="sticky-icon sticky-icon-share"> </span>
+                        </span>
+                        <span class="sticky-data">449</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'post/js/web/post-detail-logout.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,203 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my_settings/user-info-update.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 회원정보수정{% endblock %}
+{% block content %}
+    <form action="{% url 'member:update' %}" method="post" enctype="multipart/form-data" name="form">
+      {% csrf_token %}
+        <div class="whole-page-wrap">
+          <div class="whole-page-container">
+            <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+            <div class="main-wrap">
+              <!-- 마이페이지 내 네비게이션 바 -->
+              <div class="navigation-wrap">
+                <div class="main-category-wrap">
+                  <ul
+                    class="main-category-container"
+                    style="transform: translateX(0px)"
+                  >
+                    <li class="main-category-item">
+                      <a href="/member/mypage/show/" >내 활동</a>
+                    </li>
+                    <li class="main-category-item">
+                      <a href="/member/mypage/trades/">거래 내역</a>
+                    </li>
+                    <li class="main-category-item">
+                      <a href="/member/mypage/lectures/" >수강 내역</a>
+                    </li>
+                    {% if teacher.count == 0 %}
+                        <li class="main-category-item">
+                          <a href="/member/mypage/settings/" class="active">설정</a>
+                        </li>
+                    {% else %}
+                        <li class="main-category-item ">
+                          <a href="/member/mypage/teachers/">강의 현황</a>
+                        </li>
+                        <li class="main-category-item">
+                          <a href="/member/mypage/settings/" class="active">설정</a>
+                        </li>
+                    {% endif %}
+                  </ul>
+                </div>
+                <div class="sub-category-wrap">
+                  <ul
+                    class="sub-category-container"
+                    style="transform: translateX(0px)"
+                  >
+                    <li class="sub-category-item">
+                      <a href="#" class="active">회원정보수정</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- 회원정보수정 페이지 내용 -->
+              <div class="user-info-update-wrap">
+                <div class="user-info-update-header">
+                  <div class="user-info-update-title">회원정보수정</div>
+                  <a class="user-withdrawal" href="#">탈퇴하기</a>
+                </div>
+                <!-- 회원정보수정 서식 -->
+                <form class="update-form-wrap">
+                  <!-- 각 정보를 감싸는 클래스는 동일하게 -->
+                  <!-- 이메일 입력란(필수) -->
+                  <!-- 현재 수정 못하게 막아놓은 상태 -->
+                  <div class="info-items-wrap">
+                    <div class="info-items-title">
+                      이메일
+                      <div class="required-items">* 필수항목</div>
+                    </div>
+                    <div class="user-info-items-wrap">
+                      <div class="user-info-items-container">
+                        <div class="email-input-wrap">
+                          <span class="email-input-local">
+                            <label>
+                              <!-- focus-event: focus 되면 테두리 변화 -->
+                              <input
+                                class="email-input-form focus-event"
+                                value="{{ request.session.member.member_email }}"
+                                size="1"
+                                placeholder="이메일"
+                                readonly
+                              />
+                            </label>
+                          </span>
+                        </div>
+                        <div class="item-warning">현재 수정이 불가능합니다.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 이름 입력란(필수) -->
+                  <div class="info-items-wrap">
+                    <div class="info-items-title">
+                      이름
+                      <div class="required-items">* 필수항목</div>
+                    </div>
+                    <div class="user-info-items-wrap">
+                      <div class="user-info-items-container">
+                        <div class="user-name-input-wrap">
+                          <input
+                            class="user-name-input-form focus-event"
+                            value="{{ request.session.member.member_name }}"
+                            name="member-name"
+                          />
+                          <!-- 값 미입력 시 innerText 추가 -->
+                          <div class="user-info-error"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 프로필 이미지 입력창 -->
+                  <!-- 전에 배웠던 이미지 넣기 이벤트 추가 필요 -->
+                  <div class="info-items-wrap">
+                    <div class="info-items-title">프로필 이미지</div>
+                    <div class="user-info-items-wrap">
+                      <div class="user-info-items-container profile">
+                        <!-- 여기를 클릭하면 새 이미지를 불러오는 JS 이벤트 발생 -->
+                        <div class="user-profile-image-wrap">
+                          <ul class="user-profile-image-container">
+                            <li class="new-image-wrap">
+                              <div class="new-image-container">
+                                <label for="new-image" id="image-change">
+                                  {% if member_file %}  
+                                     {% if  'https' in member_file%}
+                                        <img src="{{ member_file }}" alt="" class="current-profile-image">
+                                     {% else %}
+                                        <img src="/upload/{{ member_file }}" alt="" class="current-profile-image">
+                                     {% endif %}
+                                  {% else %}
+                                    <img src="{% static 'member/images/mypage/base-profile-image.avif' %}" alt="" class="current-profile-image">
+                                  {% endif %}  
+                                </label>
+                              </div>
+                              <input type="file" id="new-image" name="new-image" style="display: none" accept="image/*"/>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- 새 이미지 넣으면 삭제 버튼 표시 -->
+                        <!-- 평소에는 display = none -->
+                        <button class="image-delete-button" style="display: none">
+                          <img
+                            class="delete-image"
+                            src="{% static 'member/images/settings/delete_icon.svg' %}"
+                          />
+                          삭제
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 회원정보수정 버튼 -->
+                  <!-- 클릭하면 양식 검사 후 alert 출력 -->
+                  <button class="update-submit-button">
+                    회원 정보 수정
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- 경고 모달 -->
+          <div class="confirm-total-wrap withdrawal-warning" style="display: none">
+            <div class="confirm-wrap">
+              <div class="confirm-title-container">
+                <p class="confirm-title">
+                  정말로 Selleaf에서 회원탈퇴 하시겠습니까?
+                </p>
+              </div>
+              <div class="confirm-button-wrap">
+                <div class="confirm-button-container">
+                  <button class="confirm-cancel">취소</button>
+                  <button class="confirm">확인</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 탈퇴완료 시 띄울 모달 -->
+          <div class="confirm-total-wrap withdrawal-complete" style="display: none">
+            <div class="confirm-wrap">
+              <div class="confirm-title-container">
+                <p class="confirm-title">탈퇴가 완료되었습니다.</p>
+              </div>
+              <div class="confirm-button-wrap">
+                <div class="confirm-button-container">
+                  <button class="confirm withdrawal-confirm">확인</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+{% endblock %}
+{% block js %}
+    <script>
+        const image = '{{ member_file }}'
+    </script>
+    <script src="{% static 'member/js/mypage/my_settings/user-info-update.js' %}"></script>
+    <script>
+        "{{ request.session.member_files }}"
+        let check = "{{ check }}"
+        if (check === "false"){
+            check = "";
+        }
+    </script>
+{% endblock %}

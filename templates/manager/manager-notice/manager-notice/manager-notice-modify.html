@@ -1,0 +1,106 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'notice/css/web/manager-notice-modify.css' %}">
+{% endblock %}
+{% block title %}공지사항 수정{% endblock %}
+{% block content %}
+  <body class="overflow-hidden">
+    <div class="next">
+      <div class="full-screen">
+        {% include 'manager/fix/manager-header.html' %}
+        <form action="/admin/notice/update/?id={{ notice.id }}" method="post" name="notice-update-form">
+          {% csrf_token %}
+          <div class="compose-wrap">
+            <div class="compose-container">
+              <div class="compose-inner-left">
+                <a class="compose-inner-left" href="/admin/notice/">
+                  <svg
+                    class="compose-inner-left"
+                    viewBox="0 0 17 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.833 8a.667.667 0 0 0-.666-.667H5.72L8.973 4.08a.667.667 0 1 0-.943-.943L3.167 8l4.863 4.863a.665.665 0 0 0 .94-.94L5.72 8.667h7.447A.667.667 0 0 0 13.833 8Z"
+                    ></path>
+                  </svg>
+                </a>
+                <h1 class="compose-inner-left">공지사항 수정하기</h1>
+              </div>
+              <div class="compose-inner-right">
+                <div class="compose-temporary-storage">
+                  <button
+                    class="compose-temporary-storage"
+                    aria-label="button"
+                    type="button"
+                  >
+                    삭제
+                  </button>
+                </div>
+                <div>
+                  <button
+                    class="compose-storage"
+                    aria-label="button"
+                    disabled="disabled"
+                  >
+                    수정
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="main-compose-wrap">
+            <div class="main-compose-container">
+              <div class="main-compose-inner">
+                <div class="compose-title">
+                  <div>
+                    <label class="compose-title">
+                      <input
+                        type="text"
+                        class="compose-title"
+                        placeholder="제목을 입력해주세요."
+                        name="notice-title"
+                        value={{ notice.notice_title }}
+                      />
+                    </label>
+                  </div>
+                </div>
+                <label class="compose-content">
+                  <textarea class="compose-content" placeholder="콘텐츠를 작성해주세요." name="notice-content">{{ notice.notice_content }}</textarea>
+                </label>
+                <div class="compose-content-bottom">0자</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <form action="{% url 'notice-delete' %}" name="notice-delete-form">
+        <input type="hidden" name="id" value="{{ notice.id }}">
+        <div class="delete-modal-wrap">
+          <div class="delete-modal-container">
+            <h4 class="delete-modal">공지사항 삭제</h4>
+            <div class="delete-modal-inner">
+              해당 공지사항을 삭제하시겠습니까?
+            </div>
+            <div class="delete-modal-box">
+              <div class="modal-cancel">
+                <button class="modal-cancel" aria-label="button" type="button">
+                  취소
+                </button>
+              </div>
+              <div class="modal-confirm">
+                <button class="modal-confirm" aria-label="button">
+                  확인
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="delete-modal-bgcolor"></div>
+        </div>
+      </form>
+    </div>
+  </body>
+{% endblock %}
+{% block js %}
+  <script src="{% static 'notice/js/web/manager-notice-modify.js' %}"></script>
+{% endblock %}

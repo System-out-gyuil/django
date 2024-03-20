@@ -1,0 +1,200 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'public/web/css/manager/teacher/teacher.css' %}">
+{% endblock %}
+{% block title %}강사 관리{% endblock %}
+{% block content %}
+  <body class="overflow-hidden">
+    <div class="next">
+      <div class="full-screen">
+        {% include 'manager/fix/manager-header.html' %}
+        <div class="under-container">
+          {% include 'manager/fix/manager-sidebar.html' %}
+          <div class="content-wap">
+            <div class="content-container">
+              <div class="content-inner">
+                <div class="content-box">
+                  <div class="header">
+                    <h1 class="header-name">강사 관리</h1>
+                    <div>
+                      <div class="compose-button">
+                        <button
+                          class="delete-button"
+                          aria-label="delete button"
+                          type="button"
+                        >
+                          <svg
+                            class="edit-button"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"
+                            ></path>
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"
+                            ></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="header-function-container">
+                    <ul class="header-function-inner">
+                      <li class="header-relative-1">
+                        <a
+                          class="lecture-info my_lecture-checked"
+                          aria-label="tab button"
+                          id="btn"
+                          href="{% url "manager-teacher" %}"
+                        >
+                          <div>
+                            <div class="flex">
+                              <p class="review-info">활동 중인 강사</p>
+                              <div class="review-info-num">
+                                <p class="review-info-num">{{ teachers }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                        <div class="lecture-underbar underbar-checked" id="under"></div>
+                      </li>
+                      <li class="header-relative-2">
+                        <a
+                          class="lecture-info"
+                          aria-label="tab button"
+                          id="btn"
+                          href="{% url 'manager-teacher-entry' %}"
+                        >
+                          <div>
+                            <div class="flex">
+                              <p class="review-info">강사 신청자</p>
+                              <div class="review-info-num">
+                                <p class="review-info-num">{{ teacher_entries }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                        <div class="lecture-underbar" id="under"></div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="all-list">
+                    <div>
+                      <span class="all-name">전체</span>
+                      <span class="all-num">{{ teachers }}</span>
+                    </div>
+                    <div class="list-order">
+                      <div class="search-bar">
+                        <label class="search-bar">
+                          <input
+                            class="search-bar"
+                            placeholder="강사 검색"
+                            type="text"
+                            value
+                          />
+                          <button
+                            aria-label="search button"
+                            class="search-bar"
+                            type="button"
+                          >
+                            <img
+                              class="search-logo"
+                              src="{% static 'public/web/images/common/search_icon.png' %}"
+                            />
+                            <img
+                              class="cancel-logo"
+                              src="{% static 'public/web/images/common/cancel.png' %}"
+                            />
+                          </button>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="category-benner">
+                  <input type="checkbox" class="all-check" />
+                  <div class="category-wrap">
+                    <div class="category-inner">이름</div>
+                    <div class="category-inner">주요 강의</div>
+                    <div class="category-inner">강사 약력</div>
+                    <div class="category-inner">승인 일자</div>
+                  </div>
+                </div>
+                <ul class="list-content">
+{#                    리스트 예시 #}
+{#                  <li class="list-content">#}
+{#                    <input type="checkbox" class="checkbox-input" />#}
+{#                    <a class="teacher-info-wrap">#}
+{#                      <div class="teacher-info">이름 예시</div>#}
+{#                        <div class="teacher-info">과목 예시</div>#}
+{#                        <div class="teacher-info">소개 예시</div>#}
+{#                        <div class="teacher-info">2024.03.11</div>#}
+{#                    </a>#}
+{#                  </li>#}
+                </ul>
+                {# 페이지네이션 버튼 #}
+                <div class="page-count-wrap">
+                  <button class="page-count" aria-label="page turning button" disabled type="button">
+                    <svg class="page-count" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z"></path>
+                    </svg>
+                  </button>
+                  <button class="page-count-num page-count-num-choice" aria-label="page number button" type="button">
+                    <span class="page-count-num">1</span>
+                  </button>
+                  <button class="page-count-num" aria-label="page number button" type="button">
+                    <span class="page-count-num">2</span>
+                  </button>
+                  <button class="page-count" aria-label="page turning button" disabled type="button">
+                    <svg class="page-count" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="delete-modal-wrap">
+        <div class="delete-modal-container">
+          <h4 class="delete-modal">강사 삭제</h4>
+          <div class="delete-modal-inner">해당 강사를 삭제하시겠습니까?</div>
+          <div class="delete-modal-box">
+            <div class="modal-cancel">
+              <button class="modal-cancel" aria-label="button" type="button">
+                취소
+              </button>
+            </div>
+            <div class="modal-confirm">
+              <button class="modal-confirm" aria-label="button" type="button">
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="delete-modal-bgcolor"></div>
+      </div>
+    </div>
+  </body>
+{% endblock %}
+{% block js %}
+  <script>
+    const csrf_token = `{{ csrf_token }}`;
+  
+    // 강사 목록 페이지 - 초기값 1
+    let page = 1;
+    
+    // 검색 키워드 - 초기값 빈 문자열
+    let keyword = '';
+  </script>
+  <script src="{% static 'public/web/js/manager/teacher/teacher-module.js' %}"></script>
+  <script src="{% static 'public/web/js/manager/teacher/show-teachers.js' %}"></script>
+  <script src="{% static 'public/web/js/manager/teacher/teacher.js' %}"></script>
+{% endblock %}

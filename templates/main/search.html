@@ -1,0 +1,373 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block static %}
+  <link rel="stylesheet" href="{% static 'main/css/search.css' %}"/>
+{% endblock %}
+{% block title %}Selleaf{% endblock %}
+{% block content %}
+  <main class="main-wrap">
+    <div class="main-container">
+      {% include 'fix/header.html' %}
+      <!-- 헤더 바로 밑 광고 쪽 -->
+      <div class="realmain-wrap">
+        <!-- 이런 사진 찾고 있었나요?? -->
+        <div class="realmain-plantRecommend-wrap">
+          <div class="realmain-plantRecommend-latterwrap">
+            <div class="realmain-plantRecommend-lattercontent">
+              <div class="realmain-plantRecommend-mainlatter">
+                <strong class="realmain-plantRecommend-stronglatter"
+                >노하우 <span class="search-count">{{ count.knowhow_count }}</span></strong
+                >
+              </div>
+            </div>
+            <div class="realmain-seeMore-wrap">
+              <button type="button" class="realmain-seeMore">더보기</button>
+            </div>
+          </div>
+          <div class="realmain-plantRecommend-photowrap">
+            <div class="realmain-plantRecommend-photowrap2">
+              <div class="realmain-plantRecommend-photowrap3">
+                {% if knowhows %}
+                  <ul class="realmain-plantRecommend-photoul">
+                    {% for knowhow in knowhows %}
+                      <li class="realmain-plantRecommend-photoli {{ knowhow.id }}">
+                        <div class="realmain-plantRecommend-photowrapdiv">
+                          <div class="realmain-plantRecommend-photocontentdiv">
+                            <img
+                                src="/upload/{{ knowhow.knowhow_file_url }}"
+                                class="realmain-plantRecommend-photo"
+                            />
+
+                            <div class="realmain-plantRecommend-scrap">
+                              <button
+                                  type="button"
+                                  aria-label="scrap 토글 버튼"
+                                  class="scrap-button"
+                              >
+                              <span class="realmain-plantRecommend-scrapspan">
+                                <img
+                                    src="{% if knowhow.knowhow_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off.png' %}{% endif %}"
+                                    width="24"
+                                    height="24"
+                                    class="scrap-img"
+                                />
+                              </span>
+                              </button>
+                            </div>
+                          </div>
+                          <a
+                              class="realmain-plantRecommend-profilelink"
+                              href="/knowhow/detail/?id={{ knowhow.id }}"
+                          ></a>
+                        </div>
+                        <div class="realmain-plantRecommend-profilediv">
+                          <div class="realmain-plantRecommend-profilediv2">
+                          <span class="realmain-plantRecommend-profilespan"
+                          >{{ knowhow.knowhow_title }}</span>
+                          </div>
+                          <div class="realmain-plantRecommend-profilediv2">
+
+                            <div class="realmain-plantRecommend-profilediv3">
+                              <img
+                                  src="{{ knowhow.member_profile }}"
+                                  class="realmain-plantRecommend-profile"
+                              />
+                            </div>
+                            <span class="realmain-plantRecommend-profilespan"
+                            >{{ knowhow.member_name }}</span>
+                          </div>
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <div class="no-result-message-box"><span>검색 결과가 없습니다.</span></div>
+                {% endif %}
+              </div>
+              <div class="realmain-plantRecommend-beforebuttonWrap">
+                <button
+                    type="button"
+                    aria-label="이전"
+                    class="realmain-beforebutton"
+                >
+                  <span class="realmain-beforebutton-span"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="realmain-lectureRecommend-wrap popularcontent-wrap">
+          <div
+              class="realmain-lectureRecommend-lattercontent popularcontent-lattercontent"
+          >
+            <div
+                class="realmain-lectureRecommend-lattercond popularcontent-lattercond"
+            >
+              <div
+                  class="realmain-lectureRecommend-lattercondd popularcontent-lattercondd"
+              >
+                <strong
+                    class="realmain-stronglatter popularcontent-stronglatter"
+                >게시물 <span class="search-count">{{ count.post_count }}</span></strong>
+              </div>
+            </div>
+            <div class="realmain-lecture-seeMore-wrap">
+              <button type="button" class="realmain-lectureSeeMore">
+                더보기
+              </button>
+            </div>
+          </div>
+          <div class="realmain-lecture-photoWrap popularcontent-photoWrap">
+            {% if posts %}
+              <div class="realmain-lecture-photoDiv popularcontent-photoDiv">
+                {% for post in posts %}
+                  <div
+                      class="realmain-lecture-photoEachdiv popularcontent-photoEachdiv {{ post.id }}"
+                  >
+                    <div
+                        class="realmain-lecture-photoEachphoto popularcontent-photoEachphoto"
+                    >
+                      <img
+                          src="/upload/{{ post.post_file_url }}"
+                          class="realmain-lecture-photo popularcontent-photo"
+                      />
+                      <div class="realmain-lecture-why popularcontent-why">
+                        <div
+                            class="realmain-lecture-whydiv popularcontent-whydiv"
+                        ></div>
+                      </div>
+                      <div class="realmain-lecture-scrap popularcontent-scrap">
+                        <button
+                            type="button"
+                            aria-label="scrap 토글 버튼"
+                            class="scrap-button popularcontent-scrapbutton"
+                        >
+                        <span
+                            class="realmain-lecture-scrapSpan popularcontent-scrapSpan"
+                        >
+                          <img
+                              src="
+                                  {% if post.post_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off.png' %}{% endif %}"
+                              width="24"
+                              height="24"
+                              class="scrap-img popularcontent-scrapoff"
+                          />
+                        </span>
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                        class="realmain-lecture-explanationDiv popularcontent-explanationDiv"
+                    >
+                      <p
+                          class="realmain-lecture-explanationP popularcontent-explanationP"
+                      >
+                      <span
+                          class="realmain-lecture-explanationSpan popularcontent-explanationSpan"
+                      >{{ post.post_title }}</span>
+                        {{ post.post_content }}
+                      </p>
+                    </div>
+                    <a
+                        class="realmain-lecture-explanationA popularcontent-explanationA"
+                        href="/post/detail/?id={{ post.id }}"
+                    ></a>
+                  </div>
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="no-result-message-box"><span>검색 결과가 없습니다.</span></div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="realmain-todayHotdeal-wrap">
+          <div class="realmain-todayHotdeal-lettercontent">
+            <div class="realmain-todayHotdeal-lettercond">
+              <div class="realmain-todayHotdeal-lettercondd">
+                <strong class="realmain-todayHotdeal-letterStrong"
+                >거래 <span class="search-count">{{ count.trade_count }}</span></strong
+                >
+              </div>
+            </div>
+            <div class="realmain-lecture-seeMore-wrap">
+              <button type="button" class="realmain-lectureSeeMore">
+                더보기
+              </button>
+            </div>
+          </div>
+          <div class="realmain-todayHotdeal-photoWrap">
+            <div class="realmain-todayHotdeal-photoWrapd">
+              <div class="realmain-todayHotdeal-photoWrapdd">
+                {% if trades %}
+                  <ul class="realmain-todayHotdeal-photoWrapUl">
+                    {% for trade in trades %}
+                      <li class="realmain-todayHotdeal-photoWrapli {{ trade.id }}">
+                        <div class="realmain-todayHotdeal-photoWrapliD">
+                          <article class="realmain-todayHotdeal-article">
+                            <a
+                                class="realmain-todayHotdeal-articlea"
+                                href="/trade/detail/?id={{ trade.id }}"
+                            ></a>
+                            <div class="realmain-todayHotdeal-imgdiv">
+                              <div class="realmain-todayHotdeal-imgdivd">
+                                <div class="realmain-todayHotdeal-imgdivdd">
+                                  <img
+                                      src="/upload/{{ trade.trade_file_url }}"
+                                      class="realmain-todayHotdeal-img"
+                                  />
+                                  <button
+                                      type="button"
+                                      class="scrap-button"
+                                      style="top: 3px; right:8px"
+                                  >
+                                    <img
+                                        src="
+                                            {% if trade.trade_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off.png' %}{% endif %}"
+                                        class="scrap-img"
+                                        width="24"
+                                        height="24"
+                                    />
+                                  </button>
+                                  <div
+                                      class="realmain-todayHotdeal-scrapleftdiv"
+                                  ></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="realmain-todayHotdeal-productWrap">
+                              <div class="realmain-todayHotdeal-productWrapd">
+                                <h1 class="realmain-todayHotdeal-productWraph">
+                                  <span class="realmain-todayHotdeal-productSpan">{{ trade.trade_title }}</span>
+                                  <span class="realmain-todayHotdeal-productSpanS">{{ trade.trade_price }}</span>
+                                </h1>
+                                <span class="realmain-todayHotdeal-priceWrap">
+                                <span class="realmain-todayHotdeal-realprice">{{ trade.trade_content }}</span>
+                              </span>
+                                <span class="realmain-todayHotdeal-boxWrap">
+                                <span class="realmain-todayHotdeal-boxWrapSpan"># {{ trade.trade_category_name }}</span>
+                              </span>
+                              </div>
+                            </div>
+                          </article>
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <div class="no-result-message-box"><span>검색 결과가 없습니다.</span></div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="realmain-bestproduct-Wrap">
+          <div class="realmain-bestproduct-letterContent">
+            <div class="realmain-bestproduct-letterContentD">
+              <div class="realmain-bestproduct-letterContentDD">
+                <strong class="realmain-bestproduct-letterContentStrong"
+                >클래스 <span class="search-count">{{ count.lecture_count }}</span></strong
+                >
+              </div>
+            </div>
+            <div class="realmain-lecture-seeMore-wrap">
+              <button type="button" class="realmain-lectureSeeMore">
+                더보기
+              </button>
+            </div>
+          </div>
+          <div class="realmain-bestproduct-photoWrap">
+            {% if lectures %}
+              <div class="realmain-bestproduct-realphotoWrap">
+                {% for lecture in lectures %}
+                  <div class="realmain-bestproduct-realphotoContent {{ lecture.id }}">
+                    <article class="realmain-bestproduct-realphotoArticle">
+                      <a class="realmain-bestproduct-realphotoA"></a>
+                      <div class="realmain-bestproduct-realphotoDiv">
+                        <img
+                            class="realmain-bestproduct-realphotoimg"
+                            src="/upload/{{ lecture.lecture_file_url }}"
+                        />
+                        <button class="scrap-button" style="top:1px">
+                          <img
+                              src="
+                                  {% if lecture.lecture_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off.png' %}{% endif %}"
+                              class="scrap-img"
+                              width="24px"
+                              height="24px"
+                          />
+                        </button>
+                        <div class="realmain-bestproduct-realphotosld"></div>
+                      </div>
+                      <div class="realmain-bestproduct-realphotoContentWrap">
+                        <h1 class="realmain-bestproduct-contenth">
+                          <span class="realmain-bestproduct-contenthead-brand">{{ lecture.lecture_title }}</span>
+                          <span class="realmain-bestproduct-contenthead-name">{{ lecture.lecture_content }}</span>
+                        </h1>
+                        <span class="realmain-bestproduct-contentbodySpan">
+                        <span class="realmain-bestproduct-price">1234</span>
+                      </span>
+                        <p class="realmain-bestproduct-infoP">
+                          <svg
+                              class="bestporductStaricon"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              preserveAspectRatio="xMidYMid meet"
+                          >
+                            <path
+                                fill="currentColor"
+                                fill-rule="evenodd"
+                                d="M12 19.72l-5.677 2.405c-.76.322-1.318-.094-1.247-.906l.533-6.142-4.042-4.656c-.54-.624-.317-1.283.477-1.467l6.006-1.39L11.23 2.28c.426-.707 1.122-.699 1.542 0l3.179 5.282 6.006 1.391c.805.187 1.011.851.477 1.467l-4.042 4.656.533 6.142c.072.822-.497 1.224-1.247.906L12 19.72z"
+                            ></path>
+                          </svg>
+                          <strong class="realmain-bestproduct-strong">{{ lecture.lecture_rating }}</strong>
+                          리뷰 {{ lecture.review_count }}
+                        </p>
+                        <span class="realmain-bestproduct-salepriceSpan">
+                        {% for tag in lecture.lecture_tags %}
+                          <span class="realmain-bestproduct-tagSpan"># {{ tag }}</span>
+                        {% endfor %}
+                      </span>
+                      </div>
+                    </article>
+                  </div>
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="no-result-message-box"><span>검색 결과가 없습니다.</span></div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% include 'fix/footer.html' %}
+    </div>
+  </main>
+  <!-- 스크랩북 눌렀을 때 나오는 모달창 -->
+  <div class="scrap-popup-wrap">
+    <div class="scrap-popup-container">
+      <div class="scrap-popup-inner">
+        <div class="scrap-popup-text">스크랩 했습니다.</div>
+      </div>
+      <div class="scrap-popup-button-container">
+        <!-- 스크랩북 링크삽입 -->
+        <button class="scrap-link-button" type="button">스크랩북 보기</button>
+        <button class="scrap-link-button" type="button">폴더에 담기</button>
+      </div>
+    </div>
+  </div>
+  <div class="scrap-popup-cancel-wrap">
+    <div class="scrap-popup-container">
+      <div class="scrap-popup-inner">
+        <div class="scrap-popup-text">스크랩을 취소하였습니다.</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block js %}
+  <script>
+    const csrf_token = '{{ csrf_token }}';
+  </script>
+  <script src="{% static 'main/js/scrap-module.js' %}"></script>
+  <script src="{% static 'main/js/search.js' %}"></script>
+{% endblock %}

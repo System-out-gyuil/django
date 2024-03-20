@@ -1,0 +1,187 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my_trade/my-sales.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 나의 판매내역{% endblock %}
+{% block content %}
+    <div class="whole-page-wrap">
+      <div class="whole-page-container">
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <div class="main-wrap">
+          <!-- 마이페이지 내 네비게이션 바 -->
+          <div class="navigation-wrap">
+            <div class="main-category-wrap">
+              <ul
+                class="main-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="main-category-item">
+                  <a href="/member/mypage/show/">내 활동</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="/member/mypage/trades/"  class="active">거래 내역</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="/member/mypage/lectures/">수강 내역</a>
+                </li>
+                {% if teacher.count == 0 %}
+                    <li class="main-category-item">
+                      <a href="/member/mypage/settings/">설정</a>
+                    </li>
+                {% else %}
+                    <li class="main-category-item ">
+                      <a href="/member/mypage/teachers/">강의 현황</a>
+                    </li>
+                    <li class="main-category-item">
+                      <a href="/member/mypage/settings/">설정</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          <!-- 거래페이지 내 탭 별 내용 - 이 탭은 내 거래 -->
+          <div class="content-wrap">
+            <div class="content-container">
+              <div class="sidebar-wrap">
+                <div
+                      class="sidebar-container"
+                      style="
+                        position: sticky;
+                        top: 80.75px;
+                        transition: top 0.1s ease 0s;
+                      "
+                    >
+                      <div class="sidebar-content" style="position: relative">
+                        <div>
+                          <div class="my-info-wrap">
+                            <div class="my-profile-wrap">
+                              <div class="profile-image-wrap">
+                                {% if memberProfile %}
+                                  {% if 'http' in memberProfile %}
+                                     <img src="{{ memberProfile }}" alt="" class="current-profile-image">
+                                  {% else %}
+                                     <img src="/upload/{{ memberProfile }}" alt="" class="current-profile-image">
+                                  {% endif %}
+                                {% else %}
+                                  <img src="{% static 'member/images/mypage/base-profile-image.avif' %}" alt="" class="current-profile-image">
+                                {% endif %}
+                              </div>
+                              <div class="personal-info-wrap">
+                                <div class="user-nickname">{{ request.session.member.member_name }}</div>
+                                <div class="follow-settings-wrap">
+                                  <!-- 나중에 팔로우 페이지랑 연결 -->
+                                  <!-- <dl class="follow-wrap">
+                                    <dt class="follow-text">팔로워</dt>
+                                    <dd class="follow-count">
+                                      <a href="#" class="follow-num">123</a>
+                                    </dd>
+                                    <dt class="follow-text">팔로잉</dt>
+                                    <dd class="follow-count">
+                                      <a href="#" class="follow-num">45</a>
+                                    </dd>
+                                  </dl> -->
+                                  <!-- 나중에 설정 페이지랑 연결 -->
+                                  <div class="settings-button-wrap">
+                                    <a class="settings-button" href="/member/mypage/settings">설정</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- 스크랩, 좋아요, 마일리지, 쿠폰 -->
+                            <div class="scraps-likes-wrap">
+                              <div class="scraps-likes-container">
+                                <!-- 스크랩 -->
+                                <a class="scraps-likes-content-wrap" href="/member/mypage/scraplectures">
+                                  <div class="scraps-likes-icon">
+                                    <img alt=""
+                                      src="{% static 'public/web/images/common/scrap-off-blk.png' %}"
+                                    />
+                                  </div>
+                                  <div class="scraps-likes-text">스크랩북</div>
+                                  <div class="scraps-likes-count">{{ scrap_count }}</div>
+                                </a>
+                                <!-- 좋아요 -->
+                                <a class="scraps-likes-content-wrap" href="/member/mypage/likes">
+                                  <div class="scraps-likes-icon">
+                                    <img alt="" src="{% static 'public/web/images/common/like-off.png' %}" />
+                                  </div>
+                                  <div class="scraps-likes-text">좋아요</div>
+                                  <div class="scraps-likes-count">{{ like_count }}</div>
+                                </a>
+                                <!-- 마일리지 -->
+                                <div class="scraps-likes-content-wrap">
+                                  <div class="scraps-likes-icon">
+                                    <img alt=""
+                                      src="{% static 'member/images/mypage/mileage.png' %}"
+                                    />
+                                  </div>
+                                  <div class="scraps-likes-text">마일리지</div>
+                                  <div class="scraps-likes-count">{{ mileage }}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <div class="seperator-wrap">
+                <div class="content-seperator"></div>
+              </div>
+              <!-- 사진 등의 내용물이 표시되는 공간 -->
+              <!-- 이 부분은 복붙하면서 내용물 교체 -->
+              <div class="main-content-wrap">
+                <!-- 프로필- 질문과답변 페이지 기반으로 제작 -->
+                <!-- 게시글은 질문과답변 페이지 들어가면 볼 수 있는 게시물들로 -->
+                <!-- 구매, 판매 페이지 서식은 공통 -->
+                <div class="main-content-container">
+                  <div class="menu-bar-wrap">
+                    <!-- 구매, 판매 내역 탭 -->
+                    <div class="menu-bar-container">
+                      <div class="trades-tab active">판매 내역</div>
+                    </div>
+                    {% if trade.count == 0 %}
+                    <div class="trade-page-link-wrap">
+                      <a href="/trade/upload/" class="trade-page-link">거래 시작하기</a>
+                    </div>
+                    {% else %}
+                    <div class="trade-page-link-wrap">
+                      <a href="/trade/total/" class="trade-page-link">거래 바로가기</a>
+                    </div>
+                    {% endif %}
+                  </div>
+                  <!-- 왜 있는 건지는 아직 모르겠음 -->
+                  <div
+                    class="empty-space"
+                    style="
+                      padding-top: 0;
+                      padding-bottom: 0;
+                      transform: translateY(0px);
+                    "
+                  ></div>
+                  <div class="trade-history-wrap">
+                    {% if trade.count == 0 %}
+                    <!-- 아무것도 없을 때 표시할 태그 -->
+                        <h1>아직 판매한 상품이 없어요.</h1>
+                        <p>더 많은 이용자들과 거래해보세요!</p>
+                        <!-- 내역이 있을 때는 여기를 표시 -->
+                        <div class="trade-history-item-wrap">
+                        </div>
+                        <!-- 각 내역 사이의 구분선 -->
+                        <hr class="items-seperator" />
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+  <script src="{% static 'member/js/mypage/my_trade/sales-module.js' %}"></script>
+  <script src="{% static 'member/js/mypage/my_trade/my-sales.js' %}"></script>
+{% endblock %}

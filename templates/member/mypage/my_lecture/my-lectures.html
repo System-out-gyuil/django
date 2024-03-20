@@ -1,0 +1,151 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my_lecture/my-lectures.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 내 강의{% endblock %}
+{% block content %}
+    <div class="whole-page-wrap">
+      <div class="whole-page-container">
+        <!-- 나중에 메인 페이지에서 작업하면 추가 -->
+        <div class="main-wrap">
+          <!-- 마이페이지 내 네비게이션 바 -->
+          <div class="navigation-wrap">
+            <div class="main-category-wrap">
+              <ul
+                class="main-category-container"
+                style="transform: translateX(0px)"
+              >
+                <li class="main-category-item">
+                  <a href="/member/mypage/show/">내 활동</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="/member/mypage/trades/">거래 내역</a>
+                </li>
+                <li class="main-category-item">
+                  <a href="/member/mypage/lectures/" class="active">수강 내역</a>
+                </li>
+                {% if teacher.count == 0 %}
+                    <li class="main-category-item">
+                      <a href="/member/mypage/settings/">설정</a>
+                    </li>
+                {% else %}
+                    <li class="main-category-item ">
+                      <a href="/member/mypage/teachers/">강의 현황</a>
+                    </li>
+                    <li class="main-category-item">
+                      <a href="/member/mypage/settings/">설정</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          <!-- 거래페이지 내 탭 별 내용 - 이 탭은 내 거래 -->
+          <div class="content-wrap">
+            <div class="content-container">
+              <div class="sidebar-wrap">
+                    <div
+                      class="sidebar-container"
+                      style="
+                        position: sticky;
+                        top: 80.75px;
+                        transition: top 0.1s ease 0s;
+                      "
+                    >
+                      <div class="sidebar-content" style="position: relative">
+                        <div>
+                          <div class="my-info-wrap">
+                            <div class="my-profile-wrap">
+                              <div class="profile-image-wrap">
+                                {% if memberProfile %}
+                                  {% if 'http' in memberProfile %}
+                                     <img src="{{ memberProfile }}" alt="" class="current-profile-image">
+                                  {% else %}
+                                     <img src="/upload/{{ memberProfile }}" alt="" class="current-profile-image">
+                                  {% endif %}
+                                {% else %}
+                                  <img src="{% static 'member/images/mypage/base-profile-image.avif' %}" alt="" class="current-profile-image">
+                                {% endif %}
+                              </div>
+                              <div class="personal-info-wrap">
+                                <div class="user-nickname">{{ request.session.member.member_name }}</div>
+                                <div class="follow-settings-wrap">
+                                  <div class="settings-button-wrap">
+                                    <a class="settings-button" href="/member/mypage/settings">설정</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- 스크랩, 좋아요, 마일리지, 쿠폰 -->
+                            <div class="scraps-likes-wrap">
+                              <div class="scraps-likes-container">
+                                <!-- 스크랩 -->
+                                <a class="scraps-likes-content-wrap" href="/member/mypage/scraplectures/">
+                                  <div class="scraps-likes-icon">
+                                    <img alt=""
+                                      src="{% static 'public/web/images/common/scrap-off-blk.png' %}"
+                                    />
+                                  </div>
+                                  <div class="scraps-likes-text">스크랩북</div>
+                                  <div class="scraps-likes-count">{{ scrap_count }}</div>
+                                </a>
+                                <!-- 좋아요 -->
+                                <a class="scraps-likes-content-wrap" href="/member/mypage/likes/">
+                                  <div class="scraps-likes-icon">
+                                    <img alt="" src="{% static 'public/web/images/common/like-off.png' %}" />
+                                  </div>
+                                  <div class="scraps-likes-text">좋아요</div>
+                                  <div class="scraps-likes-count">{{ like_count }}</div>
+                                </a>
+                                <!-- 마일리지 -->
+                                <div class="scraps-likes-content-wrap">
+                                  <div class="scraps-likes-icon">
+                                    <img alt=""
+                                      src="{% static 'member/images/mypage/mileage.png' %}"
+                                    />
+                                  </div>
+                                  <div class="scraps-likes-text">마일리지</div>
+                                  <div class="scraps-likes-count">{{ mileage }}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              <div class="seperator-wrap">
+                <div class="content-seperator"></div>
+              </div>
+              <!-- 사진 등의 내용물이 표시되는 공간 -->
+              <div class="main-content-wrap">
+                <div class="main-content-container">
+                  <div class="menu-bar-wrap">
+                    <div class="lecture-page-link-wrap">
+                      <a href="/lecture/main/" class="lecture-page-link">강의 바로가기</a>
+                    </div>
+                  </div>
+                  <div class="lecture-history-wrap">
+                      {% if lecture.count == 0 %}
+                    <!-- 아무것도 없을 때 표시할 태그 -->
+                        <h1>아직 신청한 강의가 없어요.</h1>
+                        <p>더 많은 강의를 들어보세요!</p>
+                        <div class="post-wrap">
+                        </div>
+                      {% else %}
+                        <div class="post-wrap">
+                        </div>
+                      {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'member/js/mypage/my_lectures/mylecture-module.js' %}"></script>
+    <script src="{% static 'member/js/mypage/my_lectures/my-lectures.js' %}"></script>
+{% endblock %}

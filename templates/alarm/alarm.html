@@ -1,0 +1,36 @@
+{% extends 'alarm/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'alarm/css/notification/notification.css' %}">
+{% endblock %}
+{% block title %}알림{% endblock %}
+{% block content %}
+    <form action="/alarm/"></form>
+    <div class="layout">
+      <header></header>
+      <div class="notice-container">
+        <h1 class="notice-tit">내 소식 <span class="alarm-count"></span></h1>
+
+        {% if alarm_count != 0 %}
+          <div class="check-wrap">
+            <div class="check-all">모두 읽기</div>
+          </div>
+        {% endif %}
+
+        <div class="notice-wrap">
+          {% if alarm_count == 0 %}
+            <div class="no-alarm">알람을 모두 읽었습니다.</div>
+          {% endif %}
+          <section class="here">
+          </section>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        const csrf_token = '{{ csrf_token }}'
+    </script>
+    <script src="{% static 'alarm/js/alarm-module.js' %}"></script>
+    <script src="{% static 'alarm/js/alarm.js' %}"></script>
+{% endblock %}

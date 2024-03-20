@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 여기서부터 -->
+    <style data-emotion="css-global" data-s="">
+      @import "https://assets.ohou.se/design-system/bbf3fca1e650ee6d.css";
+      @import "https://assets.ohou.se/fonts/pretendard/v1.3.8/pretendardvariable-dynamic-subset.css";
+      @font-face {
+        font-family: OhouseIcon;
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot);
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot#iefix)
+            format("embedded-opentype"),
+          url(https://assets.ohou.se/design-system/d8923b386a66fd50.woff2)
+            format("woff2"),
+          url(https://assets.ohou.se/design-system/9e79341d6a2fe0d2.woff)
+            format("woff"),
+          url(https://assets.ohou.se/design-system/5355f736e6a7bc5b.ttf)
+            format("truetype"),
+          url(https://assets.ohou.se/design-system/3ba7913eab100858.svg#OhouseIcon)
+            format("svg");
+      }
+      html {
+        font-family: "Pretendard Variable", sans-serif;
+        letter-spacing: -0.3px;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <link rel="stylesheet" href="/staticfiles/css/common.css" />
+    <!-- 여기까지는 무조건 고정으로 모든 페이지에 복붙하세요 -->
+    <!-- 여기는 각자 css 파일 link하시면 됩니다 -->
+    <link
+      rel="shortcut icon"
+      href="/staticfiles/images/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="/staticfiles/css/transaction/app/transaction-app-total.css"
+    />
+    <title>모바일 상품 상세페이지</title>
+  </head>
+  <body>
+    <header>
+      <div
+        class="sticky-container"
+        style="
+          position: sticky;
+          top: 92px;
+          transition: top 0.1s ease 0s;
+          z-index: 10;
+        "
+      >
+        <div
+          class="nav-wrap"
+          style="
+            position: fixed;
+            z-index: 1101;
+            transition: top 0.1s ease 0s;
+            top: 50.75px;
+            width: 390.5px;
+          "
+        >
+          <div class="nav-container">
+            <div class="nav-inner">
+              <nav class="nav-box">
+                <span class="home-nav-wrap">
+                  <div class="home-nav-container">
+                    <a class="home-link" href="#">
+                      <div class="home-text-wrap">
+                        <p class="home-text">쇼핑홈</p>
+                      </div>
+                    </a>
+                  </div>
+                </span>
+                <span class="category-nav-wrap"
+                  ><div class="category-nav-container">
+                    <a class="category-link" href="#">
+                      <div class="category-text-wrap">
+                        <p class="category-text">카테고리</p>
+                      </div>
+                    </a>
+                  </div>
+                </span>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative; margin-top: 100px">
+          <div class="filter-wrap">
+            <div class="filter-container">
+              <div class="filter-inner">
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">스크랩순</span>
+                  </label>
+                </span>
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">조회순</span>
+                  </label>
+                </span>
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">관엽식물</span>
+                  </label>
+                </span>
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">침엽식물</span>
+                  </label>
+                </span>
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">희귀식물</span>
+                  </label>
+                </span>
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">다육선인장</span>
+                  </label>
+                </span>
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">테라리움</span>
+                  </label>
+                </span>
+                <span>
+                  <label class="filter-btn-label">
+                    <input type="checkbox" class="filter-btn" />
+                    <span class="filter-btn-text">기타</span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div id="transaction-index">
+      <!-- 스크랩 -->
+      <div class="scrap-popup-wrap">
+        <div class="scrap-popup-container">
+          <div class="scrap-popup-inner">
+            <div class="scrap-popup-text">스크랩 했습니다.</div>
+          </div>
+          <div class="scrap-popup-button-container">
+            <!-- 스크랩북 링크삽입 -->
+            <button class="scrap-link-button" type="button">
+              스크랩북 보기
+            </button>
+            <button class="scrap-link-button" type="button">폴더에 담기</button>
+          </div>
+        </div>
+      </div>
+      <div class="scrap-popup-cancel-wrap">
+        <div class="scrap-popup-container">
+          <div class="scrap-popup-inner">
+            <div class="scrap-popup-text">스크랩을 취소하였습니다.</div>
+          </div>
+        </div>
+      </div>
+      <!-- 메인 -->
+      <section class="transaction-index-wrap">
+        <div class="transaction-contents-wrap">
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="transaction-contents-container">
+            <div class="transaction-contents-inner">
+              <article class="transaction-contents-item">
+                <a class="item-overlay" href="#"></a>
+                <div class="item-image-wrap">
+                  <div class="item-image-container">
+                    <div class="item-image-inner">
+                      <div class="item-image-box"></div>
+                      <img
+                        class="image"
+                        src="/staticfiles/images/blank-image.png"
+                        alt=""
+                      />
+                      <button class="scrap-button" type="button">
+                        <img
+                          src="/staticfiles/images/scrap-off.png"
+                          alt
+                          class="scrap-off"
+                        />
+                      </button>
+                      <div class="item-image-dark-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-content-wrap">
+                  <div class="item-content-container">
+                    <h1 class="item-content-header">
+                      <span class="item-seller-name">닥터워터 </span>
+                      <span class="item-title">
+                        초간편설치 원터치 필터샤워기+PVC 호스(1.5M/2M)
+                      </span>
+                    </h1>
+                    <div class="item-review-wrap">
+                      <p class="item-review">리뷰 5,317</p>
+                      <p class="item-review">스크랩 5,317</p>
+                    </div>
+                    <span class="item-price-wrap">
+                      <span class="item-price">25,900</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+  <script src="/staticfiles/js/transaction/app/transaction-app-total.js"></script>
+</html>

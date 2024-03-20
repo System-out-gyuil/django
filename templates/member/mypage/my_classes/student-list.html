@@ -1,0 +1,47 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my-classes/student-list.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 수강생 목록{% endblock %}
+{% block content %}
+    <div class="layout">
+      <header></header>
+      <!-- 전체 목록 -->
+      <div class="notice-container">
+        <div style="display: flex; justify-content: space-between">
+          <h1 class="notice-title">수강생 목록</h1>
+          <!-- 검색창 -->
+
+        </div>
+        <div class="notice-wrap">
+          <!--  -->
+          <section>
+            <!-- 각 컬럼 제목 -->
+            <div>
+              <div class="student-list-title-wrap">
+                <div class="list-titles">대표 예약자명</div>
+                <div class="list-titles">연락처</div>
+                <div class="list-titles">총 수강 인원</div>
+                <div class="list-titles">수강 날짜</div>
+                <div class="list-titles">수강 시간</div>
+                <div class="list-titles">
+                  선택 키트
+                </div>
+              </div>
+            </div>
+            <div class="here"></div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+  <script>
+    applyID = '{{apply_id}}'
+    csrf_token = '{{ csrf_token }}'
+  </script>
+  <script src="{% static 'member/js/mypage/my-classes/myclass-module.js' %}"></script>
+  <script src="{% static 'member/js/mypage/my-classes/student-list.js' %}"></script>
+{% endblock %}

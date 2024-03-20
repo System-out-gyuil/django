@@ -1,0 +1,829 @@
+{% extends 'community/web/knowhow/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'knowhow/css/web/create-knowhow.css' %}">
+{% endblock %}
+{% block title %}노하우{% endblock %}
+{% block content %}
+  <body>
+    <div class="home-wrap">
+      <div class="home-container">
+        <div class="home-main-wrap">
+          <div
+            class="sticky-container"
+            style="
+              position: sticky;
+              top: 133px;
+              transition: top 0.1s ease 0s;
+              z-index: 10;
+            "
+          >
+            <div style="position: relative;">
+              <div class="filter-wrap">
+                <div class="filter-container">
+                  <div class="filter-inner">
+                    <span>
+                      <label class="filter-btn-label">
+                        <input type="checkbox" class="filter-btn" />
+                        <span class="filter-btn-text">관엽식물</span>
+                      </label>
+                    </span>
+                    <span>
+                      <label class="filter-btn-label">
+                        <input type="checkbox" class="filter-btn" />
+                        <span class="filter-btn-text">침엽식물</span>
+                      </label>
+                    </span>
+                    <span>
+                      <label class="filter-btn-label">
+                        <input type="checkbox" class="filter-btn" />
+                        <span class="filter-btn-text">희귀식물</span>
+                      </label>
+                    </span>
+                    <span>
+                      <label class="filter-btn-label">
+                        <input type="checkbox" class="filter-btn" />
+                        <span class="filter-btn-text">다육선인장</span>
+                      </label>
+                    </span>
+                    <span>
+                      <label class="filter-btn-label">
+                        <input type="checkbox" class="filter-btn" />
+                        <span class="filter-btn-text">테라리움</span>
+                      </label>
+                    </span>
+                    <span>
+                      <label class="filter-btn-label">
+                        <input type="checkbox" class="filter-btn" />
+                        <span class="filter-btn-text">기타</span>
+                      </label>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="home-main-container">
+            <div>
+              <div class="main-content-wrap" style="position: relative;">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                  "
+                >
+                  <div
+                    style="
+                      box-sizing: border-box;
+                      padding-top: 0px;
+                      margin-top: 0px;
+                    "
+                  >
+                    <div class="content-line" style="overflow-anchor: none;">
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box">
+                                  <img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box">
+                                  <img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                      <span>
+                        <div class="content-wrap">
+                          <div class="content-container">
+                            <div class="content">
+                              <img
+                                src="../../../staticfiles/images/blank-image.png"
+                                alt="content-img"
+                                class="content-img"
+                              />
+                              <button
+                                type="button"
+                                aria-label="scrap 토글 버튼"
+                                class="scrap-btn"
+                              >
+                                <span class="scrap-btn-box"
+                                  ><img
+                                    src="../../../staticfiles/images/scrap-off-pink.png"
+                                    alt=""
+                                  />
+                                </span>
+                              </button>
+                            </div>
+                            <div class="content-content">
+                              게시물 제목
+                            </div>
+                            <a class="content-link" href="#"></a>
+                          </div>
+                          <div class="content-uploader-box">
+                            <a class="content-uploader" href="#">
+                              <figure class="uploader-icon-box">
+                                <img
+                                  src="../../../staticfiles/images/blank-image.png"
+                                  height="0"
+                                  class="uploader-icon"
+                                />
+                              </figure>
+                              <div class="uploader-name">
+                                작성자
+                              </div>
+                            </a>
+                            <div
+                              class="like-box"
+                            >
+                              <svg
+                                class="like-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="19"
+                                viewBox="0 -960 960 960"
+                                width="19"
+                              >
+                                <path
+                                  d="m480-179.81-32.922-29.96q-97.061-87.038-160.184-148.519-63.124-61.481-99.139-108.152-36.015-46.671-49.846-84.632-13.831-37.961-13.831-77.119 0-77.738 53.804-131.541 53.804-53.804 131.541-53.804 48.741 0 93.774 23.5 45.034 23.5 76.803 68.078 32.885-44.578 77.288-68.078 44.404-23.5 93.289-23.5 77.737 0 131.541 53.782 53.804 53.783 53.804 131.489 0 39.227-13.331 76.19-13.331 36.964-49.333 83.113-36.001 46.149-99.516 108.674-63.515 62.524-162.82 152.519L480-179.81Zm0-64.421q91.316-82.605 150.52-140.455 59.204-57.85 94.323-100.967 35.119-43.116 49.119-76.644 14-33.528 14-65.868 0-58.527-39.551-97.97-39.551-39.442-97.588-39.442-35.015 0-65.458 14.885-30.442 14.884-62.019 48.923l-35 41h-16.692l-35-41q-31.962-34.423-63.212-49.116-31.25-14.692-64.265-14.692-57.653 0-97.396 39.442-39.743 39.443-39.743 97.99 0 32.352 13.027 64.392t47.096 74.608q34.07 42.568 93.762 100.857Q385.615-330 480-244.231Zm0-261.269Z"
+                                />
+                              </svg>
+                              <span class="like-count">1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 스크랩 팝업 -->
+    <div class="scrap-popup-wrap">
+      <div class="scrap-popup-container">
+        <div class="scrap-popup-inner">
+          <div class="scrap-popup-text">스크랩 했습니다.</div>
+        </div>
+        <div class="scrap-popup-button-container">
+          <!-- 스크랩북 링크삽입 -->
+          <button class="scrap-link-button" type="button">
+            스크랩북 보기
+          </button>
+          <button class="scrap-link-button" type="button">폴더에 담기</button>
+        </div>
+      </div>
+    </div>
+    <div class="scrap-popup-cancel-wrap">
+      <div class="scrap-popup-container">
+        <div class="scrap-popup-inner">
+          <div class="scrap-popup-text">스크랩을 취소하였습니다.</div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'knowhow/js/web/knowhow-detail.js' %}"></script>
+{% endblock %}

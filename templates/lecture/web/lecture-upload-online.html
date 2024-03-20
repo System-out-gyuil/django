@@ -1,0 +1,779 @@
+{% extends 'lecture/web/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'lecture/css/lecture/web/lecture-upload.css' %}">
+{% endblock %}
+{% block title %}수강포스팅-온라인{% endblock %}
+{% block content %}
+<form action="{% url 'lecture:upload-online' %}" method="post" name="lecture-online-upload" enctype="multipart/form-data">
+{% csrf_token %}
+  <body>
+    <div class="layout-wrap">
+      <div class="layout-container">
+        <div
+          class="sticky-header-wrap"
+          style="
+            position: sticky;
+            top: 0px;
+            transition: top 0.1s ease 0s;
+            z-index: 500;
+          "
+        >
+          <div class="sticky-header-container" style="position: relative">
+            <div class="sticky-header-inner">
+              <div class="contents-button-wrap">
+                <a href="#" aria-label="selleaf" class="logo-wrap">
+                  <img
+                    class="logo"
+                    src="{% static 'public/web/images/common/logo-lettering-blk.png' %}"
+                    alt=""
+                  />
+                </a>
+                <div class="save-button-wrap">
+                  <div class="save-button-container">
+{#                    <div class="temporary-save-wrap">#}
+{#                      <div class="temporary-save-container">#}
+{#                      <button type="button" disabled class="temporary-save">#}
+{#                          <span class="temporary-save-letter">임시저장</span>#}
+{#                          <span class="save-letter">저장</span>#}
+{#                        </button>#}
+{#                      </div>#}
+{#                    </div>#}
+                    <!-- 완성된 등록게시물 링크연결 -->
+                    <button class="establish">
+                      <span class="establish-ask-letter">등록하기</span>
+                      <span class="establish-letter">등록</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="upload-main-wrap">
+          <div class="upload-main-container">
+            <div class="upload-guide-wrap">
+              <div class="upload-guide-container">
+                <button
+                  type="button"
+                  id="guide-header"
+                  aria-labelledby="guide-content"
+                  aria-expanded="false"
+                  class="guide-button"
+                >
+                  <div class="guide-letter-wrap">
+                    <div class="guide-icon-wrap">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        viewBox="0 0 25 25"
+                        class="icon"
+                      >
+                        <rect
+                          width="25"
+                          height="25"
+                          fill="#135f2c"
+                          rx="10"
+                        ></rect>
+                        <g fill="#FFF" transform="translate(7 8)">
+                          <rect width="7" height="1.5" rx="0.8"></rect>
+                          <rect width="11" height="1.5" y="4" rx="0.8"></rect>
+                          <rect width="11" height="1.5" y="8" rx="0.8"></rect>
+                        </g>
+                      </svg>
+                    </div>
+                    <div class="guide-title">강의 등록 가이드</div>
+                    <div class="guide-notice">강의 등록시 꼭 읽어주세요.</div>
+                  </div>
+                  <div class="dropdown-icon-wrap">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="dropdown-icon"
+                    >
+                      <path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M2.87 4L1.33 5.5 8 12l6.67-6.5L13.13 4 8 9z"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+                <div class style="overflow: hidden"></div>
+                <div class="off">
+                  <div class="guide-expended" role="region" id="guide-content">
+                    <ul class="guide-list">
+                      <li>
+                        셀리프에서 진행하는 강의의 경우,
+                        <strong>누구나 강사가 될 수 있습니다.</strong>
+                      </li>
+                      <li>
+                        강의 장소는 강사님의 이 지정하되 강의에 부적합하다고
+                        판단되는 경우 <strong>강의 게시글이 삭제</strong>될 수
+                        있음을 안내드립니다.
+                      </li>
+                      <li>
+                        강의를 진행하는 동안에 이루어지는 일에 대한 책임은
+                        강사에게 있으며, 셀리프는 강의에 대한 중개만을 담당함을
+                        알려드립니다.
+                      </li>
+                      <li>
+                        아래 필수 정보를 입력하지 않으면 강의가 개설되지
+                        않습니다. 필수정보는 꼼꼼하게 입력해주세요.
+                      </li>
+                      <li>
+                        사진 첨부 시 용량은 장당 최대 20MB까지 업로드할 수 있고,
+                        jpg, png, webp, heif, heic, gif 포맷을 지원합니다.
+                      </li>
+                      <li>
+                        글 작성과 이미지 업로드 시, 타인의 지식재산권을 침해하지
+                        않도록 유의해 주세요.
+                      </li>
+                      <li>
+                        강의는 작성해주신 초안을 바탕으로 내부의 검수, 태그
+                        작업을 거쳐서 발행되고 있습니다. 이에 따라 내용이 변경될
+                        수 있습니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="upload-guide-container">
+                <button
+                  type="button"
+                  id="required-info-header"
+                  aria-labelledby="required-info-content"
+                  aria-expanded="false"
+                  class="guide-button"
+                >
+                  <div class="guide-letter-wrap">
+                    <div class="guide-icon-wrap">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="26"
+                        height="26"
+                        viewBox="0 0 26 26"
+                        class="icon"
+                      >
+                        <rect
+                          width="26"
+                          height="26"
+                          fill="#97a38c"
+                          rx="10"
+                        ></rect>
+                        <g fill="none" stroke="#FFF">
+                          <path
+                            stroke-linejoin="round"
+                            stroke-width="1.2"
+                            d="M15.06 8.65l-6.9 6.88L7 18.98l3.45-1.15 6.9-6.9-2.3-2.28z"
+                          ></path>
+                          <path
+                            stroke-width="1.2"
+                            d="M15.04 8.64l1.45-1.45a.65.65 0 01.93 0l1.37 1.38a.65.65 0 010 .92l-1.45 1.45"
+                          ></path>
+                          <path d="M8.27 15.2l2.48 2.47"></path>
+                        </g>
+                      </svg>
+                    </div>
+                    <div class="guide-title">필수정보 입력창</div>
+                    <div class="guide-notice">꼭 필요한 정보입니다.</div>
+                  </div>
+                  <div class="dropdown-icon-wrap">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="dropdown-icon"
+                    >
+                      <path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M2.87 4L1.33 5.5 8 12l6.67-6.5L13.13 4 8 9z"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+                <div class style="overflow: hidden"></div>
+                <!-- class 수정, css 추가 -->
+                <div class="required-off">
+                  <div class="info-expended" style="overflow: hidden">
+                    <div
+                      role="hidden"
+                      id="info-contents"
+                      aria-labelledby="info-header"
+                      class="info-wrap"
+                    >
+                      <div class="info-container">
+                        <div class="each-info">
+                          <div class="info-title">
+                            강의구분
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap">
+                                    <select
+                                      name="product-index"
+                                      class="product-index"
+                                    >
+                                      <option
+                                        value="unselected"
+                                        disabled
+                                        selected
+                                      >
+                                        선택해주세요.
+                                      </option>
+                                      <option value="리스/트리">리스/트리</option>
+                                      <option value="바구니/센터피스/박스">
+                                        바구니/센터피스/박스
+                                      </option>
+                                      <option value="가드닝/테라리움">가드닝/테라리움</option>
+                                      <option value="기타">기타</option>
+                                    </select>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                            <span
+                              class="alert"
+                              style="display: none; color: #c06888"
+                              >필수 입력창 입니다.</span
+                            >
+                          </div>
+                        </div>
+                        <div class="each-info">
+                          <div class="info-title">
+                            식물종류
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <label class="plant-selection">
+                                    <input type="checkbox" name="plant-type" value="관엽식물" style="display: none"><div>관엽식물</div>
+                                </label>
+                                <label class="plant-selection">
+                                    <input type="checkbox" name="plant-type" value="침엽식물" style="display: none"><div>침엽식물</div>
+                                </label>
+                                <label class="plant-selection">
+                                    <input type="checkbox" name="plant-type" value="희귀식물" style="display: none"><div>희귀식물</div>
+                                </label>
+                                <label class="plant-selection">
+                                    <input type="checkbox" name="plant-type" value="다육/선인장" style="display: none"><div>다육/선인장</div>
+                                </label>
+                                <label class="plant-selection">
+                                    <input type="checkbox" name="plant-type" value="기타" style="display: none"><div>기타</div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="each-info">
+                          <div class="info-title">
+                            가격
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap">
+                                    <input
+                                      type="number"
+                                      class="price-input"
+                                      placeholder="1인당 가격을 입력하세요"
+                                      name="price-input"
+                                    />
+                                    <span class="price-index">원</span>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="each-info">
+                          <div class="info-title">
+                            인원
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap">
+                                    <input
+                                      type="number"
+                                      class="number-input"
+                                      placeholder="수업 인원을 입력하세요"
+                                      name="number-input"
+                                    />
+                                    <span class="price-index">명</span>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="each-info">
+                          <div class="info-title" id="start-date">
+                            시작일자
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap">
+                                    <input
+                                      type="date"
+                                      class="start-date"
+                                      name="start-date-input"
+                                    />
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="info-title">
+                            마감일자
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap">
+                                    <input
+                                      type="date"
+                                      class="end-date"
+                                      name="end-date-input"
+                                    />
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="each-info">
+                          <div class="info-title">
+                            시작 시간
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-dropdown-wrap">
+                                    <div class="info-dropdown-container">
+                                      <div class="info-dropdown-inner">
+                                        <span class="info-dropdown-box">
+                                          <div class="info-list-wrap">
+                                            <input
+                                              type="time"
+                                              min="9:00"
+                                              max="21:00"
+                                              step="1800"
+                                              class="time-input"
+                                              name="start-time-input"
+                                            />
+                                          </div>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="info-title">
+                            종료 시간
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-dropdown-wrap">
+                                    <div class="info-dropdown-container">
+                                      <div class="info-dropdown-inner">
+                                        <span class="info-dropdown-box">
+                                          <div class="info-list-wrap">
+                                            <input
+                                              type="time"
+                                              min="9:00"
+                                              max="21:00"
+                                              step="1800"
+                                              class="time-input"
+                                              name="end-time-input"
+                                            />
+                                          </div>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="each-info">
+                          <div class="info-title">
+                            요일 반복
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-dropdown-wrap">
+                                    <label class="weekday-selection">
+                                        <input type="checkbox" name="weekday-type" value="0" style="display: none"><div>월</div>
+                                    </label>
+                                    <label class="weekday-selection">
+                                        <input type="checkbox" name="weekday-type" value="1" style="display: none"><div>화</div>
+                                    </label>
+                                    <label class="weekday-selection">
+                                        <input type="checkbox" name="weekday-type" value="2" style="display: none"><div>수</div>
+                                    </label>
+                                    <label class="weekday-selection">
+                                        <input type="checkbox" name="weekday-type" value="3" style="display: none"><div>목</div>
+                                    </label>
+                                    <label class="weekday-selection">
+                                        <input type="checkbox" name="weekday-type" value="4" style="display: none"><div>금</div>
+                                    </label>
+                                    <label class="weekday-selection">
+                                        <input type="checkbox" name="weekday-type" value="5" style="display: none"><div>토</div>
+                                    </label>
+				                    <label class="weekday-selection">
+                                        <input type="checkbox" name="weekday-type" value="6" style="display: none"><div>일</div>
+                                    </label>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="info-title">
+                            강의 시간
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-dropdown-wrap">
+                                    <label class="time-selection">
+                                        <input type="radio" name="time-type" value="00:30" style="display: none"><div>30분</div>
+                                    </label>
+                                    <label class="time-selection">
+                                        <input type="radio" name="time-type" value="01:00" style="display: none"><div>1시간</div>
+                                    </label>
+{#				                    <label class="time-selection">#}
+{#                                        <input type="radio" name="time-type" value="02:00" style="display: none"><div>2시간</div>#}
+{#                                    </label>#}
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="each-info">
+                          <div class="info-title">
+                            DIY키트
+                            <span class="required">*</span>
+                          </div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap" id="diy-kit">
+                                    <input
+                                      class="diy-input"
+                                      placeholder="키트이름을 입력하세요"
+                                      name="diy-name-input"
+                                      type="text"
+                                    />
+                                  </div>
+                                </span>
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap" id="diy-kit">
+                                    <input
+                                      class="diy-input"
+                                      placeholder="간단한 설명을 입력하세요"
+                                      name="diy-content-input"
+                                      type="text"
+                                    />
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="add-cancel">
+                            <button
+                              type="button"
+                              title="추가"
+                              class="add-button"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="29"
+                                height="29"
+                                viewBox="-3 -5 29 29"
+                                class="icon"
+                              >
+                                <path
+                                  d="M10.8 3.8v5H5.7c-.4 0-.7.3-.7.7 0 .4.3.7.7.7h5.1v5c0 .4.3.7.7.7.4 0 .7-.3.7-.7v-5h5.1c.4 0 .7-.3.7-.7 0-.4-.3-.7-.7-.7h-5.1v-5c0-.4-.3-.7-.7-.7-.4 0-.7.3-.7.7z"
+                                  fill="#525B61"
+                                  stroke="#525B61"
+                                  stroke-width="0.5"
+                                ></path>
+                              </svg>
+                            </button>
+                            <button
+                              type="button"
+                              title="삭제"
+                              class="cancel-button"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="29"
+                                height="29"
+                                viewBox="-3 -11 29 29"
+                                class="icon"
+                              >
+                                <path
+                                  d="M10.8 2.8H5.7c-.4 0-.7.3-.7.7 0 .4.3.7.7.7h11.6c.4 0 .7-.3.7-.7 0-.4-.3-.7-.7-.7h-6.5z"
+                                  fill="#525B61"
+                                  stroke="#525B61"
+                                  stroke-width="0.5"
+                                ></path>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="add-diy-kit">
+                          <div class="info-title"></div>
+                          <div class="info-dropdown-wrap">
+                            <div class="info-dropdown-container">
+                              <div class="info-dropdown-inner">
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap" id="diy-kit">
+                                    <input
+                                      class="diy-input"
+                                      placeholder="키트 이름을 입력하세요"
+                                      name="diy-name-input"
+                                      type="text"
+                                    />
+                                  </div>
+                                </span>
+                                <span class="info-dropdown-box">
+                                  <div class="info-list-wrap" id="diy-kit">
+                                    <input
+                                      class="diy-input"
+                                      placeholder="간단한 설명을 입력하세요"
+                                      name="diy-content-input"
+                                      type="text"
+                                    />
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="kit-alert">
+                            최대 2개까지 입력가능합니다.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="upload-wrap">
+                <div class="upload-container">
+                  <label
+                    for="img-file1"
+                    style="cursor: pointer"
+                    class="upload-btn"
+                  >
+                    <div class="cover-add-coment">사진 추가하기</div>
+                    <div class="cover-text">
+                      <span class="top-text-box">
+                        <span class="top-text">권장 사이즈</span>
+                      </span>
+                      <span class="bottom-text-box">
+                        1920 x 1920, 최소 1400 x 1400(1:1 비율)
+                      </span>
+                    </div>
+                  </label>
+                </div>
+                <div class="prev-img-box">
+                  <div class="prev-img-box-item" style="display: none">
+                    <input
+                      type="file"
+                      id="img-file1"
+                      name="img-file1"
+                      style="display: none"
+                    />
+                    <img src="" alt="" class="prev-img" />
+                    <div class="cancel-div">
+                      <button type="button" class="cancel-btn">
+                        <img
+                          src="{% static 'public/web/images/common/cancel.png' %}"
+                          alt=""
+                          class="cancel-img"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="prev-img-box-item" style="display: none">
+                    <input
+                      type="file"
+                      id="img-file2"
+                      name="img-file2"
+                      style="display: none"
+                    />
+                    <img src="" alt="" class="prev-img" />
+                    <div class="cancel-div">
+                      <button type="button" class="cancel-btn">
+                        <img
+                          src="{% static 'public/web/images/common/cancel.png' %}"
+                          alt=""
+                          class="cancel-img"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="prev-img-box-item" style="display: none">
+                    <input
+                      type="file"
+                      id="img-file3"
+                      name="img-file3"
+                      style="display: none"
+                    />
+                    <img src="" alt="" class="prev-img" />
+                    <div class="cancel-div">
+                      <button type="button" class="cancel-btn">
+                        <img
+                          src="{% static 'public/web/images/common/cancel.png' %}"
+                          alt=""
+                          class="cancel-img"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="prev-img-box-item" style="display: none">
+                    <input
+                      type="file"
+                      id="img-file4"
+                      name="img-file4"
+                      style="display: none"
+                    />
+                    <img src="" alt="" class="prev-img" />
+                    <div class="cancel-div">
+                      <button type="button" class="cancel-btn">
+                        <img
+                          src="{% static 'public/web/images/common/cancel.png' %}"
+                          alt=""
+                          class="cancel-img"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="prev-img-box-item" style="display: none">
+                    <input
+                      type="file"
+                      id="img-file5"
+                      name="img-file5"
+                      style="display: none"
+                    />
+                    <img src="" alt="" class="prev-img" />
+                    <div class="cancel-div">
+                      <button type="button" class="cancel-btn">
+                        <img
+                          src="{% static 'public/web/images/common/cancel.png' %}"
+                          alt=""
+                          class="cancel-img"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="title-input-box">
+                <input
+                  type="text"
+                  placeholder="제목을 입력해주세요."
+                  maxlength="80"
+                  class="title-input"
+                  name="title-input"
+                  value=""
+                />
+                <div class="title-count"><span class="count">0</span> / 80</div>
+              </div>
+            </div>
+          </div>
+          <div class="content-text-input-wrap">
+            <div class="content-text-input-container">
+              <div class="content-text-input-inner">
+                <div class="content-text-input-box">
+                  <div class="mark-icon-wrap">
+                    <div class="mark-icon-container">
+                      <div class="mark-icon-box">
+                        <button
+                          type="button"
+                          title="도구"
+                          class="mark-icon-btn"
+                        >
+                          <svg
+                            class="svg-icon"
+                            style="
+                              width: 27px;
+                              height: 27px;
+                              vertical-align: middle;
+                              fill: currentColor;
+                              overflow: hidden;
+                            "
+                            viewBox="0 0 1024 1024"
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M682.666667 533.333333a21.333333 21.333333 0 0 1-15.146667-6.186666l-298.666667-298.666667a21.333333 21.333333 0 0 1 30.293334-30.293333l298.666666 298.666666a21.333333 21.333333 0 0 1 0 30.293334A21.333333 21.333333 0 0 1 682.666667 533.333333z"
+                              fill="#333333"
+                            />
+                            <path
+                              d="M384 832a21.333333 21.333333 0 0 1-15.146667-6.186667 21.333333 21.333333 0 0 1 0-30.293333l298.666667-298.666667a21.333333 21.333333 0 0 1 30.293333 30.293334l-298.666666 298.666666A21.333333 21.333333 0 0 1 384 832z"
+                              fill="#333333"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <textarea
+                    class="content-text-area"
+                    name="content-text-area"
+                    contenteditable="true"
+                    placeholder="내용을 입력해주세요."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</form>
+{% endblock %}
+{% block js %}
+  <script src="{% static 'lecture/js/lecture/web/lecture-upload.js' %}"></script>
+  <script src="{% static 'lecture/js/lecture/web/lecture-onlione-upload.js' %}"></script>
+{% endblock %}
+

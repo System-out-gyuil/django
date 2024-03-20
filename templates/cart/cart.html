@@ -1,0 +1,65 @@
+{% extends 'cart/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'cart/css/cart/cart.css' %}">
+{% endblock %}
+{% block title %}CART{% endblock %}
+{% block content %}
+    <div class="payment-wrap">
+      <form class="payment-container" action="/cart/checkout/{{ cart_id }}/" method="post">
+        {% csrf_token %}  
+        <article class="paymeny-inner">
+          <h1 class="paymeny-title">장바구니</h1>
+          <!-- 장바구니에 담은 상품이 있다면 표시 -->
+          <section class="section">
+            <div class="section-title">
+              <h2 class="title-text">내가 담은 상품들</h2>
+              <p class="product-count-wrap">
+                <span class="product-count">{{ details.count }}건</span>
+              </p>
+            </div>
+            <article class="contents-wrap">
+            <ul class="cart-item-wrap">
+            <!-- 장바구니에 담은 상품 리스트 -->
+            </ul>
+            </article>
+          </section>
+        </article>
+        <!-- 사이드바 -->
+        <aside class="sidebar-wrap">
+          <article class="sidebar-container">
+            <div class="payment-detail-info-wrap">
+              <section class="payment-detail-container">
+                <div class="payment-datail-title">
+                  <h2 class="payment-title-text">결제금액</h2>
+                </div>
+                <article class="detail-price-wrap">
+                  <div class="product-name-side">
+                      <div class="selected-item-title">선택한 상품</div>
+                  </div>
+                  <hr class="line" />
+                  <div class="total-price-wrap">
+                    <span class="total-text">결제 예정 금액</span>
+                    <span class="total-price"></span>
+                  </div>
+                </article>
+              </section>
+            </div>
+            <div class="pay-button-wrap">
+              <button class="summit">바로 구매</button>
+            </div>
+          </article>
+        </aside>
+      </form>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        const csrf_token = '{{ csrf_token }}';
+        const cart_id = '{{ cart_id }}'
+        {#const detail = '{{ detail_id }}'#}
+        const memberId = '{{ request.session.member.id }}'
+    </script>
+    <script src="{% static 'cart/js/cart/cart-module.js' %}"></script>
+    <script src="{% static 'cart/js/cart/cart.js' %}"></script>
+{% endblock %}

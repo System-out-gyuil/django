@@ -1,0 +1,423 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'public/web/css/fix/header.css' %}"/>
+<header>
+    <div class="header-wrap" style="height: 81px">
+        <div
+                class="header-second-wrap"
+                style="
+        position: fixed;
+        transition: top 0.1s ease 0s;
+        z-index: 1102;
+        top: 0px;
+        width: 1920px;
+      "
+        >
+            <div class="hearder-container">
+                <!-- header-second-container가 아니라 원래는 header-first-inner로 했어야함 -->
+                <div class="header-second-container">
+                    <button type="button" class="hearder-second-container-button">
+                        <span class="hearder-span"></span>
+                    </button>
+                </div>
+                <div class="header-second-inner">
+                    <a class="hearder-second-inner-logo" aria-label="selleaf 로고" href="{% url 'main' %}">
+                        <img
+                                class="header-second-inner-svg"
+                                src="{% static 'public/web/images/common/logo-lettering-blk.png' %}"
+                                width="74"
+                                height="30"
+                        />
+                    </a>
+                </div>
+                <div class="header-third-inner">
+                    {% with request.path as current_path %}
+                        {# 커뮤니티(일반 게시물, 노하우) 서비스 페이지면 메뉴 텍스트 색 변경 #}
+                        {% if current_path != '/member/mypage/posts/' and 'post' in current_path or 'knowhow' in current_path %}
+                            <button class="header-third-inner-firsta community" type="button">
+                                <span class="header-third-inner-firstsp">
+                                    커뮤니티
+                                </span>
+                                <div
+                                        class="community-modal-wrap"
+                                        data-popper-reference-hidden="false"
+                                        data-popper-escaped="false"
+                                        data-popper-placement="bottom"
+                                >
+                                    <div class="header-mymenumodal-content">
+                                        <div class="header-mymenumodal-contentDiv">
+                                            {% if 'post' in current_path %}
+                                            <a class="header-third-inner-firsta" href="/post/list/">
+                                                <span class="header-third-inner-secondsp">포스트</span>
+                                            </a>
+                                            <a class="header-third-inner-seconda" href="/knowhow/list/">
+                                                <span class="header-third-inner-secondsp">노하우</span>
+                                            </a>
+                                            {% elif 'knowhow' in current_path %}
+                                            <a class="header-third-inner-seconda" href="/post/list/">
+                                                <span class="header-third-inner-secondsp">포스트</span>
+                                            </a>
+                                            <a class="header-third-inner-firsta" href="/knowhow/list/">
+                                                <span class="header-third-inner-secondsp">노하우</span>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        {% else %}
+                            <button class="header-third-inner-seconda community" type="button">
+                                <span class="header-third-inner-firstsp">
+                                    커뮤니티
+                                </span>
+                                <div
+                                        class="community-modal-wrap"
+                                        data-popper-reference-hidden="false"
+                                        data-popper-escaped="false"
+                                        data-popper-placement="bottom"
+                                >
+                                    <div class="header-mymenumodal-content">
+                                        <div class="header-mymenumodal-contentDiv">
+                                            <a class="header-third-inner-seconda" href="{% url 'post:list' %}">
+                                                <span class="header-third-inner-secondsp">포스트</span>
+                                            </a>
+                                            <a class="header-third-inner-seconda" href="{% url 'knowhow:list' %}">
+                                                <span class="header-third-inner-secondsp">노하우</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        {% endif %}
+                        {# 강의 서비스 페이지면 메뉴 텍스트 색 변경 #}
+                        {% if 'lecture' in current_path and current_path != '/member/mypage/scraplectures/' and current_path != '/member/mypage/lectures/' %}
+                            <a class="header-third-inner-firsta" href="{% url 'lecture:main' %}">
+                                <span class="header-third-inner-secondsp">강의</span>
+                            </a>
+                        {% else %}
+                            <a class="header-third-inner-seconda" href="{% url 'lecture:main' %}">
+                                <span class="header-third-inner-secondsp">강의</span>
+                            </a>
+                        {% endif %}
+                        {# 거래 서비스 페이지면 메뉴 텍스트 색 변경 #}
+                        {% if 'trade' in current_path and current_path != '/member/mypage/scraptrades/' %}
+                            <a class="header-third-inner-firsta" href="{% url 'trade:main' %}">
+                                <span class="header-third-inner-secondsp">거래</span>
+                            </a>
+                        {% else %}
+                            <a class="header-third-inner-seconda" href="{% url 'trade:main' %}">
+                                <span class="header-third-inner-secondsp">거래</span>
+                            </a>
+                        {% endif %}
+                        {# 회사 소개 페이지 있으면 href랑 if 조건식 추가할 것 #}
+                        <a class="header-third-inner-seconda" href="#">
+                            <span class="header-third-inner-secondsp">회사소개</span>
+                        </a>
+                    {% endwith %}
+                </div>
+                <div class="header-fourth-inner">
+                    <div class="header-fourth-second-inner">
+                        <div class="header-fourth-inner-firstdiv">
+                            <div
+                                    id="global-search-combobox"
+                                    role="combobox"
+                                    aria-expanded="false"
+                                    aria-haspopup="listbox"
+                                    class="header-fourth-inner-seconddiv"
+                            >
+                                {# 검색창 부분 #}
+                                <div class="header-fourth-inner-thirddiv">
+                                    <span class="hearder-inner-thirddiv-span"> </span>
+                                    <form action="{% url 'search' %}" name="search-form"
+                                          style="flex:1; position: relative">
+                                        <input
+                                                type="text"
+                                                placeholder="통합검색"
+                                                autocomplete="off"
+                                                aria-autocomplete="list"
+                                                class="hearder-inner-thirddiv-input"
+                                                name="query"
+                                        />
+                                    </form>
+                                    <div class="hearder-inner-thirddiv-div">
+                                        <button type="button" tabindex="0" class="header-input-xbutton">
+                                            <span class="header-input-xbutton-span"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="recent-searches-box">
+                                    <div class="recent-searches-title-box">
+                                        <span class="recent-searches-title">최근 검색어</span>
+                                        <button type="button" class="recent-searches-all-delete">전체 삭제</button>
+                                    </div>
+                                    <ul class="recent-searches-list">
+                                    </ul>
+                                </div>
+                                <div class="related-search-box">
+                                    <ul class="related-search-list">
+                                        <li role="option" tabindex="0" class="related-search-item">
+                                            <div class="related-search-item-inner">
+                                                <span class="related-search-icon"></span>
+                                                <div class="related-search-text">
+                                                    관엽식물
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li role="option" tabindex="0" class="related-search-item">
+                                            <div class="related-search-item-inner">
+                                                <span class="related-search-icon"></span>
+                                                <div class="related-search-text">
+                                                    칩엽식물
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li role="option" tabindex="0" class="related-search-item">
+                                            <div class="related-search-item-inner">
+                                                <span class="related-search-icon"></span>
+                                                <div class="related-search-text">
+                                                    희귀식물
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li role="option" tabindex="0" class="related-search-item">
+                                            <div class="related-search-item-inner">
+                                                <span class="related-search-icon"></span>
+                                                <div class="related-search-text">
+                                                    다육
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-fourth-inner-seconddiv">
+                            <button type="button" class="hearder-fourth-inner-button">
+                                <span class="hearder-fourth-inner-span"></span>
+                            </button>
+                        </div>
+                        <!-- 스크랩북 페이지 이동 -->
+                        <div class="header-scrap">
+                            <a aria-label="스크랩북 페이지 링크 버튼" class="header-scrap-a" href="/member/mypage/scraplectures/">
+                                <span class="header-scrap-span"></span>
+                            </a>
+                        </div>
+                        <!-- 장바구니 페이지 이동 -->
+                        <a aria-label="장바구니 페이지 링크 버튼" class="header-cart" href="/cart/">
+                            <span class="header-cart-span"></span>
+                        </a>
+                        <div class="header-info-wrap">
+                            <div class="header-info">
+                                {% if request.session.member %}
+                                    <span class="header-kakao-wrap">
+                                      {% if alarm_count %}
+                                        <span class="header-alarm-pointer"></span>
+                                      {% endif %}
+                                      <button
+                                              type="button"
+                                              aria-label="프로필 메뉴"
+                                              class="header-kakao-button"
+                                      >
+                                      {% if request.session.member_files.0.file_url %}
+                                          {% if 'http' in request.session.member_files.0.file_url %}
+                                              <img src="{{ request.session.member_files.0.file_url }}" alt="" class="current-profile-image">
+                                          {% else %}
+                                              <img src="/upload/{{ request.session.member_files.0.file_url }}" alt="" class="current-profile-image">
+                                          {% endif %}
+                                      {% else %}
+                                          <img src="{% static 'member/images/mypage/base-profile-image.avif' %}" alt=""
+                                               class="current-profile-image">
+                                      {% endif %}
+                                          {#                        <img#}
+                    {#                        alt="프로필 사진"#}
+                    {#                        class="header-kakao-image"#}
+                    {#                        src="{{memberProfile}}"#}
+                    {#                      />#}
+                                      </button>
+                                    </span>
+                                    <div
+                                            class="header-mymenumodal-wrap"
+                                            style="position: absolute;
+                                              inset: 0px auto auto 0px;
+                                              transform: translate(484%, 39%);
+                                            "
+                                            data-popper-reference-hidden="false"
+                                            data-popper-escaped="false"
+                                            data-popper-placement="bottom"
+                                    >
+                                        <div class="header-mymenumodal-content">
+                                            <div class="header-mymenumodal-contentDiv">
+                                                <a class="header-mymenumodal-contenta" href="/member/mypage/show/">
+                                                    마이페이지
+{#                                                    <svg#}
+{#                                                            class="header-mymenumodal-contentNew"#}
+{#                                                            fill="#DB4455"#}
+{#                                                            xmlns="http://www.w3.org/2000/svg"#}
+{#                                                            viewBox="0 0 18 18"#}
+{#                                                            width="18"#}
+{#                                                            height="18"#}
+{#                                                    >#}
+{#                                                        <path d="M0 9a9 9 0 1118 0A9 9 0 010 9z" fill="#fff"></path>#}
+{#                                                        <path#}
+{#                                                                fill-rule="evenodd"#}
+{#                                                                clip-rule="evenodd"#}
+{#                                                                d="M9 18A9 9 0 109 0a9 9 0 000 18zm-1.7-5.25H5.26v-7.5h2.61l2.8 4.2h.03v-4.2h2.06v7.5h-2.3L7.36 8.07h-.05v4.68z"#}
+{#                                                                fill="#DB4455"#}
+{#                                                        ></path>#}
+{#                                                    </svg>#}
+                                                </a>
+                                                <a href="/alarm/main/" class="header-mymenumodal-contenta">
+                                                    알림
+                                                    {% if alarm_count %}
+                                                    <svg
+                                                            class="header-mymenumodal-contentNew"
+                                                            fill="#DB4455"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 18 18"
+                                                            width="18"
+                                                            height="18"
+                                                    >
+                                                        <path d="M0 9a9 9 0 1118 0A9 9 0 010 9z" fill="#fff"></path>
+                                                        <path
+                                                                fill-rule="evenodd"
+                                                                clip-rule="evenodd"
+                                                                d="M9 18A9 9 0 109 0a9 9 0 000 18zm-1.7-5.25H5.26v-7.5h2.61l2.8 4.2h.03v-4.2h2.06v7.5h-2.3L7.36 8.07h-.05v4.68z"
+                                                                fill="#DB4455"
+                                                        ></path>
+                                                    </svg>
+                                                    {% endif %}
+                                                </a>
+                                                <a class="header-mymenumodal-contenta" href="{% url 'teacher:entry' %}">
+                                                    강사신청
+                                                </a>
+                                                <!-- 고객센터 서비스 있는지 확인하고 없으면 삭제 -->
+{#                                                <a class="header-mymenumodal-contenta">#}
+{#                                                    고객센터#}
+{#                                                </a>#}
+                                                <a class="header-mymenumodal-contenta" href="/member/logout">
+                                                    로그아웃
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <a class="header-info-each" href="/member/login">로그인</a>
+                                    <a class="header-info-each" href="/member/join">회원가입</a>
+{#                                    <a class="header-info-each" href="#">고객센터</a>#}
+                                {% endif %}
+                            </div>
+                            <span class="header-write-wrap">
+                <button type="button" class="header-write-button">
+                  <span class="header-write-content">글쓰기</span>
+                  <span class="header-write-icon"></span>
+                </button>
+              </span>
+                            <div
+                                    class="header-post-wrap"
+                                    style="
+                                      position: absolute;
+                                      inset: 0px auto auto 0px;
+                                      transform: translate(293%, 31%);
+                                    "
+                                    data-popper-reference-hidden="false"
+                                    data-popper-escaped="false"
+                                    data-popper-placement="bottom"
+                            >
+                                <div class="header-wrap-content">
+                                    <a class="header-content-photo" href="{% url 'trade:upload' %}">
+                                        <div class="header-photo-div">
+                                            <img
+                                                    src="{% static 'main/images/transationPost.png' %}"
+                                                    width="36"
+                                                    height="36"
+                                            />
+                                        </div>
+                                        <div class="header-upload-div">
+                                            <div class="header-upload-mainTitle">
+                                                거래 게시물 작성하기
+                                            </div>
+                                            <div class="header-upload-subTitle">
+                                                최고의 식물을 찾고 계신가요?
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="header-content-photo" href="{% url 'post:create' %}">
+                                        <div class="header-photo-div">
+                                            <img
+                                                    src="{% static 'main/images/transationReview.png' %}"
+                                                    width="36"
+                                                    height="36"
+                                            />
+                                        </div>
+                                        <div class="header-upload-div">
+                                            <div class="header-upload-mainTitle">
+                                                일반 게시물 작성하기
+                                            </div>
+                                            <div class="header-upload-subTitle">
+                                                여러분의 식물 이야기를 다른 사람들과 공유해보세요!
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="header-content-photo" href="{% url 'knowhow:create' %}">
+                                        <div class="header-photo-div">
+                                            <img
+                                                    src="{% static 'main/images/knowhow.png' %}"
+                                                    width="36"
+                                                    height="36"
+                                            />
+                                        </div>
+                                        <div class="header-upload-div">
+                                            <div class="header-upload-mainTitle">
+                                                노하우 게시물 작성하기
+                                            </div>
+                                            <div class="header-upload-subTitle">
+                                                초보부터 전문가까지, 홈가드닝의 모든 비법을
+                                                엿보다.
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="header-content-photo" href="/member/mypage/lectures/">
+                                        <div class="header-photo-div">
+                                            <img
+                                                    src="{% static 'main/images/lectureReview.png' %}"
+                                                    width="36"
+                                                    height="36"
+                                            />
+                                        </div>
+                                        <div class="header-upload-div">
+                                            <div class="header-upload-mainTitle">
+                                                강의 리뷰 작성하기
+                                            </div>
+                                            <div class="header-upload-subTitle">
+                                                새로운 지식을 만나고 경험을 공유하세요.
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="header-content-photo" href="lecture/main/">
+                                        <div class="header-photo-div">
+                                            <img
+                                                    src="{% static 'main/images/lecture.png' %}"
+                                                    width="36"
+                                                    height="36"
+                                            />
+                                        </div>
+                                        <div class="header-upload-div">
+                                            <div class="header-upload-mainTitle">
+                                                강의 시작하기
+                                            </div>
+                                            <div class="header-upload-subTitle">
+                                                신록의 세계로 여행을 떠나세요, 홈가드닝 강의
+                                                시작!
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<script src="{% static 'public/web/js/fix/search-module.js' %}"></script>
+<script src="{% static 'public/web/js/fix/header.js' %}"></script>

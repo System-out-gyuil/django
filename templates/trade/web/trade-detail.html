@@ -1,0 +1,2186 @@
+{% extends 'trade/web/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'trade/css/web/trade-detail.css' %}">
+{% endblock %}
+{% block title %}거래상세보기{% endblock %}
+{% block content %}
+  <body>
+    {% include 'fix/header.html' %}
+    <form action="{% url 'trade:report' %}" method="post" name="trade-report" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="trade-id" value="{{ trade.id }}">
+        <div class="declaration-modal-wrap">
+          <div class="declaration-modal-container">
+            <div class="declaration-modal-title-box">
+              <span class="declaration-modal-title">신고 사유를 선택해주세요</span>
+              <button type="button" class="declaration-modal-cancel-btn">
+                <span class="cancel-btn-icon"></span>
+              </button>
+            </div>
+            <div class="declaration-modal-content">
+              <ul class="declaration-list">
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box declaration-choice">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="주제와 맞지 않음"
+                      />
+                    </div>
+                    <span class="declaration-text">주제와 맞지 않음</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="정보가 부정확함"
+                      />
+                    </div>
+                    <span class="declaration-text">정보가 부정확함</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="지나친 광고성 게시물"
+                      />
+                    </div>
+                    <span class="declaration-text">지나친 광고성 게시물</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="도배 및 중복 게시물"
+                      />
+                    </div>
+                    <span class="declaration-text">도배 및 중복 게시물</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="저작권 침해가 우려됨"
+                      />
+                    </div>
+                    <span class="declaration-text">저작권 침해가 우려됨</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="욕설/비방이 심함"
+                      />
+                    </div>
+                    <span class="declaration-text">욕설/비방이 심함</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="외설적인 게시물"
+                      />
+                    </div>
+                    <span class="declaration-text">외설적인 게시물</span>
+                  </label>
+                </li>
+                <li class="declaration-item">
+                  <label class="declaration-label">
+                    <div class="declaration-input-box">
+                      <input
+                        type="radio"
+                        class="declaration-input"
+                        name="declaration"
+                        value="개인정보노출"
+                      />
+                    </div>
+                    <span class="declaration-text">개인정보노출</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="declaration-btn-wrap">
+              <div class="declaration-btn-container">
+                <button class="declaration-btn" type="submit">신고하기</button>
+                <button class="declaration-btn" type="button">취소하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    <a id="top"></a>
+    <!-- 스크랩 팝업 -->
+    <div class="scrap-popup-wrap">
+      <div class="scrap-popup-container">
+        <div class="scrap-popup-inner">
+          <div class="scrap-popup-text">스크랩 했습니다.</div>
+        </div>
+        <div class="scrap-popup-button-container">
+          <!-- 스크랩북 링크삽입 -->
+          <button class="scrap-link-button" type="button">스크랩북 보기</button>
+          <button class="scrap-link-button" type="button">폴더에 담기</button>
+        </div>
+      </div>
+    </div>
+    <div class="scrap-popup-cancel-wrap">
+      <div class="scrap-popup-container">
+        <div class="scrap-popup-inner">
+          <div class="scrap-popup-text">스크랩을 취소하였습니다.</div>
+        </div>
+      </div>
+    </div>
+    <!-- 거래 카테고리 -->
+    <div class="category-wrap-" style="height: 52px">
+      <div
+        class="category-container"
+        style="
+          position: fixed;
+          z-index: 1101;
+          transition: top 0.1s ease 0s;
+          top: auto;
+          width: 106%;
+        "
+      >
+        <div class="category-inner">
+          <div class="category-button-space">
+            <nav class="category-button-collection">
+              <span class="category-button">
+                <div class="button-space">
+                  <a href="/trade/main/" class="button-link-click">
+                    <div class="button">
+                      <p class="button-letter-click">상품홈</p>
+                    </div>
+                  </a>
+                </div>
+              </span>
+              <span class="category-button">
+                <div class="button-space">
+                  <a href="/trade/total/" class="button-link-unclick">
+                    <div class="button">
+                      <p class="button-letter-unclick">최신등록상품</p>
+                    </div>
+                  </a>
+                </div>
+              </span>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-selling-wrap">
+      <div class="product-overview-wrap">
+        <nav class="product-category-wrap">
+            <span>{{ trade.member__member_name }}님의 {{ trade.trade_title }} 상품을 보고있어요🤗</span>
+{#          <ol class="product-category-container">#}
+{#            <li class="product-category-inner">#}
+{#              <a href="#" class="link">대구분</a>#}
+{#              <svg class="icon" width="8" height="8" viewBox="0 0 8 8" fill="currentColor" preserveAspectRatio="xMidYMid meet">#}
+{#                <path d="M4.95 4L2.12 1.19l.7-.71 3.54 3.54-3.53 3.53-.7-.7z"></path>#}
+{#              </svg>#}
+{#            </li>#}
+{#            <li class="product-category-inner">#}
+{#              <a href="#" class="link">중분류</a>#}
+{#              <svg class="icon" width="8" height="8" viewBox="0 0 8 8" fill="currentColor" preserveAspectRatio="xMidYMid meet">#}
+{#                <path d="M4.95 4L2.12 1.19l.7-.71 3.54 3.54-3.53 3.53-.7-.7z"></path>#}
+{#              </svg>#}
+{#            </li>#}
+{#            <li class="product-category-inner">#}
+{#              <a href="#" class="link">소분류</a>#}
+{#              <svg class="icon" width="8" height="8" viewBox="0 0 8 8" fill="currentColor" preserveAspectRatio="xMidYMid meet">#}
+{#                <path d="M4.95 4L2.12 1.19l.7-.71 3.54 3.54-3.53 3.53-.7-.7z"></path>#}
+{#              </svg>#}
+{#            </li>#}
+{#            <li class="product-category-inner">#}
+{#              <a href="#" class="link">제품</a>#}
+{#            </li>#}
+{#          </ol>#}
+        </nav>
+        <div class="product-overview-container">
+          <div class="product-overview-image-wrap">
+            <div class="product-overview-image-container">
+              <div class="product-overview-image-inner" role="region" aria-roledescription="carousel">
+                <div class="product-overview-main-image">
+                  <div class="carousel-list-wrap" aria-live="polite" style="
+                      transform: translateX(-100%);
+                      transition: transform 0s ease 0s;
+                    ">
+                    <div class="carousel-list-container" role="group" aria-roledescription="slide" aria-label="1 of 4" style="width: 100%">
+{#                      <img class="product-cover-image" tabindex="0"#}
+{#                        src=""#}
+{#                        alt="상품서브이미지"#}
+{#                      />#}
+                    </div>
+                    <div
+                      class="carousel-list-container"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="2 of 4"
+                      style="width: 100%"
+                    >
+                      <img
+                        class="product-cover-image"
+                        tabindex="0"
+                        height="558.33px"
+                        src="/upload/{{ trade_file.file_url }}"
+                        alt="상품서브이미지"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <ul class="product-small-image-list">
+                  {% for trade_file in trade_files %}
+                      <li class="product-small-image-item">
+                        <button
+                          class="product-small-image-button"
+                          type="button"
+                          aria-label="1 of 8"
+                        >
+                          <img
+                            class="product-small-image"
+                            src="/upload/{{ trade_file.file_url }}"
+                            alt="상품 이미지"
+                          />
+                        </button>
+                      </li>
+                  {% endfor %}
+{#                  <li class="product-small-image-item">#}
+{#                    <button#}
+{#                      class="product-small-image-button"#}
+{#                      type="button"#}
+{#                      aria-label="1 of 8"#}
+{#                    >#}
+{#                      <img#}
+{#                        class="product-small-image"#}
+{#                        src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                        alt="상품 이미지"#}
+{#                      />#}
+{#                    </button>#}
+{#                  </li>#}
+{#                  <li class="product-small-image-item">#}
+{#                    <button#}
+{#                      class="product-small-image-button"#}
+{#                      type="button"#}
+{#                      aria-label="1 of 8"#}
+{#                    >#}
+{#                      <img#}
+{#                        class="product-small-image"#}
+{#                        src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                        alt="상품 이미지"#}
+{#                      />#}
+{#                    </button>#}
+{#                  </li>#}
+{#                  <li class="product-small-image-item">#}
+{#                    <button#}
+{#                      class="product-small-image-button"#}
+{#                      type="button"#}
+{#                      aria-label="1 of 8"#}
+{#                    >#}
+{#                      <img#}
+{#                        class="product-small-image"#}
+{#                        src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                        alt="상품 이미지"#}
+{#                      />#}
+{#                    </button>#}
+{#                  </li>#}
+{#                  <li class="product-small-image-item">#}
+{#                    <button#}
+{#                      class="product-small-image-button"#}
+{#                      type="button"#}
+{#                      aria-label="1 of 8"#}
+{#                    >#}
+{#                      <img#}
+{#                        class="product-small-image"#}
+{#                        src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                        alt="상품 이미지"#}
+{#                      />#}
+{#                    </button>#}
+{#                  </li>#}
+                </ul>
+                <div class="product-image-paginator">
+                  <ul class="carousel-paginator">
+                    <li>
+                      <span class="carousel-paginator-page" data-key="1"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="2"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="3"></span>
+                    </li>
+                    <li>
+                      <span class="carousel-paginator-page" data-key="4"></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-overview-contents-wrap">
+            <div class="product-overview-contents-header">
+              <h1 class="product-overview-contents-title">
+                <p class="product-overview-user-wrap">
+                  <a href="#" class="product-overview-user">{{ trade.member__member_name }}</a>
+                </p>
+                <div class="product-overview-title">
+                  <span class="product-title">{{trade.trade_title }}</span>
+                  <div class="product-title-icon-wrap {{ trade.id }}">
+                    {% if request.session.member.id == trade.member_id %}
+                        <a href="/trade/update/?id={{ trade.id }}">
+                            <button class="update-button" type="button">
+                              <img
+                                class="update-icon"
+                                src="{% static 'public/web/images/common/update_icon.png' %}"
+                              />
+                              <span class="update-label">수정</span>
+                            </button>
+                        </a>
+                        <a href="/trade/delete/?id={{ trade.id }}">
+                            <div class="share-button-wrap">
+                              <button class="share-button" type="button">
+                                  <img
+                                    class="update-icon"
+                                    src="{% static 'public/web/images/common/remove-icon.jpg' %}"
+                                    width="25px"
+                                    height="27px"
+                                  />
+                                  <span class="update-label">삭제</span>
+{#                                <svg#}
+{#                                  class="icon"#}
+{#                                  aria-label="공유하기"#}
+{#                                  width="24"#}
+{#                                  height="24"#}
+{#                                  viewBox="0 0 24 24"#}
+{#                                  fill="currentColor"#}
+{#                                  preserveAspectRatio="xMidYMid meet"#}
+{#                                >#}
+{#                                  <path#}
+{#                                    d="M9.64 14.646a4.5 4.5 0 1 1 0-5.292l4.54-2.476a4.5 4.5 0 1 1 .63.795l-4.675 2.55c.235.545.365 1.146.365 1.777s-.13 1.232-.365 1.777l4.675 2.55a4.5 4.5 0 1 1-.63.795l-4.54-2.476zM18 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM6 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM18 23a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"#}
+{#                                  ></path>#}
+{#                                </svg>#}
+                              </button>
+                            </div>
+                        </a>
+                    {% endif %}
+                    <button class="scrap-button" type="button">
+                      <img
+                        src="{% if trade.trade_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off-blk.png' %}{% endif %}"
+                        class="scrap-img"
+                      />
+                      <span class="scrap-count"></span>
+                    </button>
+{#                    <div class="share-button-wrap">#}
+{#                      <button class="share-button" type="button">#}
+{#                        <svg#}
+{#                          class="icon"#}
+{#                          aria-label="공유하기"#}
+{#                          width="24"#}
+{#                          height="24"#}
+{#                          viewBox="0 0 24 24"#}
+{#                          fill="currentColor"#}
+{#                          preserveAspectRatio="xMidYMid meet"#}
+{#                        >#}
+{#                          <path#}
+{#                            d="M9.64 14.646a4.5 4.5 0 1 1 0-5.292l4.54-2.476a4.5 4.5 0 1 1 .63.795l-4.675 2.55c.235.545.365 1.146.365 1.777s-.13 1.232-.365 1.777l4.675 2.55a4.5 4.5 0 1 1-.63.795l-4.54-2.476zM18 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM6 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM18 23a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"#}
+{#                          ></path>#}
+{#                        </svg>#}
+{#                      </button>#}
+{#                    </div>#}
+                  </div>
+                </div>
+              </h1>
+              <div class="product-overview-contents-container">
+                <div class="product-contents-price-wrap">
+                  <span class="product-contents-price-container">
+                    <span class="product-price-info"> </span>
+                    <span class="product-price-separator"></span>
+                    <div class="product-final-price-wrap">
+                      <div class="product-final-price-container">
+                        <span class="final-price-number">{{ trade.trade_price|intcomma }}</span>
+                        <span class="krw">원</span>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="product-overview-info-wrap">
+                <div class="product-info-container">
+                  <div class="product-info-title">
+                    <span>정보</span>
+                  </div>
+                  <div class="product-info-contents">
+                    <span class="main-info-keyword">
+                      <b>키워드</b>
+                    </span>
+                    <span class="info-type">
+                      {% for td in trades %}
+                          {% if td.id == trade.id %}
+                              {% for pN in td.plant_name %}
+                                <span class="info-tag">#{{ pN }}</span>
+                              {% endfor %}
+                          {% endif %}
+                      {% endfor %}
+                    </span>
+{#                    <span class="info-particulars-wrap">#}
+{#                      <span class="info-particulars-container">#}
+{#                        <img#}
+{#                          src="{% static 'public/web/images/common/button-down.png' %}"#}
+{#                          class="check-icon"#}
+{#                        />#}
+{#                        <span>파손주의 등등</span>#}
+{#                      </span>#}
+{#                    </span>#}
+                  </div>
+                </div>
+              </div>
+              <a class="user-info-link">
+                <div class="user-link-name-wrap">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <path
+                      d="M3.972 8.694c0-.26.212-.472.472-.472h12.278a.472.472 0 010 .945H4.444a.472.472 0 01-.472-.473z"
+                      fill="#35C5F0"
+                    ></path>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M17.51 5.5H6.492a1 1 0 00-.93.632l-.99 2.5A1 1 0 005.498 10h13.004a1 1 0 00.927-1.368l-.99-2.5a1 1 0 00-.93-.632zM3.642 8.263a2.002 2.002 0 001.397 2.684V17.5a2.5 2.5 0 002.5 2.5H16.474a2.5 2.5 0 002.487-2.5v-6.553a2.002 2.002 0 001.398-2.684l-.99-2.5a2 2 0 00-1.86-1.263H6.493a2 2 0 00-1.86 1.263l-.99 2.5zM6.04 17.5V11h11.921v6.5a1.5 1.5 0 01-1.487 1.5v-4a2 2 0 00-2-2h-.97a2 2 0 00-2 2v4H7.54a1.5 1.5 0 01-1.5-1.5zm6.464 1.5h2.97v-4a1 1 0 00-1-1h-.97a1 1 0 00-1 1v1h.847a.5.5 0 110 1h-.847v2zM8 13h1.5v1.5H8V13zm-1 0a1 1 0 011-1h1.5a1 1 0 011 1v1.5a1 1 0 01-1 1H8a1 1 0 01-1-1V13z"
+                      fill="#3F474D"
+                    ></path>
+                  </svg>
+                  <div class="user-link-name-container">
+                    <span class="user-link-name">{{ trade.member__member_name }}님의 판매상품</span>
+                  </div>
+                </div>
+                <div class="user-link-icon-wrap">
+                  <span>{{ trade.trade_category__category_name }}</span>
+{#                  <svg#}
+{#                    width="14"#}
+{#                    height="14"#}
+{#                    fill="none"#}
+{#                    preserveAspectRatio="xMidYMid meet">#}
+{#                      <path d="M4.083 11.375L8.312 7 4.083 2.625l.803-.875L9.916 7l-5.03 5.25-.803-.875z" fill="#828C94"></path>#}
+{#                  </svg>#}
+                </div>
+              </a>
+            </div>
+            <div class="product-ask-link">
+              <span>{{ trade.trade_content }}</span>
+              <a href="{{ trade.kakao_talk_url }}">
+                <button type="button" class="user-ask-button">
+                카카오톡 채팅연결
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="product-detail-nav-wrap"
+        style="position: sticky; top: 131.5px; transition: top 0.1s ease 0s"
+      >
+        <div class="product-detail-nav-container" style="position: relative">
+          <nav class="product-detail-nav-inner">
+            <ol class="product-detail-nav-list">
+              <li>
+                <a class="product-detail-nav-item active" href="#detail-info">
+                  상품정보</a
+                >
+              </li>
+              <li>
+                <a class="product-detail-nav-item" href="#product-suggestion">
+                  추천
+                </a>
+              </li>
+              <li>
+                <a class="product-detail-nav-item" href="#product-extra-info">
+                  판매자 정보
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="product-detail-wrap">
+        <div class="product-detail-container">
+          <div class="product-detail-inner">
+            <div class="product-detail-contents-wrap">
+              <a id="detail-info"></a>
+              <section class="detail-info-wrap">
+                <header class="detail-info-title">
+                  <h1 class="detail-info-title-text">상품정보</h1>
+                </header>
+                <!-- 나중에 데이터 받아서 와야하는 부분 -->
+                <div class="detail-info-contents-wrap">
+                  <div class="detail-info-contents-thumbnail">
+                    <button class="expended-info" type="button">
+                      펼치기
+                      <svg
+                        class="icon"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <path
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                          d="M2.87 4L1.33 5.5 8 12l6.67-6.5L13.13 4 8 9z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                  {% for trade_file in trade_files %}
+                      <img
+                        class="detail-info-image"
+                        src="/upload/{{ trade_file.file_url }}"
+                        alt="판매자 등록이미지"
+                      />
+                  {% endfor %}
+{#                  <img#}
+{#                    class="detail-info-image"#}
+{#                    src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                    alt="판매자 등록이미지"#}
+{#                  />#}
+{#                  <img#}
+{#                    class="detail-info-image"#}
+{#                    src="{% static 'public/web/images/common/blank-image.png' %}"#}
+{#                    alt="판매자 등록이미지"#}
+{#                  />#}
+{#                  <div#}
+{#                    class="detail-info-contents-container"#}
+{#                    style="image-rendering: -webkit-optimize-contrast"#}
+{#                  >#}
+{#                    <p>#}
+{#                      <img#}
+{#                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-207409409667200.jpg"#}
+{#                        alt="상품의 상세 설명 이미지"#}
+{#                      />#}
+{#                    </p>#}
+{#                    <p>&nbsp;</p>#}
+{#                    <p>&nbsp;</p>#}
+{#                    <p>&nbsp;</p>#}
+{#                    <p>&nbsp;</p>#}
+{#                    <p>&nbsp;</p>#}
+{#                    <p>&nbsp;</p>#}
+{#                    <p>&nbsp;</p>#}
+{#                    <p>#}
+{#                      <img#}
+{#                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-207409409667200.jpg"#}
+{#                        alt="상품의 상세 설명 이미지"#}
+{#                      />#}
+{#                    </p>#}
+{#                    <p>#}
+{#                      <img#}
+{#                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-207409409667200.jpg"#}
+{#                        alt="상품의 상세 설명 이미지"#}
+{#                      />#}
+{#                    </p>#}
+{#                  </div>#}
+                </div>
+              </section>
+
+              <div>
+                <section class="product-suggestion-wrap">
+                  <header class="product-suggestion-header">
+                    <h1 class="product-suggestion-title">
+                        {{ trade.member__member_name }}님이 판매중인 상품
+                    </h1>
+                  </header>
+                  <div class="product-suggestion-scroller-wrap">
+                    <div class="product-suggestion-scroller-container">
+                      <div class="scroller-contents-wrap" tabindex="-1">
+                        <div
+                          class="scroller-contents-container"
+                          style="transform: translateX(0px)"
+                        >
+                          <ul class="scroller-list-contents-inner">
+                            {% for trade in trades %}
+                                <div class="product-suggestion-each-contents {{ trade.id }}">
+                                  <article class="product-suggestion-contents-wrap">
+                                    <a
+                                      class="product-suggestion-contents-overlay"
+                                      href="/trade/detail/?id={{ trade.id }}"
+                                    ></a>
+                                    <div class="product-suggestion-contents-image">
+                                      <img
+                                        class="image"
+                                        alt=""
+                                        src="/upload/{{ trade.product_img }}"
+                                        srcset="
+                                          https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,
+                                          https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,
+                                          https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x
+                                        "
+                                      />
+                                      <button
+                                        class="img-scrap-button"
+                                        type="button"
+                                      >
+                                        <img
+                                         src="{% if trade.trade_scrap %}{% static 'public/web/images/common/scrap-on.png' %}{% else %}{% static 'public/web/images/common/scrap-off.png' %}{% endif %}"
+                                         class="scrap-img"
+                                        />
+                                      </button>
+                                      <div class="product_dark-overlay"></div>
+                                    </div>
+                                    <div class="product-suggestion-content">
+                                      <h1
+                                        class="product-suggestion-contents-header"
+                                      >
+                                        <span class="product-suggestion-user">
+                                          {{ trade.trade_title }}
+                                        </span>
+                                        <span class="product-suggestion-name">
+                                          {{ trade.trade_content }}
+                                        </span>
+                                      </h1>
+                                      <span class="product-suggestion-price-wrap">
+                                        <span class="product-suggestion-price">
+                                          {{ trade.trade_price|intcomma }}원
+                                        </span>
+                                      </span>
+                                      <span class="info-type">
+                                          {% for plant_name in trade.plant_name %}
+                                            <span class="info-tag">#{{ plant_name }}</span>
+                                          {% endfor %}
+                                      </span>
+{#                                      <p class="product-contents-review-star"></p>#}
+{#                                      <span class="product-suggestion-tag">#}
+{#                                        <svg#}
+{#                                          class="icon"#}
+{#                                          aria-label="무료배송"#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          viewBox="0 0 47 20"#}
+{#                                          preserveAspectRatio="xMidYMid meet"#}
+{#                                        >#}
+{#                                          <g fill="none" fill-rule="evenodd">#}
+{#                                            <rect#}
+{#                                              width="47"#}
+{#                                              height="20"#}
+{#                                              fill="#000"#}
+{#                                              fill-opacity=".07"#}
+{#                                              fill-rule="nonzero"#}
+{#                                              rx="4"#}
+{#                                            ></rect>#}
+{#                                            <path#}
+{#                                              fill="#757575"#}
+{#                                              d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                            ></path>#}
+{#                                          </g>#}
+{#                                        </svg>#}
+{#                                        <svg#}
+{#                                          class="icon"#}
+{#                                          aria-label="특가"#}
+{#                                          width="30"#}
+{#                                          height="20"#}
+{#                                          viewBox="0 0 30 20"#}
+{#                                          preserveAspectRatio="xMidYMid meet"#}
+{#                                        >#}
+{#                                          <rect#}
+{#                                            width="30"#}
+{#                                            height="20"#}
+{#                                            fill="#F77"#}
+{#                                            rx="4"#}
+{#                                          ></rect>#}
+{#                                          <path#}
+{#                                            fill="#fff"#}
+{#                                            d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                          ></path>#}
+{#                                        </svg>#}
+{#                                      </span>#}
+                                    </div>
+                                  </article>
+                                </div>
+                            {% endfor %}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-suggestion-each-contents">#}
+{#                              <article class="product-suggestion-contents-wrap">#}
+{#                                <a#}
+{#                                  class="product-suggestion-contents-overlay"#}
+{#                                  href="#"#}
+{#                                ></a>#}
+{#                                <div class="product-suggestion-contents-image">#}
+{#                                  <img#}
+{#                                    class="image"#}
+{#                                    alt=""#}
+{#                                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=360&amp;h=360&amp;c=c&amp;q=0.8&amp;webp=1"#}
+{#                                    srcset="#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=640&amp;h=640&amp;c=c&amp;q=0.8&amp;webp=1   1.5x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=720&amp;h=720&amp;c=c&amp;q=0.8&amp;webp=1   2x,#}
+{#                                      https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167988416631010167.jpg?gif=1&amp;w=1080&amp;h=1080&amp;c=c&amp;q=0.8&amp;webp=1 3x#}
+{#                                    "#}
+{#                                  />#}
+{#                                  <button#}
+{#                                    class="img-scrap-button"#}
+{#                                    type="button"#}
+{#                                  >#}
+{#                                    <img#}
+{#                                      src="{% static 'public/web/images/common/scrap-off.png' %}"#}
+{#                                      alt=""#}
+{#                                    />#}
+{#                                  </button>#}
+{#                                  <div class="product_dark-overlay"></div>#}
+{#                                </div>#}
+{#                                <div class="product-suggestion-content">#}
+{#                                  <h1#}
+{#                                    class="product-suggestion-contents-header"#}
+{#                                  >#}
+{#                                    <span class="product-suggestion-user">#}
+{#                                      그래이불#}
+{#                                    </span>#}
+{#                                    <span class="product-suggestion-name">#}
+{#                                      비건 숨쉬는 오가닉 듀폰소로나 알러지케어#}
+{#                                      차렵이불세트 건조기 사용가능#}
+{#                                    </span>#}
+{#                                  </h1>#}
+{#                                  <span class="product-suggestion-price-wrap">#}
+{#                                    <span class="product-suggestion-price">#}
+{#                                      107,800#}
+{#                                    </span>#}
+{#                                  </span>#}
+{#                                  <p class="product-contents-review-star"></p>#}
+{#                                  <span class="product-suggestion-tag">#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="무료배송"#}
+{#                                      width="47"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 47 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <g fill="none" fill-rule="evenodd">#}
+{#                                        <rect#}
+{#                                          width="47"#}
+{#                                          height="20"#}
+{#                                          fill="#000"#}
+{#                                          fill-opacity=".07"#}
+{#                                          fill-rule="nonzero"#}
+{#                                          rx="4"#}
+{#                                        ></rect>#}
+{#                                        <path#}
+{#                                          fill="#757575"#}
+{#                                          d="M12.73 5.38v3.96h-6.6V5.38h6.6zm-2.68 9.43H8.76v-3.25H5v-1.03h8.86v1.03h-3.81v3.25zm1.4-6.49V6.41H7.43v1.91h4.04zm11.08 2.7h-1.42v1.54h2.26v1.02h-8.86v-1.02h2.24v-1.53h-1.1V7.78h5.32V6.65H15.6V5.63h6.66V8.8h-5.33v1.18h5.61v1.04zm-4.53 0v1.54h1.87v-1.53H18zm14.37 3.78h-1.23V9.86h-.8v4.49h-1.2V5.18h1.2v3.66h.8V5h1.23v9.8zm-4.2-2.54h-3.9V6.01h1.27v2.26h1.36V6h1.28v6.26zm-1.27-1.01v-2h-1.36v2h1.36zm14.49 1.71c0 1.13-1.25 1.82-3.41 1.82s-3.42-.7-3.42-1.82 1.25-1.82 3.4-1.82c2.18 0 3.43.7 3.43 1.82zm-3.41-6.05c-.5 1.13-2.1 1.9-3.51 2.1l-.54-1c1.64-.17 3.39-1.06 3.39-2.54V5.2h1.33v.28c0 1.48 1.99 2.47 3.4 2.53l-.55 1.01c-1.31-.18-3.03-.97-3.52-2.1zm4.42 3.78h-8.86V9.66h3.79V8.4h1.29v1.26h3.78v1.03zm-2.33 2.27c0-.5-.83-.8-2.1-.8s-2.08.3-2.08.8c0 .51.81.8 2.08.8s2.1-.29 2.1-.8z"#}
+{#                                        ></path>#}
+{#                                      </g>#}
+{#                                    </svg>#}
+{#                                    <svg#}
+{#                                      class="icon"#}
+{#                                      aria-label="특가"#}
+{#                                      width="30"#}
+{#                                      height="20"#}
+{#                                      viewBox="0 0 30 20"#}
+{#                                      preserveAspectRatio="xMidYMid meet"#}
+{#                                    >#}
+{#                                      <rect#}
+{#                                        width="30"#}
+{#                                        height="20"#}
+{#                                        fill="#F77"#}
+{#                                        rx="4"#}
+{#                                      ></rect>#}
+{#                                      <path#}
+{#                                        fill="#fff"#}
+{#                                        d="M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z"#}
+{#                                      ></path>#}
+{#                                    </svg>#}
+{#                                  </span>#}
+{#                                </div>#}
+{#                              </article>#}
+{#                            </div>#}
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="scroller-ui">
+                        <div
+                          class="scroller-ui-prev"
+                          style="top: 108.662px; display: none"
+                        >
+                          <svg
+                            class="prev-icon"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#FFF"
+                                class="circle"
+                              ></circle>
+                              <path
+                                fill="#424242"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                                class="arrow"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="active"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#97a38c"
+                              ></circle>
+                              <path
+                                fill="#FFF"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                              ></path>
+                            </g>
+                          </svg>
+                        </div>
+                        <div
+                          class="scroller-ui-next"
+                          style="top: 108.662px; display: block"
+                        >
+                          <svg
+                            class="inactive"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none" transform="matrix(-1 0 0 1 40 0)">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#FFF"
+                                class="circle"
+                              ></circle>
+                              <path
+                                fill="#424242"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                                class="arrow"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="active"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 40 40"
+                            preserveAspectRatio="xMidYMid meet"
+                          >
+                            <g fill="none" transform="matrix(-1 0 0 1 40 0)">
+                              <circle
+                                cx="20"
+                                cy="20"
+                                r="20"
+                                fill="#97a38c"
+                              ></circle>
+                              <path
+                                fill="#FFF"
+                                d="M17 20l7.5 7.5-1.4 1.4-8.4-8.4-.5-.5.5-.5 8.4-8.4 1.4 1.4-7.5 7.5z"
+                              ></path>
+                            </g>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <a id="product-extra-info"></a>
+              <section>
+                <header class="product-extra-info-title">
+                  <h1 class="product-extra-info-title-text">판매자 정보</h1>
+                  {% if request.session.member.id != trade.member_id %}
+                      <button type="button" class="report-button">
+                        신고
+                        <a href="#"></a>
+                      </button>
+                  {% endif %}
+                </header>
+                <div class="product-refund-wrap">
+                  <table class="product-info-table">
+                    <tbody>
+                      <tr>
+                        <th>판매자이름</th>
+                        <td>{{ trade.member__member_name }}</td>
+                      </tr>
+                      <tr>
+                        <th>오픈채팅방</th>
+                        <td>{{ trade.kakao_talk_url }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#">
+        <div class="top-button-wrap">
+          <button type="button" class="top-button-container">
+            <span class="arrow-up">
+              <img src="{% static 'public/web/images/common/button-down.png' %}" alt="" />
+            </span>
+          </button>
+        </div>
+      </a>
+    </div>
+    {% include 'fix/footer.html' %}
+  </body>
+{% endblock %}
+{% block js %}
+  <script>  
+      const csrf_token = '{{ csrf_token }}'
+      const trade_id = '{{ trade.id }}'
+      const user_trade_count = '{{ user_trade_count }}'
+  </script>
+  <script src="{% static 'trade/js/web/trade-module.js' %}"></script>
+  <script src="{% static 'trade/js/web/trade-detail.js' %}"></script>
+{% endblock %}

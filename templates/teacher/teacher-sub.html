@@ -1,0 +1,353 @@
+{% extends 'teacher/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'teacher/css/teacher-sub/teacher-sub.css' %}">
+{% endblock %}
+{% block title %}강사신청| Selleaf{% endblock %}
+{% block content %}
+<form action="{% url 'teacher:sub' %}" method="post" name="teacher-sub" enctype="multipart/form-data">
+  {% csrf_token %}
+  <body>
+    <div class="sub-wrap">
+      <div class="sub-container">
+        <div class="except-logo-wrap">
+          <h1 class="sub-text">강사 신청</h1>
+          <!-- 개인정보 입력란 -->
+          <form>
+            <!-- 경력 입력 -->
+            <div class="record-wrap">
+              <label class="record-text">약력 </label>
+              <div class="record-info">간단한 이력을 적어주세요!</div>
+              <label>
+                <input class="record-input" type="record" name="brief-history" placeholder="이력을 입력해주세요" />
+                <span class="record-hidden">약력을 입력해주세요!</span>
+              </label>
+            </div>
+            
+            <!-- 강의 설명 -->
+            <div class="explanation-wrap">
+              <label class="explanation-text">강의 설명</label>
+              <div class="explanation-info">어떤 강의를 할 지 간단히 설명해주세요!</div>
+              <label>
+                <input class="explanation-input" name="lecture-description" placeholder="강의 설명을 입력해주세요" />
+                <span class="explanation-hidden">강의 설명을 입력해주세요!</span>
+              </label>
+            </div>
+
+            <!-- 강의 장소(주소) -->
+            <div class="address-verify-wrap">
+              <label class="address-verify-text">강의 장소(주소)</label>
+              <label class="address-verify">
+                <input class="address-verify-input" type="record" name="lecture-place" placeholder="상세 주소를 입력해주세요" />
+                <span class="address-verify-hidden">강의 주소를 입력해주세요!</span>
+              </label>
+            </div>
+            
+          <!-- 사진추가 -->
+{#          <div class="upload-wrap">#}
+{#            <div class="upload-container">#}
+{#              <div class="info-items-title">강의 장소 사진</div>#}
+{#              <div class="picture-explanation1">최대 다섯장까지 추가 가능해요!</div>#}
+{#              <label#}
+{#                for="img-file1"#}
+{#                style="cursor: pointer;"#}
+{#                class="upload-btn"#}
+{#              >#}
+{#                <div class="cover-add-coment1">사진 추가하기</div>#}
+{#                <div class="cover-text">#}
+{#                  <span class="top-text-box">#}
+{#                  </span>#}
+{#                </div>#}
+{#              </label>#}
+{#            </div>#}
+{#            <div class="prev-img-box">#}
+{#              <div class="prev-img-box-item" style="display: none;">#}
+{#                <input#}
+{#                  type="file"#}
+{#                  id="img-file1"#}
+{#                  name="img-file1"#}
+{#                  style="display: none;"#}
+{#                  class="lecture-input"#}
+{#                />#}
+{#                <img src="" alt="" class="prev-img" />#}
+{#                <div class="cancel-div">#}
+{#                  <button type="button" class="cancel-btn">#}
+{#                    <img#}
+{#                      ssrc="{% static 'public/web/images/common/cancel.png' %}"#}
+{#                      alt=""#}
+{#                      class="cancel-img"#}
+{#                    />#}
+{#                  </button>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="prev-img-box-item" style="display: none;">#}
+{#                <input#}
+{#                  type="file"#}
+{#                  id="img-file2"#}
+{#                  name="img-file2"#}
+{#                  style="display: none;"#}
+{#                  class="lecture-input"#}
+{#                />#}
+{#                <img src="" alt="" class="prev-img" />#}
+{#                <div class="cancel-div">#}
+{#                  <button type="button" class="cancel-btn">#}
+{#                    <img#}
+{#                      ssrc="{% static 'public/web/images/common/cancel.png' %}"#}
+{#                      alt=""#}
+{#                      class="cancel-img"#}
+{#                    />#}
+{#                  </button>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="prev-img-box-item" style="display: none;">#}
+{#                <input#}
+{#                  type="file"#}
+{#                  id="img-file3"#}
+{#                  name="img-file3"#}
+{#                  style="display: none;"#}
+{#                  class="lecture-input"#}
+{#                />#}
+{#                <img src="" alt="" class="prev-img" />#}
+{#                <div class="cancel-div">#}
+{#                  <button type="button" class="cancel-btn">#}
+{#                    <img#}
+{#                      src="{% static 'public/web/images/common/cancel.png' %}"#}
+{#                      alt=""#}
+{#                      class="cancel-img"#}
+{#                    />#}
+{#                  </button>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="prev-img-box-item" style="display: none;">#}
+{#                <input#}
+{#                  type="file"#}
+{#                  id="img-file4"#}
+{#                  name="img-file4"#}
+{#                  style="display: none;"#}
+{#                  class="lecture-input"#}
+{#                />#}
+{#                <img src="" alt="" class="prev-img" />#}
+{#                <div class="cancel-div">#}
+{#                  <button type="button" class="cancel-btn">#}
+{#                    <img#}
+{#                      src="{% static 'public/web/images/common/cancel.png' %}"#}
+{#                      alt=""#}
+{#                      class="cancel-img"#}
+{#                    />#}
+{#                  </button>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="prev-img-box-item" style="display: none;">#}
+{#                <input#}
+{#                  type="file"#}
+{#                  id="img-file5"#}
+{#                  name="img-file5"#}
+{#                  style="display: none;"#}
+{#                  class="lecture-input"#}
+{#                />#}
+{#                <img src="" alt="" class="prev-img" />#}
+{#                <div class="cancel-div">#}
+{#                  <button type="button" class="cancel-btn">#}
+{#                    <img#}
+{#                      src="{% static 'public/web/images/common/cancel.png' %}"#}
+{#                      alt=""#}
+{#                      class="cancel-img"#}
+{#                    />#}
+{#                  </button>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+          <!-- 사진추가 -->
+          <div class="upload-wrap2">
+            <div class="upload-container2">
+              <div class="info-items-title2">강의 품목 예시</div>
+              <div class="picture-explanation2">최대 다섯장까지 추가 가능해요!</div>
+              <label
+                for="img-file6"
+                style="cursor: pointer;"
+                class="upload-btn2"
+              >
+                <div class="cover-add-coment2">사진 추가하기</div>
+                <div class="cover-text">
+                  <span class="top-text-box">
+                  </span>
+                </div>
+              </label>
+            </div>
+            <div class="prev-img-box2">
+              <div class="prev-img-box-item2" style="display: none;">
+                <input
+                  type="file"
+                  id="img-file6"
+                  name="img-file6"
+                  style="display: none;"
+                  class="exam-files"
+                />
+                <img src="" alt="" class="prev-img" />
+                <div class="cancel-div">
+                  <button type="button" class="cancel-btn2">
+                    <img
+                      src="{% static 'public/web/images/common/cancel.png' %}"
+                      alt=""
+                      class="cancel-img"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div class="prev-img-box-item2" style="display: none;">
+                <input
+                  type="file"
+                  id="img-file7"
+                  name="img-file7"
+                  style="display: none;"
+                  class="exam-files"
+                />
+                <img src="" alt="" class="prev-img" />
+                <div class="cancel-div">
+                  <button type="button" class="cancel-btn2">
+                    <img
+                      src="{% static 'public/web/images/common/cancel.png' %}"
+                      alt=""
+                      class="cancel-img"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div class="prev-img-box-item2" style="display: none;">
+                <input
+                  type="file"
+                  id="img-file8"
+                  name="img-file8"
+                  style="display: none;"
+                  class="exam-files"
+                />
+                <img src="" alt="" class="prev-img" />
+                <div class="cancel-div">
+                  <button type="button" class="cancel-btn2">
+                    <img
+                      src="{% static 'public/web/images/common/cancel.png' %}"
+                      alt=""
+                      class="cancel-img"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div class="prev-img-box-item2" style="display: none;">
+                <input
+                  type="file"
+                  id="img-file9"
+                  name="img-file9"
+                  style="display: none;"
+                  class="exam-files"
+                />
+                <img src="" alt="" class="prev-img" />
+                <div class="cancel-div">
+                  <button type="button" class="cancel-btn2">
+                    <img
+                      src="{% static 'public/web/images/common/cancel.png' %}"
+                      alt=""
+                      class="cancel-img"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div class="prev-img-box-item2" style="display: none;">
+                <input
+                  type="file"
+                  id="img-file10"
+                  name="img-file10"
+                  style="display: none;"
+                  class="exam-files"
+                />
+                <img src="" alt="" class="prev-img" />
+                <div class="cancel-div">
+                  <button type="button" class="cancel-btn2">
+                    <img
+                      src="{% static 'public/web/images/common/cancel.png' %}"
+                      alt=""
+                      class="cancel-img"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="publish-btn">
+            <span class="publish-btn-text" type="button">신청하기</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="entry-modal">
+      <!-- 강사자격 신청하면 나오는 모달창 -->
+      <div class="entry-modal-wrap" style="display: none">
+        <div class="entry-modal-container">
+          <div class="entry-modal-title-wrap">
+            <span class="entry-modal-title">이용자 확인</span>
+            <button type="button" class="close-button">
+              <span class="cancel-image-wrap">
+                <img src="{% static 'public/web/images/common/cancel.png' %}" alt="" />
+              </span>
+            </button>
+          </div>
+          <!-- 아이디, 비밀번호 입력창 -->
+          <div class="entry-modal-main-wrap">
+            <div class="entry-modal-main-container">
+              <div class="entry-input-wrap">
+                <!-- 이메일 -->
+                <!-- <div class="email-input-area">
+                  <div class="entry-input-title-wrap">
+                    <div class="entry-input-title">이메일</div>
+                  </div>
+                  <div class="email-input-wrap">
+                    <span class="email-input-local">
+                      <input
+                        class="local-input-form"
+                        placeholder="이메일"
+                        size="1"
+                      />
+                    </span>
+                    <span class="email-seperator">@</span>
+                    <span class="email-input-domain">
+                      <select class="domain-input-form">
+                        <option value="naver.com">naver.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="hotmail.com">hotmail.com</option>
+                        <option value="outlook.com">outlook.com</option>
+                        <option value="icloud.com">icloud.com</option>
+                      </select>
+                    </span>
+                  </div>
+                  <div class="error-text" style="display: none">
+                    필수 입력 사항입니다.
+                  </div>
+                </div> -->
+                <!-- 비밀번호 -->
+                <div class="password-input-area">
+                  <div class="entry-input-title-wrap">
+                    <div class="entry-input-title">신청하시기 전에 수정할 사항이 없는지<br>확인해주세요</div>
+                  </div>
+                  <div class="error-text" style="display: none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 강사자격 신청 버튼 -->
+          <div class="entry-button-wrap">
+            <div class="entry-button-container">
+              <button type="submit" class="entry-button">강사자격 신청</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</form>
+{% endblock %}
+{% block js %}
+  <script src="{% static 'teacher/js/teacher-sub/teacher-sub.js' %}"></script>
+{% endblock %}

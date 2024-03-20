@@ -1,0 +1,936 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  margin: 0;
+}
+
+a * {
+  border: none;
+}
+
+svg:not(:root) {
+  overflow-clip-margin: content-box;
+  overflow: hidden;
+}
+
+/* 페이지 전체를 감싸는 부분 */
+.sub-wrap {
+  height: 100%;
+}
+
+.sub-container {
+  padding-top: 40px;
+  width: calc(100% - 30px);
+  margin: auto;
+  position: relative;
+}
+
+/* 로고를 제외한 나머지를 감싸는 부분 */
+.except-logo-wrap {
+  width: 100%;
+  margin: 0px auto;
+  padding: 60px 0px;
+}
+
+.sub-text {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgb(237, 237, 237);
+}
+
+/* 이력 입력란 */
+.record-wrap {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.record-text {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  letter-spacing: -0.3px;
+  word-break: keep-all;
+}
+
+.record-info {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(130, 140, 148);
+  letter-spacing: -0.3px;
+}
+
+.record-input {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic, sans-serif;
+  font-size: 15px;
+  line-height: 21px;
+  transition: border-color 0.1s, background-color 0.1s;
+  resize: none;
+  padding: 8px 15px 9px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.record-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 112, 88, 0.5);
+}
+
+/* js로 error 클래스 추가 시 적용 */
+.record-text.error {
+  color: rgb(255, 119, 119);
+}
+
+.record-wrap .record-input.error {
+  border-color: #f77;
+}
+
+.record-wrap .record-input.error:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+}
+
+.record-input::placeholder {
+  color: rgb(194, 200, 204);
+}
+
+.record-input:hover:not(:focus) {
+  background-color: #fafafa;
+}
+
+.record-hidden {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+
+/* 강의장소(주소) */
+.address-verify-wrap {
+  margin-bottom: 30px;
+}
+
+.address-verify-text {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  letter-spacing: -0.3px;
+  word-break: keep-all;
+}
+
+.address-verify-input {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic, sans-serif;
+  font-size: 15px;
+  line-height: 21px;
+  transition: border-color 0.1s, background-color 0.1s;
+  resize: none;
+  padding: 8px 15px 9px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.address-verify-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 112, 88, 0.5);
+}
+
+/* js로 error 클래스 추가 시 적용 */
+.address-verify-text.error {
+  color: rgb(255, 119, 119);
+}
+
+.address-verify-wrap .record-verify-input.error {
+  border-color: #f77;
+}
+
+.address-verify-wrap .record-verify-input.error:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+}
+
+.address-verify-input::placeholder {
+  color: rgb(194, 200, 204);
+}
+
+.address-verify-input:hover:not(:focus) {
+  background-color: #fafafa;
+}
+
+.address-verify-hidden {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+
+/* 강의 설명 입력란 */
+.explanation-wrap {
+  margin-bottom: 30px;
+}
+
+.explanation-text {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  letter-spacing: -0.3px;
+  word-break: keep-all;
+}
+
+.explanation-info {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(130, 140, 148);
+  letter-spacing: -0.3px;
+}
+
+.picture-explanation {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(130, 140, 148);
+  letter-spacing: -0.3px;
+  position: absolute;
+  top: 557px;
+}
+
+.explanation-input {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic, sans-serif;
+  font-size: 15px;
+  line-height: 21px;
+  transition: border-color 0.1s, background-color 0.1s;
+  resize: none;
+  padding: 8px 15px 9px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.explanation-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 112, 88, 0.5);
+}
+
+/* js로 error 클래스 추가 시 적용 */
+.explanation-text.error {
+  color: rgb(255, 119, 119);
+}
+
+.explanation-wrap .explanation-input.error {
+  border-color: #f77;
+}
+
+.explanation-wrap .explanation-input.error:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+}
+
+.explanation-input::placeholder {
+  color: rgb(194, 200, 204);
+}
+
+.explanation-input:hover:not(:focus) {
+  background-color: #fafafa;
+}
+
+.explanation-hidden {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+
+/* 회원가입 버튼 */
+.sub-button {
+  user-select: none;
+  display: inline-block;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  background: none;
+  font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.1s, background-color 0.1s, border-color 0.1s;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #97a38c;
+  border-color: #97a38c;
+  color: #fff;
+  padding: 11px 10px;
+  font-size: 17px;
+  line-height: 26px;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+}
+
+.sub-button:hover {
+  border-color: rgb(99, 112, 88);
+  background-color: rgb(99, 112, 88);
+}
+
+body,
+html {
+  font-size: 15px;
+}
+
+.except-logo-wrap {
+  width: 360px;
+}
+
+/* 프로필 이미지 변경 */
+/* 이미지 크기 때문에 클래스 따로 추가해서 width, height 지정 */
+
+.info-items-wrap {
+  display: flex;
+  margin-top: 5px;
+  flex-direction: column;
+}
+
+.info-items-title {
+  position: absolute;
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  letter-spacing: -0.3px;
+  word-break: keep-all;
+  margin-right: 15px;
+}
+
+.user-info-items-container.profile,
+.new-image-container {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.user-profile-image-container {
+  display: block;
+}
+
+.new-image-wrap {
+  display: block;
+  margin: 0 0 10px;
+}
+
+.new-image-container {
+  position: relative;
+  min-width: 200px;
+  min-height: 200px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+  background-color: #d8d8d8;
+  font-size: 0;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.new-image-container:hover {
+  opacity: 0.7;
+}
+
+.current-profile-image {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-image: url("/staticfiles/images/mypage/base-profile-image.avif");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 파일입력 */
+
+.prev-img-box {
+  /* height: 100%; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+  overflow-x: scroll;
+  position: absolute;
+  top: 20%;
+  left: 0%;
+}
+.prev-img-box::-webkit-scrollbar {
+  display: none;
+}
+.prev-img-box-item {
+  position: relative;
+  min-width: 60px;
+  max-width: 63px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 10px;
+  border: 1px solid #dbdbdb;
+}
+.plus-img-box-item {
+  position: relative;
+  min-width: 200px;
+  max-width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 10px;
+  border: 1px solid #dbdbdb;
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+.prev-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.cancel-div {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+}
+
+.cancel-btn {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff00;
+}
+
+.cancel-img {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+.upload-wrap {
+  width: 360px;
+  height: 220px;
+  position: relative;
+}
+
+.plus-img {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 23%;
+  top: 23%;
+}
+
+.plus-img-small {
+  position: absolute;
+  left: 100%;
+  top: -10%;
+}
+
+.plus-txt {
+  position: absolute;
+  left: 43%;
+  top: 90%;
+}
+
+.cover-add-coment1 {
+  width: 85px;
+  height: 22px;
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 93px;
+  background-color: rgba(33, 38, 41, 0.8);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  border-radius: 4px;
+  transition: background-color 0.1s ease 0s;
+  width: 80px;
+  height: 20px;
+  text-align: center;
+}
+.cover-add-coment2 {
+  width: 85px;
+  height: 22px;
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 93px;
+  background-color: rgba(33, 38, 41, 0.8);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  border-radius: 4px;
+  transition: background-color 0.1s ease 0s;
+  width: 80px;
+  height: 20px;
+  text-align: center;
+}
+
+.cover-add-coment1:hover,
+.cover-add-coment1:active {
+  background-color: rgb(164, 172, 179);
+}
+
+.upload-btn {
+  position: relative;
+}
+.upload-btn2 {
+  position: relative;
+}
+
+.upload-wrap2 {
+  /*margin-top: -75px;*/
+  width: 360px;
+  height: 200px;
+  position: relative;
+}
+
+.picture-explanation1 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(130, 140, 148);
+  letter-spacing: -0.3px;
+  position: absolute;
+  top: 20px;
+}
+.picture-explanation2 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(130, 140, 148);
+  letter-spacing: -0.3px;
+  position: absolute;
+  top: 20px;
+}
+
+.info-items-title2 {
+  position: absolute;
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  letter-spacing: -0.3px;
+  word-break: keep-all;
+  margin-right: 15px;
+}
+
+.prev-img-box2 {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+  overflow-x: scroll;
+  position: absolute;
+  top: 20%;
+  left: 0%;
+}
+.prev-img-box2::-webkit-scrollbar {
+  display: none;
+}
+.prev-img-box-item2 {
+  position: relative;
+  min-width: 60px;
+  max-width: 63px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 10px;
+  border: 1px solid #dbdbdb;
+}
+
+.publish-btn {
+  display: inline-block;
+  width: 230px;
+  height: 45px;
+  box-sizing: border-box;
+  margin-left: 50px;
+  margin-top: -10px;
+  /* padding: 11px 5px 12px; */
+  background: #134f2c;
+  border: 1px solid #134f2c;
+  border-radius: 4px;
+  font-style: inherit;
+  font-variant: inherit;
+  font-stretch: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  transition: opacity 0.1s ease 0s;
+  cursor: pointer;
+}
+
+.publish-btn:hover {
+  background: #97a38c;
+  border: 1px solid #97a38c;
+}
+
+
+/* 강사자격 신청하면 나오는 모달창 */
+.entry-modal-wrap {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 1300;
+  background-color: rgba(33, 38, 41, 0.5);
+}
+
+.entry-modal-wrap::before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.entry-modal-container {
+  max-height: 78%;
+  vertical-align: middle;
+  width: 400px;
+  border-radius: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  color: rgb(47, 52, 56);
+  background-color: rgb(255, 255, 255);
+}
+
+.entry-modal-title-wrap {
+  padding: 16px 16px 10px;
+  line-height: 0;
+}
+
+.entry-modal-title {
+  font-size: 20px;
+  line-height: 28px;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 700;
+  text-align: center;
+  width: calc(100% - 68px);
+  margin-left: 24px;
+  margin-right: 10px;
+  white-space: pre-line;
+}
+
+.close-button {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background: none;
+  font: inherit;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+}
+
+.close-button:hover {
+  opacity: 0.7;
+}
+
+.cancel-image-wrap {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+  color: rgb(47, 52, 56);
+}
+
+.cancel-image-wrap > img {
+  width: 20px;
+}
+
+/* 아이디, 비밀번호 입력창 */
+.entry-modal-main-wrap {
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  word-break: break-all;
+  overflow-y: auto;
+}
+
+.entry-modal-main-container {
+  padding: 20px 14px;
+  background-color: rgb(234, 237, 239);
+  flex: 1 0 0px;
+  position: relative;
+}
+
+.entry-input-wrap {
+  background-color: rgb(255, 255, 255);
+  padding: 22px 20px 16px;
+  border-radius: 8px;
+  border: 1px solid rgb(247, 249, 250);
+  margin-bottom: 12px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.entry-input-title-wrap {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  display: flex;
+  -webkit-box-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry-input-title {
+  max-width: calc(100% - 80px);
+  text-align: center;
+  /*overflow: hidden;*/
+}
+
+.email-input-wrap {
+  -webkit-box-flex: 1;
+  display: flex;
+}
+
+.email-input-local {
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1 1 0px;
+}
+
+/* 미디어 쿼리 다수 있음 */
+.local-input-form {
+  -webkit-box-flex: 1;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  display: block;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 15px;
+  line-height: 40px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #424242;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.local-input-form:hover {
+  background-color: #fafafa;
+  border-color: #bdbdbd;
+}
+
+.local-input-form:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(130, 224, 250, 0.5);
+}
+
+.email-seperator {
+  -webkit-box-flex: 0;
+  flex: 0 0 20px;
+  text-align: center;
+  line-height: 40px;
+  color: #dbdbdb;
+}
+
+.email-input-domain {
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1 1 0px;
+}
+
+.domain-input-form {
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  display: block;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 15px;
+  line-height: 40px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #424242;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.domain-input-form:hover {
+  background-color: #fafafa;
+  border-color: #bdbdbd;
+}
+
+.domain-input-form:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(130, 224, 250, 0.5);
+}
+
+.domain-input-form option {
+  color: #424242;
+}
+
+.domain-input-form option:disabled {
+  color: #757575;
+  -webkit-text-fill-color: #757575;
+  opacity: 1;
+}
+
+.password-input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.password-input-form {
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  display: block;
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  padding: 0 15px;
+  line-height: 40px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #424242;
+  font-size: 15px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.password-input-form:hover {
+  background-color: #fafafa;
+  border-color: #bdbdbd;
+}
+
+.password-input-form:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(130, 224, 250, 0.5);
+}
+
+/* 입력창 에러 났을 때의 경우의 수 */
+.error-text {
+  margin: 15px 0;
+  color: #f77;
+}
+
+.local-input-form.error,
+.password-input-form.error {
+  border-color: #f77;
+}
+
+.local-input-form.error:focus,
+.password-input-form.error:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+}
+
+/* 강사자격 신청 버튼 */
+.entry-button-wrap {
+  padding: 9px 16px;
+  line-height: 0;
+}
+
+.entry-button-container {
+  padding-top: 1px;
+  padding-bottom: 7px;
+}
+
+.entry-button {
+  margin: 0px;
+  border: none;
+  background: none #134f2c;
+  font-style: inherit;
+  font-variant: inherit;
+  font-stretch: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 50px;
+  border-radius: 4px;
+  padding: 0px 16px;
+  font-weight: 700;
+  box-sizing: border-box;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  width: 100%;
+}
+
+.entry-button:hover {
+  background-color: #97a38c;
+  border-color: #97a38c;
+}

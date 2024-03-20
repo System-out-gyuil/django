@@ -1,0 +1,198 @@
+{% extends 'community/web/knowhow/../knowhow-list-base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'knowhow/css/web/knowhow.css' %}">
+{% endblock %}
+{% block title %}일반 게시물 목록{% endblock %}
+{% block content %}
+  <body>
+    <div class="knowhow-wrap">
+      <div class="knowhow-container">
+        <div class="knowhow-inner">
+          <div class="knowhow-box">
+            <div class="filter-wrap">
+              <div class="filter-container">
+                <div class="filter-item filter-selecter sort-selecter">
+                  <button type="button" class="filter-btn option">
+                    정렬<span class="filter-btn-icon"></span>
+                  </button>
+                  <div
+                    class="filter-modal"
+                    style="
+                      position: absolute;
+                      top: -75px;
+                      transform: translate(-70px, 210px);
+                      z-index: 3;
+                    "
+                  >
+                    <div
+                      class="filter-modal-inner"
+                      style="
+                        position: absolute;
+                        {#top: -75px;#}
+                        left: 0px;
+                        transform: translate(93px, 0px);
+                      "
+                    ></div>
+                    <div>
+                      <div class="modal-menu">
+                        <div class="modal-menu-inner">
+                          <button type="button" class="modal-menu-btn new-option choice">
+                            <div class="menu-choice">최신순</div>
+                          </button>
+                          <button type="button" class="modal-menu-btn option">
+                            <div class="menu-choice">
+                              인기순
+                            </div>
+                          </button>
+                          <button type="button" class="modal-menu-btn option">
+                            <div class="menu-choice">스크랩순</div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-item filter-selecter field-selecter">
+                  <button type="button" class="filter-btn option">
+                    분야<span class="filter-btn-icon"></span>
+                  </button>
+                  <div
+                    class="filter-modal"
+                    style="
+                      position: absolute;
+                      top: -75px;
+                      transform: translate(-70px, 210px);
+                      z-index: 3;
+                    "
+                  >
+                    <div
+                      class="filter-modal-inner"
+                      style="
+                        position: absolute;
+                        left: 0px;
+                        transform: translate(93px, 0px);
+                      "
+                    ></div>
+                    <div>
+                      <div class="modal-menu">
+                        <div class="modal-menu-inner">
+                          <button type="button" class="modal-menu-btn option">
+                            <div class="menu-choice">식물 키우기</div>
+                          </button>
+                          <button type="button" class="modal-menu-btn option">
+                            <div class="menu-choice"> 관련 제품</div>
+                          </button>
+                          <button type="button" class="modal-menu-btn option">
+                            <div class="menu-choice">테라리움</div>
+                          </button>
+                          <button type="button" class="modal-menu-btn option">
+                            <div class="menu-choice">스타일링</div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn individual option">
+                    관엽식물
+                  </button>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn individual option">
+                    침엽식물
+                  </button>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn individual option">
+                    희귀식물
+                  </button>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn individual option">
+                    다육
+                  </button>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn individual option">
+                    선인장
+                  </button>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn individual option">
+                    기타
+                  </button>
+                </div>
+              </div>
+              <div class="option-list">
+                <button
+                  type="button"
+                  class="option-reset-btn"
+                  style="display: none;"
+                >
+                  초기화
+                </button>
+              </div>
+            </div>
+            <div class="total-data">
+              
+            </div>
+            <div>
+              <div style="position: relative;" class="content-wrap">
+                <div
+                  style="width: 100%; height: 100%; position: absolute; top: 0;"
+                >
+                  <div
+                    style="
+                      box-sizing: border-box;
+                      padding-top: 0px;
+                      margin-top: 0px;
+                    "
+                  >
+                    <div style="overflow-anchor: none;">
+                      <div class="content-line-box">
+                        {# post 한칸씩 들어갈 자리 #}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 스크랩 팝업 -->
+    <div class="scrap-popup-wrap">
+      <div class="scrap-popup-container">
+        <div class="scrap-popup-inner">
+          <div class="scrap-popup-text">스크랩 했습니다.</div>
+        </div>
+        <div class="scrap-popup-button-container">
+          <!-- 스크랩북 링크삽입 -->
+          <button class="scrap-link-button" type="button">
+            스크랩북 보기
+          </button>
+          <button class="scrap-link-button" type="button">폴더에 담기</button>
+        </div>
+      </div>
+    </div>
+    <div class="scrap-popup-cancel-wrap">
+      <div class="scrap-popup-container">
+        <div class="scrap-popup-inner">
+          <div class="scrap-popup-text">스크랩을 취소하였습니다.</div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% endblock %}
+{% block js %}
+    <script>
+        const csrf_token = '{{ csrf_token }}'
+
+    </script>
+    <script src="{% static 'post/js/web/post.js' %}"></script>
+    <script src="{% static 'post/js/web/post-module.js' %}"></script>
+    <script src="{% static 'post/js/web/post-list.js' %}"></script>
+{% endblock %}

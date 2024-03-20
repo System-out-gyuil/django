@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 여기서부터 -->
+    <style data-emotion="css-global" data-s="">
+      @import "https://assets.ohou.se/design-system/bbf3fca1e650ee6d.css";
+      @import "https://assets.ohou.se/fonts/pretendard/v1.3.8/pretendardvariable-dynamic-subset.css";
+      @font-face {
+        font-family: OhouseIcon;
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot);
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot#iefix)
+            format("embedded-opentype"),
+          url(https://assets.ohou.se/design-system/d8923b386a66fd50.woff2)
+            format("woff2"),
+          url(https://assets.ohou.se/design-system/9e79341d6a2fe0d2.woff)
+            format("woff"),
+          url(https://assets.ohou.se/design-system/5355f736e6a7bc5b.ttf)
+            format("truetype"),
+          url(https://assets.ohou.se/design-system/3ba7913eab100858.svg#OhouseIcon)
+            format("svg");
+      }
+      html {
+        font-family: "Pretendard Variable", sans-serif;
+        letter-spacing: -0.3px;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <link rel="stylesheet" href="../../../staticfiles/css/common.css" />
+    <!-- 여기까지는 무조건 고정으로 모든 페이지에 복붙하세요 -->
+    <!-- 여기는 각자 css 파일 link하시면 됩니다 -->
+    <link
+      rel="stylesheet"
+      href="../../../staticfiles/css/notice/app/notice-app.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="../../../../staticfiles/images/selleaf.png"
+      type="image/x-icon"
+    />
+    <title>공지사항</title>
+  </head>
+  <body>
+    <div class="notice-wrap">
+      <div class="help-container">
+        <div class="help-inner">
+          <h2 class="help-text">무엇을 도와드릴까요?</h2>
+          <ul>
+            <li class="help-example">
+              <a href="#">
+                <span class="help-q">Q</span>
+                배송은 얼마나 걸리나요?
+              </a>
+            </li>
+            <li class="help-example">
+              <a href="#">
+                <span class="help-q">Q</span>
+                주문 취소는 어떻게 하나요?
+              </a>
+            </li>
+            <li class="help-example">
+              <a href="#">
+                <span class="help-q">Q</span>
+                제품의 자세한 정보를 알고싶어요.
+              </a>
+            </li>
+            <li class="help-example">
+              <a href="#">
+                <span class="help-q">Q</span>
+                제품이 불량일 때는?
+              </a>
+            </li>
+            <li class="help-example">
+              <a href="#">
+                <span class="help-q">Q</span>
+                카카오 계정으로 로그인하면 이미 가입되었다고 합니다.
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr class="help-between-center" />
+        <div class="center">
+          <h2 class="center-time">
+            고객센터
+            <span class="time">09:00 ~ 18:00</span>
+          </h2>
+          <div class="center-days">평일: 전체 문의 상담</div>
+          <div class="center-days">토요일, 공휴일: selleaf</div>
+          <div class="center-days">일요일: 휴무</div>
+          <div class="center-between"></div>
+          <div class="center-contact">
+            <button class="kakao">
+              <a href="https://open.kakao.com/o/gBQBLk0f" target="_blank"
+                >1:1 카톡 상담하기</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr class="halfline" />
+      <div class="benner-wrap" style="z-index: 10">
+        <nav class="benner-container" style="position: relative; z-index: 10">
+          <label class="benner-inner-1 benner-inner-checked" for="공지사항">
+            <input id="공지사항" type="checkbox" class="benner-button-1" />
+            <span class="benner-button-1">공지사항</span>
+          </label>
+          <label class="benner-inner-2" for="Q&A">
+            <input id="Q&A" type="checkbox" class="benner-button-2" />
+            <span class="benner-button-2">Q&A</span>
+          </label>
+        </nav>
+      </div>
+      <div id="question_list_section" class="list-wrap">
+        <ul class="list-container">
+          <li class="list-inner-box">
+            <h3 class="list-inner">
+              <button class="list-q">
+                <span class="question-q">Q</span>
+                <span class="question-text"
+                  >주문 내역은 어떻게 확인할 수 있나요?</span
+                >
+                <span class="question-v"></span>
+              </button>
+            </h3>
+            <div class="question">
+              <p>
+                우측 상단 프로필 사진을 클릭 후 [나의쇼핑]을 통해 확인
+                가능합니다
+              </p>
+            </div>
+          </li>
+          <li class="list-inner-box">
+            <h3 class="list-inner">
+              <button class="list-q">
+                <span class="question-q">Q</span>
+                <span class="question-text"
+                  >주문 내역은 어떻게 확인할 수 있나요?</span
+                >
+                <span class="question-v"></span>
+              </button>
+            </h3>
+            <div class="question">
+              <p>
+                우측 상단 프로필 사진을 클릭 후 [나의쇼핑]을 통해 확인
+                가능합니다
+              </p>
+            </div>
+          </li>
+          <li class="list-inner-box">
+            <h3 class="list-inner">
+              <button class="list-q">
+                <span class="question-q">Q</span>
+                <span class="question-text"
+                  >주문 내역은 어떻게 확인할 수 있나요?</span
+                >
+                <span class="question-v"></span>
+              </button>
+            </h3>
+            <div class="question">
+              <p>
+                우측 상단 프로필 사진을 클릭 후 [나의쇼핑]을 통해 확인
+                가능합니다
+              </p>
+            </div>
+          </li>
+          <li class="list-inner-box">
+            <h3 class="list-inner">
+              <button class="list-q">
+                <span class="question-q">Q</span>
+                <span class="question-text"
+                  >주문 내역은 어떻게 확인할 수 있나요?</span
+                >
+                <span class="question-v"></span>
+              </button>
+            </h3>
+            <div class="question">
+              <p>
+                우측 상단 프로필 사진을 클릭 후 [나의쇼핑]을 통해 확인
+                가능합니다
+              </p>
+            </div>
+          </li>
+          <li class="list-inner-box">
+            <h3 class="list-inner">
+              <button class="list-q">
+                <span class="question-q">Q</span>
+                <span class="question-text"
+                  >주문 내역은 어떻게 확인할 수 있나요?</span
+                >
+                <span class="question-v"></span>
+              </button>
+            </h3>
+            <div class="question">
+              <p>
+                우측 상단 프로필 사진을 클릭 후 [나의쇼핑]을 통해 확인
+                가능합니다
+              </p>
+            </div>
+          </li>
+          <li class="list-inner-box">
+            <h3 class="list-inner">
+              <button class="list-q">
+                <span class="question-q">Q</span>
+                <span class="question-text"
+                  >주문 내역은 어떻게 확인할 수 있나요?</span
+                >
+                <span class="question-v"></span>
+              </button>
+            </h3>
+            <div class="question">
+              <p>
+                우측 상단 프로필 사진을 클릭 후 [나의쇼핑]을 통해 확인
+                가능합니다
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script src="../../../staticfiles/js/notice/app/notice-app.js"></script>
+</html>

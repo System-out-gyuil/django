@@ -1,0 +1,280 @@
+{% extends 'trade/web/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'trade/css/web/trade-total.css' %}">
+{% endblock %}
+{% block title %}진행중인거래{% endblock %}
+{% block content %}
+  <body>
+    <div class="layout">
+      {% include 'fix/header.html' %}
+      <!-- 거래 카테고리 탭 -->
+          <div class="category-wrap-" style="height: 52px">
+            <div
+              class="category-container"
+              style="
+                position: fixed;
+                z-index: 1101;
+                transition: top 0.1s ease 0s;
+                top: auto;
+                width: 100%;
+                padding: 0 5px;
+              "
+            >
+              <div class="category-inner">
+                <div class="category-button-space">
+                  <nav class="category-button-collection">
+                    <span class="category-button">
+                      <div class="button-space">
+                        <a href="/trade/main/" class="button-link-unclick">
+                          <div class="button">
+                            <p class="button-letter-unclick">상품홈</p>
+                          </div>
+                        </a>
+                      </div>
+                    </span>
+                    <span class="category-button">
+                      <div class="button-space">
+                        <a href="/trade/total/" class="button-link-click">
+                          <div class="button">
+                            <p class="button-letter-click">최신등록상품</p>
+                          </div>
+                        </a>
+                      </div>
+                    </span>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 스크랩 팝업 -->
+          <div class="scrap-popup-wrap">
+            <div class="scrap-popup-container">
+              <div class="scrap-popup-inner">
+                <div class="scrap-popup-text">스크랩 했습니다.</div>
+              </div>
+              <div class="scrap-popup-button-container">
+                <!-- 스크랩북 링크삽입 -->
+                <button class="scrap-link-button" type="button">
+                  스크랩북 보기
+                </button>
+                <button class="scrap-link-button" type="button">폴더에 담기</button>
+              </div>
+            </div>
+          </div>
+          <div class="scrap-popup-cancel-wrap">
+            <div class="scrap-popup-container">
+              <div class="scrap-popup-inner">
+                <div class="scrap-popup-text">스크랩을 취소하였습니다.</div>
+              </div>
+            </div>
+          </div>
+          <!-- 거래메인 -->
+          <div class="product-main-wrap">
+            <div class="product-main-container">
+              <div class="product-main-inner">
+                <div class="filter-wrap">
+                  <div class="filter-container">
+                    <div class="filter-item filter-selecter sort-selecter">
+                      <button type="button" class="filter-btn option">
+                        정렬<span class="filter-btn-icon"></span>
+                      </button>
+                      <div
+                        class="filter-modal"
+                        style="
+                          position: absolute;
+                          top: 55px;
+                          transform: translate(-70px, 130px);
+                          z-index: 3;
+                        "
+                      >
+                        <div
+                          class="filter-modal-inner"
+                          style="
+                            position: absolute;
+                            left: 0px;
+                            transform: translate(93px, 0px);
+                          "
+                        ></div>
+                        <div>
+                          <div class="modal-menu">
+                            <div class="modal-menu-inner">
+                              <button
+                                type="button"
+                                class="modal-menu-btn new-option choice"
+                              >
+                                <div class="menu-choice">최신순</div>
+                              </button>
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">인기순</div>#}
+    {#                          </button>#}
+                              <button type="button" class="modal-menu-btn option">
+                                <div class="menu-choice">스크랩순</div>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="filter-item filter-selecter area-selecter">
+                      <button type="button" class="filter-btn option">
+                        상품구분<span class="filter-btn-icon"></span>
+                      </button>
+                      <div
+                        class="filter-modal"
+                        style="
+                          position: absolute;
+                          top: 55px;
+                          transform: translate(-70px, 130px);
+                          z-index: 3;
+                        "
+                      >
+                        <div
+                          class="filter-modal-inner"
+                          style="
+                            position: absolute;
+                            left: 0px;
+                            transform: translate(93px, 0px);
+                          "
+                        ></div>
+                        <div>
+                          <div class="modal-menu">
+                            <div class="modal-menu-inner">
+                              <button type="button" class="modal-menu-btn option">
+                                <div class="menu-choice">상품</div>
+                                <div class="menu-margin"></div>
+                              </button>
+                              <button type="button" class="modal-menu-btn option">
+                                <div class="menu-choice">식물</div>
+                                <div class="menu-margin"></div>
+                              </button>
+                              <button type="button" class="modal-menu-btn option">
+                                <div class="menu-choice">수공예품</div>
+                                <div class="menu-margin"></div>
+                              </button>
+                              <button type="button" class="modal-menu-btn option">
+                                <div class="menu-choice">테라리움</div>
+                                <div class="menu-margin"></div>
+                              </button>
+                              <button type="button" class="modal-menu-btn option">
+                                <div class="menu-choice">기타</div>
+                                <div class="menu-margin"></div>
+                              </button>
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">대전광역시</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">울산광역시</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">강원도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">경기도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">경상남도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">경상북도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">전라남도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">전라북도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">충청남도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">충청북도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">세종특별자치시</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+    {#                          <button type="button" class="modal-menu-btn option">#}
+    {#                            <div class="menu-choice">제주특별자치도</div>#}
+    {#                            <div class="menu-margin"></div>#}
+    {#                          </button>#}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="filter-item">
+                      <button type="button" class="filter-btn individual option">
+                        관엽식물
+                      </button>
+                    </div>
+                    <div class="filter-item">
+                      <button type="button" class="filter-btn individual option">
+                        칩엽식물
+                      </button>
+                    </div>
+                    <div class="filter-item">
+                      <button type="button" class="filter-btn individual option">
+                        희귀식물
+                      </button>
+                    </div>
+                    <div class="filter-item">
+                      <button type="button" class="filter-btn individual option">
+                        다육
+                      </button>
+                    </div>
+                    <div class="filter-item">
+                      <button type="button" class="filter-btn individual option">
+                        선인장
+                      </button>
+                    </div>
+                    <div class="filter-item">
+                      <button type="button" class="filter-btn individual option">
+                        기타
+                      </button>
+                    </div>
+                  </div>
+                  <div class="option-list">
+                    <button
+                      type="button"
+                      class="option-reset-btn"
+                      style="display: none"
+                    >
+                      초기화
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="transaction-main-page">
+              <section class="popular-wrap wrap-media">
+                <header class="popular-header">
+                  <h1 class="popular-title">상품피드</h1>
+                </header>
+                <div class="post-wrap row-media">
+                    {#    게시물이 반복될 부분    #}
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+    {% include 'fix/footer.html' %}
+  </body>
+{% endblock %}
+{% block js %}
+  <script>
+        const csrf_token = '{{ csrf_token }}'
+  </script>
+  <script src="{% static 'trade/js/web/trade-module.js' %}"></script>
+  <script src="{% static 'trade/js/web/trade-total.js' %}"></script>
+{% endblock %}

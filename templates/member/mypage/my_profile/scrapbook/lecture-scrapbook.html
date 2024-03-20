@@ -1,0 +1,148 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my_profile/scrapbook/lecture-scrapbook.css' %}">
+{% endblock %}
+{% block title %}강의 스크랩{% endblock %}
+{% block content %}
+    <div class="whole-page-wrap">
+      <div class="whole-page-container">
+        <!-- 나중에 메인 페이지 담당자에게서 받아옴 -->
+        <div class="whole-content-wrap">
+          <!-- 메인 최상단 유저 프로필 및 공유 버튼 등이 위치한 곳 -->
+          <div class="content-title-wrap">
+            <div class="title-and-button-wrap">
+              <p class="title-text">스크랩북</p>
+            </div>
+            <!-- 이용자 프로필 이미지 및 닉네임 -->
+            <div class="user-profile-wrap">
+              <!-- 나중에 프로필 - 모두보기 페이지와 연결 -->
+              {% if 'http' in memberProfile %}
+                  <a href="/member/mypage/show">
+                      <img alt=""
+                        class="profile-image"
+                        src="{{ memberProfile }} "
+                        height="0"
+                      />
+                    <span class="user-nickname">{{ member.member_name }}</span>
+                  </a>
+              {% else %}
+                  <a href="/member/mypage/show">
+                      <img alt=""
+                        class="profile-image"
+                        src="/upload/{{ memberProfile }} "
+                        height="0"
+                      />
+                    <span class="user-nickname">{{ member.member_name }}</span>
+                  </a>
+              {% endif %}
+            </div>
+          </div>
+          <!-- 카테고리 네비게이션 -->
+          <!-- sticky 포지션을 가진 태그로 감쌌기 때문에, 스크롤 내리면 페이지 최상단에 붙어서 따라옴 -->
+          <div
+            class="sticky-wrap"
+            style="
+              position: sticky;
+              top: 80.75px;
+              transition: top 0.1s ease 0s;
+              z-index: 1;
+            "
+          >
+            <div class="sticky-container" style="position: relative">
+              <div class="category-nav-wrap">
+                <div class="category-nav-container">
+                  <!-- 강의 -->
+                  <a href="/member/mypage/scraplectures/">
+                    <button class="category-button active">
+                      <div class="category-name-wrap">
+                        <p class="category-name lecture">강의({{ lecture_scrap.count }})</p>
+                      </div>
+                    </button>
+                  </a>
+                  <!-- 거래 -->
+                  <a href="/member/mypage/scraptrades/">
+                    <button class="category-button">
+                      <div class="category-name-wrap">
+                        <p class="category-name trade">거래({{ trade_scrap.count }})</p>
+                      </div>
+                    </button>
+                  </a>
+                </div>
+                <hr class="nav-seperator" />
+              </div>
+            </div>
+          </div>
+          <div
+            class="sticky-wrap"
+            style="
+              position: sticky;
+              top: 125.75px;
+              transition: top 0.1s ease 0s;
+              z-index: 1;
+            "
+          >
+            <div class="sticky-container" style="position: relative">
+              <div class="edit-menu-wrap">
+                <!-- 스크랩한 컨텐츠의 개수를 표시하는 부분 -->
+                <div class="content-count-wrap">
+                  <!-- JS의 클릭 이벤트로 이 부분의 display 속성이 변화 - 평소에는 none -->
+                  <div class="content-count-container" style="display: none">
+                    <i></i>
+
+                  </div>
+                </div>
+                <!-- 편집 메뉴가 표시되는 부분 -->
+                <div class="edit-menu-container">
+                  <!-- 평소에는 편집 버튼만 표시-->
+                  <div class="edit-button" ></div>
+                  <!-- 편집 버튼 누르면 이 부분이 표시 -->
+                  <!-- 취소 버튼 누르면 원복 -->
+                  <button
+                    class="edit-menu-button content-delete"
+                    type="button"
+                    style="display: none"
+                    disabled
+                  >
+
+                  </button>
+                  <button
+                    class="edit-menu-button cancel"
+                    type="button"
+                    style="display: none"
+                  >
+
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 스크랩한 정보들이 표시되는 부분 -->
+          <div class="no-content-wrap">
+            {% if lecture_scrap.count == 0 %}
+              <!-- 스크랩한 게시물이 없으면 표시되는 부분 -->
+              <p class="no-scraps-yet">아직 스크랩한 콘텐츠가 없네요.</p>
+              <p class="scrap-if-you-want">
+                마음에 드는 콘텐츠를 발견하면 스크랩해보세요.
+              </p>
+            {% endif %}
+          </div>
+          <!-- 스크랩 한 강의는 여기에 표시 -->
+          <div class="post-wrap">
+          </div>
+          <!-- 페이지 최상단으로 가기 버튼 -->
+          <!-- 스크롤을 어느 정도 내려야 표시 -->
+          <div class="top-button-wrap" style="display: none">
+            <button class="top-button" type="button">
+              <span class="arrow-icon"></span>
+            </button>
+          </div>
+        </div>
+        <!-- 나중에 메인 페이지 담당자에게서 받아옴 -->
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'member/js/mypage/my_profile/myprofile-module.js' %}"></script>
+    <script src="{% static 'member/js/mypage/my_profile/scrapbook/lecture-scrapbook.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,509 @@
+/* 회사소개 헤더 부분 */
+.header-wrap {
+    background-color: #fff;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.header-navigation {
+    -moz-align-items: center;
+    align-items: center;
+    box-sizing: border-box;
+    display: -moz-flex;
+    display: flex;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1195px;
+    padding: 34px 30px;
+    width: 100%;
+}
+
+.header-navigation-wrap>svg {
+    width: 74px;
+}
+
+.header-navigation-menu {
+    -moz-align-items: center;
+    align-items: center;
+    display: -moz-flex;
+    display: flex;
+}
+
+.header-navigation-menuAf {
+    color: #212529;
+    display: inline-block;
+    font-size: 17px;
+    letter-spacing: -.3px;
+    margin-left: 50px;
+    font-weight: 700;
+}
+
+.header-navigation-menuA {
+    color: #212529;
+    display: inline-block;
+    font-size: 17px;
+    letter-spacing: -.3px;
+    margin-left: 50px;
+}
+
+.header-navigation-menuA:hover{
+    font-weight: 700;
+}
+
+/* 헤더 끝 메인 부분 */
+.main-wrap {
+    padding-top: 180px;
+}
+
+.main-firstcontanier {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 1175px;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* .main-firstcontanier-firstDiv {
+    
+} */
+
+.main-firstcontanier-firstH {
+    font-size: 50px;
+    color: #212529;
+    /* font-size: 32px; */
+    font-stretch: normal;
+    font-weight: 700;
+    letter-spacing: -.8px;
+    line-height: 1.32;
+    /* white-space: pre-wrap; */
+
+}
+
+.line-break {
+    display: none;
+}
+
+.main-firstcontanier-firstP {
+    font-size: 20px;
+    margin-bottom: 88px;
+    margin-top: 36px;
+    /* white-space: pre-wrap; */
+    color: #212529;
+    /* font-size: 18px; */
+    line-height: 1.6;
+    /* margin-bottom: 64px; */
+    /* margin-top: 32px; */
+}
+
+.main-secondcontanier-wrap {
+    -moz-align-items: center;
+    align-items: center;
+    /* display: -moz-flex; */
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.main-secondcontanier-imgwrap {
+    position: relative;
+    width: 100%;
+    height: 365px;
+    /* overflow: hidden; */
+}
+
+.main-secondcontanier-imgwraplist {
+    position: absolute;
+    display: -moz-flex;
+    display: flex;
+    z-index: 1;
+    /* transition: transform 0.5s ease-in-out; */
+}
+
+.main-secondcontanier-imgwraplist.original{
+    animation: 50s linear 0s infinite normal forwards running slide01;
+}
+
+.main-secondcontanier-imgwraplist.clone{
+    animation: 50s linear 0s infinite normal none running slide02;
+}
+
+/** 애니메이션 **/
+/* 원본용 */
+@keyframes slide01 { 
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-100%); }
+    50.01% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+}
+
+/* 복제용 */
+@keyframes slide02 { 
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.main-secondcontanier-imgWrapDiv {
+    height: 365px;
+    min-height: 365px;
+    min-width: 385px;
+    width: 385px;
+    position: relative;
+}
+
+.main-secondcontanier-img {
+    border-radius: 4px;
+    /* height: 250px; */
+    /* margin-right: 20px; */
+    /* min-height: 250px; */
+    min-width: 250px;
+    overflow: visible!important;
+    transition: transform .25s;
+    /* width: 250px; */
+    height: 365px;
+    min-height: 365px;
+    min-width: 365px;
+    width: 365px;
+}
+
+.main-secondcontanier-contentWrap {
+    bottom: 16px;
+    color: #fff;
+    font-size: 13px;
+    position: absolute;
+    right: 40px;
+    text-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+
+.main-secondcontanier-contentWrap>span {
+    font-weight: 700;
+}
+
+.main-thirdcontanier {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 1175px;
+    padding: 50px 20px;
+    width: 100%;
+}
+
+.main-thirdcontanier-pwrap {
+    font-size: 36px;
+    color: #212529;
+    /* font-size: 28px; */
+    font-weight: 700;
+    letter-spacing: -.72px;
+    line-height: 1.5;
+    /* white-space: pre-wrap; */
+    word-break: break-word;
+}
+
+.main-thirdcontanier-contentbr {
+    display: block;
+}
+
+.main-thirdcontanier-contentWrap {
+    margin-top: 80px;
+    /* padding-bottom: 80px; */
+    padding-bottom: 100px;
+}
+
+.main-thirdcontanier-contentDiv {
+    display: -moz-flex;
+    display: flex;
+    -moz-flex-direction: column;
+    /* flex-direction: column; */
+    margin-bottom: 80px;
+    flex-direction: row;
+}
+
+.main-thirdcontanier-photo {
+    border-radius: 4px;
+    height: 320px;
+    margin-right: 60px;
+    width: 460px;
+}
+
+.main-thirdcontanier-letterDivD {
+    margin-top: 24px;
+}
+
+.main-thirdcontanier-letterTitle {
+    color: #212529;
+    font-size: 30px;
+    letter-spacing: -.32px;
+    line-height: 48px;
+    margin-bottom: 24px;
+    font-weight: 700;
+    /* white-space: pre-wrap; */
+}
+
+.main-thirdcontanier-letterSubTitle {
+    font-size: 18px;
+    line-height: 33px;
+    color: #212529;
+    word-break: break-word;
+    /* white-space: pre-wrap; */
+}
+
+.main-thirdcontanier-buttonDiv {
+    -moz-align-items: center;
+    align-items: center;
+    /* display: -moz-flex; */
+    display: flex;
+    /* -moz-flex-direction: column; */
+    /* flex-direction: column; */
+    flex-direction: row;
+    /* -moz-justify-content: center; */
+    justify-content: center;
+}
+
+.main-thirdcontanier-buttonA {
+    -moz-align-items: center;
+    align-items: center;
+    background-color: #134F2C;
+    border-radius: 4px;
+    box-shadow: 0 4px 14px 0 rgba(15,157,200,.26);
+    color: #fff;
+    display: -moz-flex;
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    height: 64px;
+    -moz-justify-content: center;
+    justify-content: center;
+    /* margin-bottom: 24px; */
+    text-align: center;
+    transition: background-color .25s;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 260px;
+    margin-bottom: 0;
+    margin-right: 24px;
+}
+
+.main-thirdcontanier-buttonA:hover{
+    background-color: #97A38C;
+}
+
+.main-fourthcontanier {
+    background-color: #dadce0;
+    height: 1px;
+    width: 100%;
+}
+
+.main-fifthcontanier {
+    -moz-align-items: center;
+    align-items: center;
+    background-color: #3f474d;
+    border-radius: 30px;
+    bottom: 40px;
+    box-shadow: 0 4px 14px 0 rgba(33,37,41,.4);
+    color: #fff;
+    display: -moz-flex;
+    display: flex;
+    font-size: 17px;
+    font-weight: 700;
+    height: 64px;
+    -moz-justify-content: center;
+    justify-content: center;
+    letter-spacing: -.28px;
+    position: fixed;
+    right: 40px;
+    transition: box-shadow .25s,transform .25s,background-color .25s;
+    width: 190px;
+    z-index: 10;
+}
+
+.main-fifthcontanier:hover{
+    background-color: #2f3438;
+    box-shadow: 0 2px 12px 0 rgba(33,37,41,.4);
+    transform: translateY(4px);
+}
+
+.sellef-go {
+    margin-left: 11px;
+}
+
+.main-sixthcontanier {
+    -moz-align-items: center;
+    align-items: center;
+    display: -moz-flex;
+    display: flex;
+    height: 440px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.main-sixthcontanier-photo {
+    left: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.main-sixthcontanier-letterWrap {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    min-height: 1px;
+    width: 1136px;
+}
+
+.main-sixthcontanier-letterTitle {
+    color: #212529;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -.72px;
+    line-height: 25px;
+    white-space: pre-line;
+}
+
+.main-sixthcontanier-letterbr {
+    display: none;
+}
+
+.main-sixthcontanier-letterSubTitle {
+    color: #212529;
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 60px;
+    margin-top: 16px;
+}
+
+.main-sixthcontanier-buttonWrap {
+    background-color: #3f474d;
+    border-radius: 4px;
+    box-shadow: 0 4px 14px 0 rgba(33,37,41,.26);
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    height: 64px;
+    letter-spacing: -.33px;
+    line-height: 64px;
+    text-align: center;
+    transition: transform .25s,background-color .25s;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 240px;
+}
+
+.main-sixthcontanier-buttonWrap:hover{
+    background-color: #2f3438;
+    transform: translateY(3px);
+}
+
+.main-seventhcontanier {
+    background-color: transparent;
+    border: none;
+    /* bottom: 16px; */
+    cursor: pointer;
+    /* display: block; */
+    margin: -10px;
+    overflow: visible;
+    padding: 10px;
+    position: fixed;
+    /* right: 16px; */
+    z-index: 999;
+    bottom: 20px;
+    display: none;
+    right: 30px;
+}
+
+.main-seventhcontanier-btnicon {
+    border-radius: 50%;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.12);
+    /* display: block; */
+    height: 45px;
+    width: 45px;
+    display: none;
+}
+
+/* 푸터 시작 */
+.footer-Wrap {
+    border-top: 1px solid #dadce0;
+    width: 100%;
+}
+
+.footer-contentWrap {
+    background-color: #fff;
+    color: #828c94;
+    margin: 0 auto;
+    max-width: 1175px;
+    padding: 77px 20px;
+}
+
+.footer-title {
+    color: #3f474d;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -.36px;
+    margin-bottom: 16px;
+}
+
+.footer-info {
+    color: #828c94;
+    font-size: 14px;
+    letter-spacing: -.28px;
+    line-height: 22px;
+}
+
+.footer-contactWrap {
+    display: -moz-flex;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    margin-top: 24px;
+}
+
+.footer-contactWrap-firstli {
+    color: #828c94;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: -.28px;
+    line-height: 2;
+    margin-right: 24px;
+    font-weight: 700;
+}
+
+.footer-contactWrap-li {
+    color: #828c94;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: -.28px;
+    line-height: 2;
+    margin-right: 24px;
+}
+
+.footer-snsWrap {
+    display: -moz-flex;
+    display: flex;
+}
+
+.footer-sns-item {
+    margin-right: 20px;
+}
+
+.footer-sns-item>a {
+    color: #c2c8cc;
+    transition: color .25s;
+}
+
+.footer-sns-item>a:hover{
+    color: #a4acb3;
+}
+
+.footer-sns-item svg {
+    height: 26px;
+    width: 26px;
+}

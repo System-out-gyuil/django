@@ -1,0 +1,887 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  margin: 0;
+}
+
+/* 강사 신청 안내 페이지 내용 */
+.whole-page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sticky-header-wrap {
+  height: 80.75px;
+}
+
+.sticky-header-container {
+  background: #ffffff;
+  border-bottom: 1px solid #eaedef;
+  position: fixed;
+  transition: top 0.1s ease 0s;
+  z-index: 1102;
+  top: 0px;
+  width: 100%;
+}
+
+/* 미디어 쿼리 다수 있음 */
+.header-content-wrap {
+  position: relative;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  box-sizing: border-box;
+  line-height: 0;
+  max-width: 1256px;
+  margin: 0 auto;
+  padding: 0 60px;
+  height: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* 앱에서만 표시되는 메뉴 버튼 */
+.app-menu-button-wrap {
+  display: none;
+}
+
+/* 로고 */
+/* 미디어 쿼리 다수 있음 */
+.logo-wrap {
+  flex: 0 0 auto;
+  color: #212629;
+  position: static;
+  left: 0;
+  top: 0;
+  transform: none;
+  margin-right: 35px;
+}
+
+/* 미디어 쿼리 있음 */
+.logo-container {
+  border: none;
+  background: none;
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+  margin: -4px;
+  padding: 4px;
+  font-size: 0;
+  line-height: 0;
+  color: #212629;
+  outline: none;
+  height: 30px;
+}
+
+.selleaf-logo {
+  height: 30px;
+}
+
+/* 페이지 내 빠른 이동 메뉴 */
+/* 미디어 쿼리 있음 */
+.quick-menu-wrap {
+  flex: 1 1 0px;
+  white-space: nowrap;
+  display: block;
+}
+
+.quick-menus {
+  border: none;
+  background: none;
+  font: inherit;
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  padding: 21px 5px 15px;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: bold;
+  color: #2f3438;
+  outline: none;
+  transition: color 0.15s ease;
+}
+
+.quick-menus:hover {
+  color: #134f2c;
+}
+
+.quick-menu-text {
+  display: inline-block;
+  margin: -4px;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+/* 강사 신청 버튼 */
+/* 미디어 쿼리 있음 */
+.header-entry-button-wrap {
+  flex: 0 1 650px;
+}
+
+.header-entry-button-container {
+  display: flex;
+  align-items: center;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
+
+.header-entry-button {
+  margin: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  line-height: 18px;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  border-radius: 4px;
+  padding: 0 16px;
+  font-weight: 400;
+  box-sizing: border-box;
+  text-align: center;
+  color: #ffffff;
+  background-color: #134f2c;
+}
+
+.header-entry-button:hover {
+  background-color: #97a38c;
+  border-color: #97a38c;
+}
+
+/* 페이지 내용 */
+.main-content-wrap {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 머릿글 */
+.introduction-wrap {
+  padding-top: 40px;
+  background: #ffffff;
+  text-align: center;
+}
+
+/* 미디어 쿼리 있음 */
+.introduction-container {
+  box-sizing: border-box;
+  max-width: 1256px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.introduction-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header {
+  padding-bottom: 30px;
+}
+
+.main-header-title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 42px;
+  color: #2f3438;
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
+.title-emphasis {
+  color: #134f2c;
+}
+
+.main-header-summary {
+  font-size: 16px;
+  line-height: 24px;
+  color: #82948e;
+  margin-top: 8px;
+  white-space: pre-line;
+}
+
+/* 강의 사진 슬라이드 배너 */
+.main-secondcontanier {
+  margin: 40px 0;
+}
+
+.main-secondcontanier-wrap {
+  -moz-align-items: center;
+  align-items: center;
+  /* display: -moz-flex; */
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.main-secondcontanier-imgwrap {
+  position: relative;
+  width: 100%;
+  height: 365px;
+  /* overflow: hidden; */
+}
+
+.main-secondcontanier-imgwraplist {
+  position: absolute;
+  display: -moz-flex;
+  display: flex;
+  z-index: 1;
+  /* transition: transform 0.5s ease-in-out; */
+}
+
+.main-secondcontanier-imgwraplist.original {
+  animation: 50s linear 0s infinite normal forwards running slide01;
+}
+
+.main-secondcontanier-imgwraplist.clone {
+  animation: 50s linear 0s infinite normal none running slide02;
+}
+
+/** 애니메이션 **/
+/* 원본용 */
+@keyframes slide01 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  50.01% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* 복제용 */
+@keyframes slide02 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.main-secondcontanier-imgWrapDiv {
+  height: 365px;
+  min-height: 365px;
+  min-width: 385px;
+  width: 385px;
+  position: relative;
+}
+
+.main-secondcontanier-img {
+  border-radius: 4px;
+  /* height: 250px; */
+  /* margin-right: 20px; */
+  /* min-height: 250px; */
+  min-width: 250px;
+  overflow: visible !important;
+  transition: transform 0.25s;
+  /* width: 250px; */
+  height: 365px;
+  min-height: 365px;
+  min-width: 365px;
+  width: 365px;
+}
+
+.main-secondcontanier-contentWrap {
+  bottom: 16px;
+  color: #fff;
+  font-size: 13px;
+  position: absolute;
+  right: 40px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.main-secondcontanier-contentWrap > span {
+  font-weight: 700;
+}
+
+/* 혜택 소개 */
+.benefit-section-wrap {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: #f7f9fa;
+}
+
+/* 미디어 쿼리 있음 */
+.benefit-section-container {
+  box-sizing: border-box;
+  max-width: 1256px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.benefit-title {
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  color: #2f3438;
+  margin-bottom: 24px;
+}
+
+.benefits-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.each-benefits {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.each-benefits-title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #2f3438;
+  margin-bottom: 8px;
+  margin-block-start: 0;
+}
+
+.each-benefits-summary {
+  font-size: 16px;
+  line-height: 20px;
+  color: #2f3438;
+}
+
+/* 수강 페이지 링크 */
+.class-page-link {
+  margin: 0;
+  background: none;
+  font: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  padding: 0 16px;
+  font-weight: 700;
+  box-sizing: border-box;
+  text-align: center;
+  color: #2f3438;
+  border: 1px solid #dadde0;
+  background-color: #ffffff;
+  margin-top: 24px;
+}
+
+.class-page-link:hover {
+  background-color: #f7f9fa;
+}
+
+/* 자주 묻는 질문 */
+.faq-section-wrap {
+  padding: 60px 0;
+}
+
+/* 미디어 쿼리 있음 */
+.faq-section-container {
+  box-sizing: border-box;
+  max-width: 1256px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.faq-section-title {
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  color: #2f3438;
+  margin-bottom: 16px;
+}
+
+/* 각 질문 사항들 */
+.each-questions-wrap {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.each-questions-wrap:last-child {
+  padding-bottom: 40px;
+  border-bottom: 1px solid #dadde0;
+}
+
+.question-title-wrap {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  height: 58px;
+  font-weight: normal;
+  text-align: left;
+  max-width: 90%;
+  color: #2f3438;
+  font-size: 16px;
+}
+
+.expansion-button-wrap {
+  display: inline-block;
+  line-height: 1;
+  position: absolute;
+  top: 14px;
+  right: 0;
+}
+
+.expansion-button {
+  width: 16px;
+  transition: transform 0.2s;
+}
+
+/* 답변 - JS 이벤트로 height 조정 */
+.answer-wrap {
+  height: 0;
+  width: inherit;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+.answer-wrap.open {
+  height: 142px;
+}
+
+.answer-container {
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -0.3px;
+  text-align: left;
+  white-space: pre-line;
+  padding: 20px 0;
+  margin: -30px 20px 20px;
+  color: #2f3438;
+}
+
+/* 신청약관 */
+.terms-wrap {
+  padding: 20px 0 60px;
+}
+
+/* 미디어 쿼리 있음 */
+.terms-container {
+  box-sizing: border-box;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.terms-title {
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  color: #2f3438;
+  margin-bottom: 16px;
+}
+
+.terms-content {
+  font-size: 14px;
+  line-height: 24px;
+  text-align: left;
+}
+
+.terms-content h1 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 28px;
+  margin: 60px 0px 20px;
+}
+
+.terms-content h2 {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 20px 0px 10px;
+}
+
+.terms-content ol {
+  padding-left: 26px;
+}
+
+/* 페이지 마지막의 강사자격 신청 section */
+.teacher-entry-section-wrap {
+  padding: 40px 0;
+  background-color: #134f2c;
+}
+
+/* 미디어 쿼리 있음 */
+.teacher-entry-section-container {
+  max-width: 1256px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.entry-title-wrap {
+  margin-bottom: 24px;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.entry-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #ffffff;
+  margin-top: -20px;
+}
+
+.entry-link-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry-link {
+  margin: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 20px;
+  line-height: 20px;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  align-items: center;
+  width: 1256px;
+  height: 50px;
+  border-radius: 4px;
+  padding: 0 16px;
+  font-weight: 700;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #ffffff;
+  color: rgb(47, 52, 56);
+}
+
+.entry-link:hover {
+  background-color: #97a38c;
+}
+
+/* 강사자격 신청하면 나오는 모달창 */
+.entry-modal-wrap {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 1300;
+  background-color: rgba(33, 38, 41, 0.5);
+}
+
+.entry-modal-wrap::before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.entry-modal-container {
+  max-height: 78%;
+  vertical-align: middle;
+  width: 400px;
+  border-radius: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  color: rgb(47, 52, 56);
+  background-color: rgb(255, 255, 255);
+}
+
+.entry-modal-title-wrap {
+  padding: 16px 16px 10px;
+  line-height: 0;
+}
+
+.entry-modal-title {
+  font-size: 20px;
+  line-height: 28px;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 700;
+  text-align: center;
+  width: calc(100% - 68px);
+  margin-left: 24px;
+  margin-right: 10px;
+  white-space: pre-line;
+}
+
+.close-button {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background: none;
+  font: inherit;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+}
+
+.close-button:hover {
+  opacity: 0.7;
+}
+
+.cancel-image-wrap {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+  color: rgb(47, 52, 56);
+}
+
+.cancel-image-wrap > img {
+  width: 20px;
+}
+
+/* 아이디, 비밀번호 입력창 */
+.entry-modal-main-wrap {
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  word-break: break-all;
+  overflow-y: auto;
+}
+
+.entry-modal-main-container {
+  padding: 20px 14px;
+  background-color: rgb(234, 237, 239);
+  flex: 1 0 0px;
+  position: relative;
+}
+
+.entry-input-wrap {
+  background-color: rgb(255, 255, 255);
+  padding: 22px 20px 16px;
+  border-radius: 8px;
+  border: 1px solid rgb(247, 249, 250);
+  margin-bottom: 12px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.entry-input-title-wrap {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.entry-input-title {
+  max-width: calc(100% - 80px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  overflow: hidden;
+}
+
+.email-input-wrap {
+  -webkit-box-flex: 1;
+  display: flex;
+}
+
+.email-input-local {
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1 1 0px;
+}
+
+/* 미디어 쿼리 다수 있음 */
+.local-input-form {
+  -webkit-box-flex: 1;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  display: block;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 15px;
+  line-height: 40px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #424242;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.local-input-form:hover {
+  background-color: #fafafa;
+  border-color: #bdbdbd;
+}
+
+.local-input-form:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(130, 224, 250, 0.5);
+}
+
+.email-seperator {
+  -webkit-box-flex: 0;
+  flex: 0 0 20px;
+  text-align: center;
+  line-height: 40px;
+  color: #dbdbdb;
+}
+
+.email-input-domain {
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1 1 0px;
+}
+
+.domain-input-form {
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  display: block;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 15px;
+  line-height: 40px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #424242;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.domain-input-form:hover {
+  background-color: #fafafa;
+  border-color: #bdbdbd;
+}
+
+.domain-input-form:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(130, 224, 250, 0.5);
+}
+
+.domain-input-form option {
+  color: #424242;
+}
+
+.domain-input-form option:disabled {
+  color: #757575;
+  -webkit-text-fill-color: #757575;
+  opacity: 1;
+}
+
+.password-input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.password-input-form {
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  display: block;
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  padding: 0 15px;
+  line-height: 40px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #424242;
+  font-size: 15px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.password-input-form:hover {
+  background-color: #fafafa;
+  border-color: #bdbdbd;
+}
+
+.password-input-form:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(130, 224, 250, 0.5);
+}
+
+/* 입력창 에러 났을 때의 경우의 수 */
+.error-text {
+  margin: 15px 0;
+  color: #f77;
+}
+
+.local-input-form.error,
+.password-input-form.error {
+  border-color: #f77;
+}
+
+.local-input-form.error:focus,
+.password-input-form.error:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+}
+
+/* 강사자격 신청 버튼 */
+.entry-button-wrap {
+  padding: 9px 16px;
+  line-height: 0;
+}
+
+.entry-button-container {
+  padding-top: 1px;
+  padding-bottom: 7px;
+}
+
+.entry-button {
+  margin: 0px;
+  border: none;
+  background: none #134f2c;
+  font-style: inherit;
+  font-variant: inherit;
+  font-stretch: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 50px;
+  border-radius: 4px;
+  padding: 0px 16px;
+  font-weight: 700;
+  box-sizing: border-box;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  width: 100%;
+}
+
+.entry-button:hover {
+  background-color: #97a38c;
+  border-color: #97a38c;
+}

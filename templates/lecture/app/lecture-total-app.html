@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 여기서부터 -->
+    <style data-emotion="css-global" data-s="">
+      @import "https://assets.ohou.se/design-system/bbf3fca1e650ee6d.css";
+      @import "https://assets.ohou.se/fonts/pretendard/v1.3.8/pretendardvariable-dynamic-subset.css";
+      @font-face {
+        font-family: OhouseIcon;
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot);
+        src: url(https://assets.ohou.se/design-system/3298ed52addbc709.eot#iefix) format("embedded-opentype"),
+          url(https://assets.ohou.se/design-system/d8923b386a66fd50.woff2) format("woff2"),
+          url(https://assets.ohou.se/design-system/9e79341d6a2fe0d2.woff) format("woff"),
+          url(https://assets.ohou.se/design-system/5355f736e6a7bc5b.ttf) format("truetype"),
+          url(https://assets.ohou.se/design-system/3ba7913eab100858.svg#OhouseIcon) format("svg");
+      }
+      html {
+        font-family: "Pretendard Variable", sans-serif;
+        letter-spacing: -0.3px;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <link rel="stylesheet" href="/staticfiles/css/common.css" />
+    <!-- 여기까지는 무조건 고정으로 모든 페이지에 복붙하세요 -->
+    <!-- 여기는 각자 css 파일 link하시면 됩니다 -->
+    <link rel="shortcut icon" href="/staticfiles/images/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/staticfiles/css/class/app/class-total-app.css" />
+    <title>진행중인강의</title>
+  </head>
+  <body>
+    <div class="layout">
+      <header></header>
+      <!-- 거래 카테고리 탭 -->
+      <div class="category-wrap-" style="height: 52px">
+        <div class="category-container" style="position: fixed; z-index: 1101; transition: top 0.1s ease 0s; top: auto; width: 100%; padding: 0 5px">
+          <div class="category-inner">
+            <div class="category-button-space">
+              <nav class="category-button-collection">
+                <span class="category-button">
+                  <div class="button-space">
+                    <a href="#" class="button-link-unclick">
+                      <div class="button">
+                        <p class="button-letter-unclick">강의홈</p>
+                      </div>
+                    </a>
+                  </div>
+                </span>
+                <span class="category-button">
+                  <div class="button-space">
+                    <a href="#" class="button-link-click">
+                      <div class="button">
+                        <p class="button-letter-click">진행중인거래</p>
+                      </div>
+                    </a>
+                  </div>
+                </span>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 스크랩 팝업 -->
+      <div class="scrap-popup-wrap">
+        <div class="scrap-popup-container">
+          <div class="scrap-popup-inner">
+            <div class="scrap-popup-text">스크랩 했습니다.</div>
+          </div>
+          <div class="scrap-popup-button-container">
+            <!-- 스크랩북 링크삽입 -->
+            <button class="scrap-link-button" type="button">스크랩북 보기</button>
+            <button class="scrap-link-button" type="button">폴더에 담기</button>
+          </div>
+        </div>
+      </div>
+      <div class="scrap-popup-cancel-wrap">
+        <div class="scrap-popup-container">
+          <div class="scrap-popup-inner">
+            <div class="scrap-popup-text">스크랩을 취소하였습니다.</div>
+          </div>
+        </div>
+      </div>
+      <!-- 거래메인 -->
+      <div class="product-main-wrap">
+        <div class="product-main-container">
+          <div class="product-main-inner">
+            <div class="filter-wrap">
+              <div class="filter-container">
+                <div class="filter-item">
+                  <button type="button" class="filter-btn">구분<span class="filter-btn-icon"></span></button>
+                  <div class="filter-modal" style="position: absolute; top: -25px; transform: translate(-70px, 130px); z-index: 3; left: 85px;">
+                    <div class="filter-modal-inner" style="position: absolute; left: -65px; transform: translate(93px, 0px)"></div>
+                    <div>
+                      <div class="modal-menu">
+                        <div class="modal-menu-inner">
+                          <button type="button" class="modal-menu-btn choice">
+                            <div class="menu-choice">온라인</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">오프라인</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn">정렬<span class="filter-btn-icon"></span></button>
+                  <div class="filter-modal" style="position: absolute; top: -25px; transform: translate(-70px, 130px); z-index: 3">
+                    <div class="filter-modal-inner" style="position: absolute; left: 0px; transform: translate(93px, 0px)"></div>
+                    <div>
+                      <div class="modal-menu">
+                        <div class="modal-menu-inner">
+                          <button type="button" class="modal-menu-btn choice">
+                            <div class="menu-choice">조회순</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">스크랩순</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">최신순</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn">강의 종류<span class="filter-btn-icon"></span></button>
+                  <div class="filter-modal" style="position: absolute; top: -25px; transform: translate(-70px, 130px); z-index: 3">
+                    <div class="filter-modal-inner" style="position: absolute; left: 0px; transform: translate(93px, 0px)"></div>
+                    <div>
+                      <div class="modal-menu">
+                        <div class="modal-menu-inner">
+                          <button type="button" class="modal-menu-btn choice">
+                            <div class="menu-choice">리스/트리</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">바구니/센터피스/박스</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">가드닝/테라리움</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">기타</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn">식물 종류<span class="filter-btn-icon"></span></button>
+                  <div class="filter-modal" style="position: absolute; top: -25px; transform: translate(-60px, 130px); z-index: 3">
+                    <div class="filter-modal-inner" style="position: absolute; left: 0px; transform: translate(93px, 0px)"></div>
+                    <div>
+                      <div class="modal-menu">
+                        <div class="modal-menu-inner">
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">관엽식물</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">침엽식물</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">희귀식물</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">다육선인장</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">테라리움</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">기타</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-item">
+                  <button type="button" class="filter-btn">지역<span class="filter-btn-icon"></span></button>
+                  <div class="filter-modal" style="position: absolute; top: -25px; right: -65px; transform: translate(-70px, 130px); z-index: 3">
+                    <div class="filter-modal-inner" style="position: absolute; left: 60px; transform: translate(93px, 0px)"></div>
+                    <div>
+                      <div class="modal-menu">
+                        <div class="modal-menu-inner">
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">서울특별시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">부산광역시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">대구광역시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">인천광역시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">광주광역시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">대전광역시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">울산광역시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">강원도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">경기도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">경상남도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">경상북도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">전라남도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">전라북도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">충청남도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">충청북도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">세종특별자치시</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                          <button type="button" class="modal-menu-btn">
+                            <div class="menu-choice">제주특별자치도</div>
+                            <div class="menu-margin"></div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="transaction-main-page">
+          <section class="popular-wrap wrap-media">
+            <header class="popular-header">
+              <h1 class="popular-title">진행중인강의</h1>
+            </header>
+            <div class="post-wrap row-media">
+              <!--  -->
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <!-- <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="post-container">
+                <div class="post-inner">
+                  <article class="post">
+                    <a href="#" class="post-link"></a>
+                    <div class="post-image-wrap_">
+                      <div class="post-image-container">
+                        <div class="post-image-inner">
+                          <div class="post-image"></div>
+                          <img src="/staticfiles/images/blank-image.png" alt class="image" />
+                          <button class="scrap-button" type="button">
+                            <img src="/staticfiles/images/scrap-off.png" alt class="scrap-off" />
+                          </button>
+                          <div class="image__dark-overlay"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-contents-wrap">
+                      <div class="post-contents-container">
+                        <h1 class="post-contents-header">
+                          <span class="post-contents-user">작성자입력</span>
+                          <span class="post-contents-banner">강의명</span>
+                        </h1>
+                        <span class="post-price">
+                          <span class="post-price-letter">35,000</span>
+                        </span>
+                        <div class="post-content-pc-reply">
+                          <p class="post-content-reply">리뷰 갯수</p>
+                          <p class="post-content-scrap">스크랩 갯수</p>
+                        </div>
+                        <span class="post-tag">
+                          <span class="post-tag-icon">태그1</span>
+                        </span>
+                      </div> -->
+                    <!-- </div>
+                  </article>
+                </div> -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/staticfiles/js/class/app/class-total-app.js"></script>
+</html>

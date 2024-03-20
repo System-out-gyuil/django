@@ -1,0 +1,68 @@
+{% extends 'member/mypage/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/mypage/my-classes/student-list-detail.css' %}">
+{% endblock %}
+{% block title %}Selleaf | 수강생 목록 상세{% endblock %}
+{% block content %}
+    <div class="layout">
+      <!-- 전체 목록 -->
+      <div class="notice-container">
+        <div style="display: flex; justify-content: space-between">
+          <h1 class="notice-title">수강생 목록 상세</h1>
+        </div>
+        <div class="notice-wrap">
+          <!--  -->
+          <section>
+            <!-- 각 컬럼 제목 -->
+            <div>
+              <div class="student-list-title-wrap">
+                <div class="list-titles">수강생 전체</div>
+              </div>
+            </div>
+            <!-- 한 칸 시작 -->
+            <div>
+              <div class="class-histories-wrap">
+                <div class="class-history-items">김광협</div>
+              </div>
+            </div>
+            <!-- 한칸 끝 -->
+            <!-- 새로운 내역 -->
+            <div>
+              <div class="class-histories-wrap">
+                <div class="class-history-items">백시현</div>
+              </div>
+            </div>
+            <!-- 새로운 내역 -->
+            <div>
+              <div class="class-histories-wrap">
+                <div class="class-history-items">조은종</div>
+              </div>
+            </div>
+            <!-- 새로운 내역 -->
+            <div>
+              <div class="class-histories-wrap">
+                <div class="class-history-items">김수빈</div>
+              </div>
+            </div>
+            <!-- 새로운 내역 -->
+            <div>
+              <div class="class-histories-wrap">
+                <div class="class-history-items">강희주</div>
+              </div>
+            </div>
+            <!-- 새로운 내역 -->
+            <div>
+              <div class="class-histories-wrap">
+                <div class="class-history-items">김규일</div>
+              </div>
+            </div>
+          </section>
+          <!--  -->
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block js %}
+  <script src="\{% static 'member/js/mypage/my-classes/student-list-detail.js' %}"></script>
+{% endblock %}
