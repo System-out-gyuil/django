@@ -1,0 +1,1063 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+    margin: 0;
+}
+
+a * {
+    border: none;
+}
+
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 500px whitesmoke inset !important;
+}
+
+/* 페이지 전체를 감싸는 부분 */
+.register-wrap {
+    height: 100%;
+}
+
+.register-container {
+    padding-top: 40px;
+    width: calc(100% - 30px);
+    margin: auto;
+}
+
+/* 로고를 제외한 나머지를 감싸는 부분 */
+.except-logo-wrap {
+    width: 100%;
+    margin: 0px auto;
+    padding: 60px 0px;
+}
+
+.register-text {
+    margin-bottom: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 이메일 입력란 */
+.email-input-wrap{
+    margin-bottom: 20px;
+}
+.email-input-text {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+}
+
+/* JS로 error 클래스가 추가되었을 때, 텍스트 색상 변화 */
+.email-input-text.error {
+    color: rgb(255, 119, 119);
+}
+
+.email-input-group {
+    display: flex;
+    -webkit-box-flex: 1;
+}
+
+.email-input-local {
+    position: relative;
+    -webkit-box-flex: 1;
+    flex: 1 1 0px;
+}
+
+.email-seperator {
+    -webkit-box-flex: 0;
+    flex: 0 0 20px;
+    text-align: center;
+    line-height: 40px;
+    color: #dbdbdb;
+}
+
+/* 이메일 입력란에서 아이디, 사이트 입력란에 공통 적용 */
+.email-form-control {
+    width: 100%;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    display: block;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 0 15px;
+    line-height: 40px;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #424242;
+    -webkit-box-flex: 1;
+}
+
+.email-form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 112, 88, 0.5);
+}
+
+/* js로 error 클래스 추가 시 적용 */
+/* 이메일, 사이트 입력창 양쪽 다 적용 */
+.email-input-local .email-form-control.error,
+.email-input-domain .email-form-control.error {
+    border-color: #d1180b;
+}
+
+.email-input-local .email-form-control.error:focus,
+.email-input-domain .email-form-control.error:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+}
+
+/*
+  JS 이벤트로 error 클래스가 추가될 때,
+  각 입력칸 아래에 추가되는 div 요소에 적용
+*/
+.not-available {
+    padding-top: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgb(255, 119, 119);
+}
+
+.email-form-control::placeholder {
+    color: rgb(194, 200, 204);
+}
+
+.email-form-control:not(:disabled):hover {
+    background-color: #fafafa;
+    border-color: #bdbdbd;
+}
+
+/* 마찬가지로 공통 적용 */
+.email-form-control-blind {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+}
+
+/* email-form-control 내 disabled 된 요소에 적용 */
+.email-form-control :disabled {
+    color: #757575;
+    -webkit-text-fill-color: #757575;
+    opacity: 1;
+}
+
+/* 입력창 자체가 disabled 되었을 때 적용 */
+.email-form-control:disabled {
+    color: #424242;
+    background-color: whitesmoke;
+}
+
+/* email-form-control 내 option 태그들에 적용 */
+.email-form-control option {
+    color: #424242;
+}
+
+.email-input-domain .domain-select-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    background: none;
+    border: none;
+    font-size: 0;
+    cursor: default;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.email-input-domain {
+    position: relative;
+    -webkit-box-flex: 1;
+    flex: 1 1 0px;
+}
+
+/* 이메일 확인 버튼 */
+.email-verify-button-wrap {
+    margin-bottom: 30px;
+    padding-top: 2px;
+}
+
+.email-verify-button {
+    user-select: none;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic,
+    sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.1s, background-color 0.1s, border-color 0.1s;
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 20px;
+    font-size: 17px;
+    min-height: 50px;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 10px;
+    width: 100%;
+    height: 45px;
+    padding: 0px;
+    background: rgb(247, 248, 250);
+    color: rgb(194, 200, 204);
+    border-color: rgb(218, 220, 224);
+    cursor: default;
+}
+
+/* 이메일 양식 만족으로 인해 enabled 되었을 때 */
+.email-verify-button.enabled {
+    background-color: #fff;
+    border-color: #97a38c;
+    color: #97a38c;
+    cursor: pointer;
+}
+
+.email-verify-button.enabled:hover {
+    background-color: rgb(99, 112, 88);
+}
+
+/* 인증번호 입력칸 */
+/* 열리면 높이 143px, margin-bottom 20px 추가 */
+.email-code-wrap {
+    overflow: hidden;
+    height: 0;
+    transition: 0.2s ease;
+}
+
+.email-code-container {
+    min-height: 143px;
+    box-sizing: border-box;
+    background: rgb(247, 249, 250);
+    padding: 20px 16px;
+}
+
+.email-code-info {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(47, 52, 56);
+    margin-bottom: 10px;
+}
+
+.code-input-wrap {
+    border: 1px solid rgb(218, 221, 224);
+    min-height: 40px;
+    padding: 0px 12px;
+    background: rgb(255, 255, 255);
+    margin-bottom: 4px;
+    border-radius: 4px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.code-input-container {
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.code-input {
+    font-size: 16px;
+    line-height: 24px;
+    border: none;
+    width: 100%;
+}
+
+.code-input-wrap.error {
+    border-color: #d1180b;
+}
+
+.left-time {
+    color: #d1180b;
+    margin-right: 16px;
+}
+
+.confirm-button {
+    display: inline-block;
+    margin: 0px;
+    border: none;
+    background: none transparent;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0px 6px;
+    color: rgb(194, 200, 204);
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.confirm-button:not(:disabled) {
+    color: #134f2c;
+}
+
+.confirm-button:not(:disabled):hover {
+    color: #97a38c;
+    background-color: rgb(247, 249, 250);
+}
+
+.error-text {
+    font-size: 12px;
+    line-height: 16px;
+    color: #d1180b;
+}
+
+.resend-wrap {
+    margin-top: 10px;
+}
+
+.resend-container {
+    font-size: 12px;
+    color: rgb(130, 140, 148);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.resend {
+    text-decoration: underline;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+/* 주거래 지역 입력란 */
+.region-input-wrap {
+    margin-bottom: 20px;
+}
+
+.region-input-text {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+}
+
+.region-input-group {
+    display: flex;
+    -webkit-box-flex: 1;
+}
+
+.region-input-local {
+    position: relative;
+    -webkit-box-flex: 1;
+    flex: 1 1 0px;
+}
+
+.region-seperator {
+    -webkit-box-flex: 0;
+    flex: 0 0 20px;
+    text-align: center;
+    line-height: 40px;
+    color: #dbdbdb;
+}
+
+/* 주거래 지역 입력란에서 "도" 지역과, "시, 군, 구" 지역 입력란에 공통 적용 */
+.region-form-control {
+    width: 100%;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    display: block;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 0 15px;
+    line-height: 40px;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #424242;
+    -webkit-box-flex: 1;
+}
+
+.region-form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 112, 88, 0.5);
+}
+
+.region-form-control:hover {
+    background-color: #fafafa;
+    border-color: #bdbdbd;
+}
+
+.region-form-control-blind {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+}
+
+/* "시, 군, 구" 지역 입력란 내 disabled 된 요소에 적용 */
+.region-form-control :disabled {
+    color: #757575;
+    -webkit-text-fill-color: #757575;
+    opacity: 1;
+}
+
+/* "시, 군, 구" 지역 입력란 내 option 태그들에 적용 */
+.region-form-control option {
+    color: #424242;
+}
+
+.region-input-local .region-select-button,
+.region-input-domain .region-select-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    background: none;
+    border: none;
+    font-size: 0;
+    cursor: default;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.region-input-domain {
+    position: relative;
+    -webkit-box-flex: 1;
+    flex: 1 1 0px;
+}
+
+/* 닉네임 입력란 */
+.nickname-wrap {
+    margin-bottom: 30px;
+}
+
+.nickname-text {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+}
+
+.nickname-info {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgb(130, 140, 148);
+    letter-spacing: -0.3px;
+}
+
+.nickname-input {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic,
+    sans-serif;
+    font-size: 15px;
+    line-height: 21px;
+    transition: border-color 0.1s, background-color 0.1s;
+    resize: none;
+    padding: 8px 15px 9px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.nickname-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 112, 88, 0.5);
+}
+
+/* 닉네임 입력란 */
+.address-wrap {
+    margin-bottom: 30px;
+}
+
+.address-text {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+}
+
+.address-info {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgb(130, 140, 148);
+    letter-spacing: -0.3px;
+}
+
+.address-input {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic,
+    sans-serif;
+    font-size: 15px;
+    line-height: 21px;
+    transition: border-color 0.1s, background-color 0.1s;
+    resize: none;
+    padding: 8px 15px 9px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.address-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 112, 88, 0.5);
+}
+
+/* js로 error 클래스 추가 시 적용 */
+.nickname-text.error {
+    color: rgb(255, 119, 119);
+}
+
+.nickname-wrap .nickname-input.error {
+    border-color: #d1180b;
+}
+
+.nickname-wrap .nickname-input.error:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 119, 119, 0.5);
+}
+
+.nickname-input::placeholder {
+    color: rgb(194, 200, 204);
+}
+
+.nickname-input:hover:not(:focus) {
+    background-color: #fafafa;
+}
+
+.nickname-hidden {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+}
+
+/* 약관동의 */
+.terms-wrap {
+    margin-bottom: 30px;
+}
+
+.terms-text {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+}
+
+.terms-container {
+    padding: 18px;
+    border: 1px solid rgb(234, 237, 239);
+}
+
+.all-agree-wrap {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.all-agree-container {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    flex: 1 1 0%;
+}
+
+.all-check-wrap {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(218, 221, 224);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    transition: border-color 0.1s ease 0s, background-color 0.1s ease 0s;
+    flex-shrink: 0;
+}
+
+/* JS 이벤트로 enabled 클래스가 추가된 경우의 스타일 */
+.all-check-wrap.enabled {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #97a38c;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #97a38c;
+    transition: border-color 0.1s ease 0s, background-color 0.1s ease 0s;
+    flex-shrink: 0;
+}
+
+.all-check-wrap.enabled:hover {
+    background-color: rgb(99, 112, 88);
+    border-color: rgb(99, 112, 88);
+}
+
+.all-check-wrap:hover {
+    background-color: #f7f9fa;
+    border-color: #dadde0;
+}
+
+.all-check-container {
+    position: absolute;
+    overflow: hidden;
+    top: 3.6px;
+    left: 3px;
+    width: 0px;
+    height: 12px;
+    transition: width 0.2s ease 0.1s;
+}
+
+/* JS 이벤트로 enabled 클래스가 추가된 경우의 스타일 */
+.all-check-container.enabled {
+    position: absolute;
+    overflow: hidden;
+    top: 3.6px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    transition: width 0.2s ease 0.1s;
+}
+
+.all-check-area {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    vertical-align: top;
+    color: rgb(255, 255, 255);
+    -webkit-font-smoothing: antialiased;
+}
+
+.all-check-area::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+    content: "\e958";
+}
+
+.all-check-input[type="checkbox"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+.all-check-text-wrap {
+    flex: 1 1 0%;
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 6px;
+    color: rgb(47, 52, 56);
+}
+
+.all-check-text-container {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.all-check-detail {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(130, 140, 148);
+}
+
+.terms-seperator {
+    padding: 0px;
+    height: 1px;
+    border: none;
+    background-color: rgb(234, 237, 239);
+    margin: 18px 0px;
+}
+
+/* 필수 동의사항 */
+.essential-terms-wrap {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.essential-terms-container {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    flex: 1 1 0%;
+}
+
+.essential-check-wrap {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(218, 221, 224);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    transition: border-color 0.1s ease 0s, background-color 0.1s ease 0s;
+    flex-shrink: 0;
+}
+
+.essential-check-wrap:hover {
+    background-color: #f7f9fa;
+    border-color: #dadde0;
+}
+
+/* JS 이벤트로 enabled 클래스가 추가된 경우의 스타일 */
+.essential-check-wrap.enabled {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #97a38c;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #97a38c;
+    transition: border-color 0.1s ease 0s, background-color 0.1s ease 0s;
+    flex-shrink: 0;
+}
+
+.essential-check-wrap.enabled:hover {
+    background-color: rgb(99, 112, 88);
+    border-color: rgb(99, 112, 88);
+}
+
+.essential-check-container {
+    position: absolute;
+    overflow: hidden;
+    top: 3.6px;
+    left: 3px;
+    width: 0px;
+    height: 12px;
+    transition: width 0.2s ease 0.1s;
+}
+
+/* JS 이벤트로 enabled 클래스가 추가된 경우의 스타일 */
+.essential-check-container.enabled {
+    position: absolute;
+    overflow: hidden;
+    top: 3.6px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    transition: width 0.2s ease 0.1s;
+}
+
+.essential-check-area {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    vertical-align: top;
+    color: rgb(255, 255, 255);
+}
+
+.essential-check-area::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+    content: "\e958";
+}
+
+.essential-check-input[type="checkbox"] {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.essential-text-wrap {
+    flex: 1 1 0%;
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 6px;
+    color: rgb(47, 52, 56);
+}
+
+.essential-text-container {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.3px;
+}
+
+.essential-text-container::after {
+    content: "(필수)";
+    display: inline-block;
+    padding-left: 2px;
+    font-size: 12px;
+    line-height: 20px;
+    color: rgb(99, 112, 88);
+}
+
+.essential-terms-wrap + .essential-terms-wrap {
+    margin-top: 20px;
+}
+
+.terms-link-wrap {
+    margin-left: 8px;
+    color: rgb(47, 52, 56);
+}
+
+.terms-link-container {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.terms-link-container::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+    content: "\e969";
+}
+
+/* 선택 동의사항 */
+.optional-terms-wrap {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.optional-terms-container {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    flex: 1 1 0%;
+}
+
+.optional-check-wrap {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(218, 221, 224);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    transition: border-color 0.1s ease 0s, background-color 0.1s ease 0s;
+    flex-shrink: 0;
+}
+
+.optional-check-wrap:hover {
+    background-color: #f7f9fa;
+    border-color: #dadde0;
+}
+
+/* JS 이벤트로 enabled 클래스가 추가된 경우의 스타일 */
+.optional-check-wrap.enabled {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #97a38c;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #97a38c;
+    transition: border-color 0.1s ease 0s, background-color 0.1s ease 0s;
+    flex-shrink: 0;
+}
+
+.optional-check-wrap.enabled:hover {
+    background-color: rgb(99, 112, 88);
+    border-color: rgb(99, 112, 88);
+}
+
+.optional-check-container {
+    position: absolute;
+    overflow: hidden;
+    top: 3.6px;
+    left: 3px;
+    width: 0px;
+    height: 12px;
+    transition: width 0.2s ease 0.1s;
+}
+
+/* JS 이벤트로 enabled 클래스가 추가된 경우의 스타일 */
+.optional-check-container.enabled {
+    position: absolute;
+    overflow: hidden;
+    top: 3.6px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    transition: width 0.2s ease 0.1s;
+}
+
+.optional-check-area {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    vertical-align: top;
+    color: rgb(255, 255, 255);
+}
+
+.optional-check-area::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+    content: "\e958";
+}
+
+.optional-check-input[type="checkbox"] {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.optional-text-wrap {
+    flex: 1 1 0%;
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 6px;
+    color: rgb(47, 52, 56);
+}
+
+.optional-text-container {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.3px;
+}
+
+.optional-text-container::after {
+    content: "(선택)";
+    display: inline-block;
+    padding-left: 2px;
+    font-size: 12px;
+    line-height: 20px;
+    color: rgb(130, 140, 148);
+}
+
+.essential-terms-wrap + .optional-terms-wrap {
+    margin-top: 20px;
+}
+
+.optional-terms-wrap + .optional-terms-wrap {
+    margin-top: 20px;
+}
+
+/* 회원가입 버튼 */
+.register-button {
+    user-select: none;
+    display: inline-block;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    background: none;
+    font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic,
+    sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.1s, background-color 0.1s, border-color 0.1s;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #97a38c;
+    border-color: #97a38c;
+    color: #fff;
+    padding: 11px 10px;
+    font-size: 17px;
+    line-height: 26px;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+}
+
+.register-button:hover {
+    border-color: rgb(99, 112, 88);
+    background-color: rgb(99, 112, 88);
+}
+
+/* 로그인 페이지로 이동 */
+.already-registered-wrap {
+    color: rgb(66, 66, 66);
+    font-size: 15px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.login-link {
+    text-decoration: underline;
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.login-link:hover {
+    opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+    body,
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .except-logo-wrap {
+        width: 360px;
+    }
+}

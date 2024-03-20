@@ -1,0 +1,45 @@
+nav.benner-wrap{
+    padding-left: 32px;
+    padding-right: 32px;
+    height: 58px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    position: sticky;
+    background-color: #97A38C;
+}
+
+div.items-center{
+    align-items: center;
+    display: flex;
+}
+
+img.logo-img{
+    width: 90px;
+    height: 30px;
+}
+
+div.logo-between{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+    fill: #fff;
+}
+
+div.manager-center{
+    align-items: center;
+    display: flex;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    fill: #fff;
+}

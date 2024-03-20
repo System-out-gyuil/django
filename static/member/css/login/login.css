@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  margin: 0;
+}
+
+.login-wrap {
+  height: 100%;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  min-height: 100%;
+  background-color: rgb(250, 250, 250);
+}
+
+.except-footer-wrap {
+  display: flex;
+  width: 100%;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+
+.except-footer-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-box {
+  margin: 0px auto;
+  max-width: 300px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 50px 50px 0px 50px;
+  border: 1px solid #dbdbdb;
+  border-radius: 11px;
+}
+
+
+.logo-wrap {
+  margin-bottom: 30px;
+}
+
+.logo-container {
+  width: 147px;
+  height: 50px;
+  margin: 0px auto;
+}
+
+.form-wrap {
+  width: 300px;
+}
+
+/* 아이디, 비밀번호 입력창을 감싸는 div에 공통 적용 */
+.login-inputs {
+  position: relative;
+}
+
+.email-input {
+  padding: 13px 15px 14px;
+  margin: 0px;
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 4px 4px 0px 0px;
+  transition: box-shadow 0.2s ease 0s, background-color 0.2s ease 0s;
+  -webkit-font-smoothing: antialiased;
+  padding: 13px 15px 14px;
+  margin: 0px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", "Noto Sans CJK KR", "맑은 고딕", "Malgun Gothic",
+    sans-serif;
+  font-size: 15px;
+  line-height: 21px;
+  resize: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(219, 219, 219);
+  border-image: initial;
+  z-index: 0;
+}
+
+.email-input:hover:not(:focus) {
+  background-color: #fafafa;
+}
+
+.email-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(19, 79, 44, 0.3);
+  z-index: 2;
+}
+
+/* 이메일 입력 창에서 에러 발생 시 */
+.email-input.error {
+  border: 1px solid #d1180b;
+  z-index: 1;
+}
+
+.email-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(255, 119, 119, 0.3);
+  z-index: 2;
+}
+
+/* 비밀번호 입력창 */
+.password-input {
+  padding: 13px 15px 14px;
+  margin: 0px;
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+  margin-top: -1px;
+  transition: box-shadow 0.2s ease 0s, background-color 0.2s ease 0s;
+  -webkit-font-smoothing: antialiased;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", "Noto Sans CJK KR", "맑은 고딕", "Malgun Gothic",
+    sans-serif;
+  font-size: 15px;
+  line-height: 21px;
+  resize: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(219, 219, 219);
+  border-image: initial;
+  z-index: 0;
+}
+
+.password-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(19, 79, 44, 0.3);
+  z-index: 2;
+}
+
+.password-input:hover:not(:focus) {
+  background-color: #fafafa;
+}
+
+/* 비밀번호 입력 창에서 에러 발생 시 */
+.password-input.error {
+  border: 1px solid #d1180b;
+  z-index: 1;
+}
+
+.password-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(255, 119, 119, 0.3);
+  z-index: 2;
+}
+
+.login-button {
+  padding: 15px 10px;
+  margin: 20px 0px;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  line-height: 20px;
+  font-size: 17px;
+  min-height: 50px;
+  background-color: #134f2c;
+  border-color: #134f2c;
+  color: #fff;
+  user-select: none;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  /* background: none; */
+  font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic,
+    sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.1s, background-color 0.1s, border-color 0.1s;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  border-color: #97a38c;
+  background-color: #97a38c;
+}
+
+.find-and-sign-up-wrap {
+  width: 100%;
+  text-align: center;
+}
+
+/* 비번 재설정 */
+.password-update-link {
+  margin-left: 0px;
+}
+
+/* 회원가입 */
+.register-link {
+  margin-left: 20px;
+}
+
+.sns-text {
+  margin: 35px 0 15px;
+  color: #757575;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.33;
+  text-align: center;
+}
+
+/* sns(페이스북, 카카오, 네이버) 간편 로그인 */
+.login-with-sns-wrap {
+  margin: 0 10px;
+  -webkit-transition: 0.1s opacity;
+  transition: 0.1s opacity;
+}
+.login-with-sns-wrap button{
+  background: none;
+}
+.social-logins{
+  display: flex;
+}
+/* 위 영역 안 아이콘들에 적용 */
+.login-with-sns-wrap  img {
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  opacity: 1;
+}
+
+.login-with-sns-wrap  img:hover {
+  opacity: 0.6;
+}
+
+.any-problems {
+  margin-top: 24px;
+  color: #c2c8cc;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.non-member-wrap {
+  width: 100%;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #dbdbdb;
+}
+
+.non-member-select {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #424242;
+  height: 21px;
+}
+
+.hidden-non-member {
+  padding: 3px;
+  margin: -3px;
+  box-sizing: border-box;
+}
+
+.login-footer {
+  width: 100%;
+  color: #757575;
+  font-size: 10px;
+  line-height: 20px;
+  margin: -5px 0 25px;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+}
+
+.login-footer a {
+  width: 90.35px;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* 로그인 실패 시 띄울 모달창 */
+.login-error-modal-wrap {
+  position: fixed;
+  width: 470px;
+  left: calc(50% - 235px);
+  bottom: 40px;
+  z-index: 1400;
+  transform: translateY(200%);
+}
+
+.login-error-modal-container {
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 4px;
+  color: #f7f9fa;
+  background-color: rgb(47, 52, 56);
+  margin-top: 15px;
+}
+
+.error-modal-inner {
+  flex: 1 0 0px;
+  display: flex;
+  min-width: 0px;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.error-modal-text {
+  flex: 1 0 0px;
+  min-width: 0px;
+  margin: 0px;
+  text-align: left;
+  white-space: pre-line;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+/* 모달창에 적용할 애니메이션 */
+@keyframes show-toast {
+  0% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes hide-toast {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+}
+
+/* 위 애니메이션을 활용하기 위한 클래스 */
+.show-animation {
+  animation-name: show-toast;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.hide-animation {
+  animation-name: hide-toast;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+}
+
+/* 화면 너비가 768px 이상일 때 적용할 미디어 쿼리 */
+@media (min-width: 768px) {
+  body,
+  html {
+    font-size: 15px;
+  }
+}

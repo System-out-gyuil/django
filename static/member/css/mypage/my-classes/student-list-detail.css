@@ -1,0 +1,310 @@
+.layout,
+.page,
+body,
+html {
+  height: 100%;
+}
+
+.layout {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout > * {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+/* 전체 목록 */
+.notice-container {
+  margin: 40px auto;
+  width: 100%;
+  max-width: 920px;
+}
+
+.notice-title {
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #2f3438;
+  padding: 0 16px;
+}
+
+.notice-wrap {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  transform: translateY(0px);
+}
+
+/* 각 컬럼의 제목 부분들 */
+.student-list-title-wrap {
+  min-height: 60px;
+  padding: 18px 24px;
+  position: relative;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  color: #2f3438;
+  line-height: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-list-title-wrap::after {
+  left: 0;
+  right: 0;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  background: #eaedef;
+}
+
+.list-titles {
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* 각각의 수강 내역/수강 예약들 */
+.class-histories-wrap {
+  min-height: 65px;
+  padding: 18px 24px;
+  position: relative;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #2f3438;
+  line-height: 20px;
+  border-bottom: 1px solid #eaedef;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+/* 
+.my_lecture-histories-content-box {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: grid;
+  grid-template-columns: 1fr;
+  -webkit-box-pack: justify;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+} */
+
+.class-history-items {
+  margin-bottom: 6px;
+  display: block;
+  color: #2f3438;
+}
+
+/* .my_lecture-histories-wrap::after {
+  left: 0;
+  right: 0;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  background: #eaedef;
+} */
+
+/* 화면 우상단의 검색창 */
+.header-fourth-inner-firstdiv {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: row-reverse;
+  height: 100%;
+  -webkit-flex: 1 1 0px;
+  -ms-flex: 1 1 0px;
+  flex: 1 1 0px;
+  min-width: 0;
+  /* margin-right: 9px; */
+  margin-right: 14px;
+}
+
+/* @media (min-width: 1256px){
+  .header-fourth-inner-firstdiv {
+      margin-right: 14px;
+  }
+} */
+
+.header-fourth-inner-thirddiv {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 0;
+  box-sizing: border-box;
+  border: 1px solid #dadde0;
+  border-radius: 4px;
+  height: 32px;
+  padding: 0 14px;
+  width: 100%;
+}
+
+.header-fourth-inner-thirddiv:hover {
+  background-color: #f7f9fa;
+}
+
+.hearder-inner-thirddiv-span {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+  vertical-align: middle;
+  padding-right: 6px;
+  color: #828c94;
+}
+
+.hearder-inner-thirddiv-span::before {
+  font-family: OhouseIcon;
+  vertical-align: top;
+}
+
+.hearder-inner-thirddiv-span:before {
+  content: "\ea4d";
+}
+
+.hearder-inner-thirddiv-input {
+  box-sizing: border-box;
+  -webkit-flex: 1 0 0%;
+  -ms-flex: 1 0 0%;
+  flex: 1 0 0%;
+  vertical-align: middle;
+  outline: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  height: 100%;
+  color: #2f3438;
+  outline: none;
+  font-size: 16px;
+  line-height: 24px;
+  padding-right: 6px;
+}
+
+.hearder-inner-thirddiv-input:focus {
+  border-color: #134f2c;
+  outline: none;
+}
+
+.header-fourth-inner-thirddiv > input {
+  width: 100%;
+}
+
+::-webkit-input-placeholder {
+  -webkit-text-security: none;
+  color: rgb(117, 117, 117);
+  direction: inherit !important;
+  pointer-events: none !important;
+  text-orientation: inherit !important;
+  writing-mode: inherit !important;
+}
+
+input::-webkit-input-placeholder {
+  text-overflow: inherit;
+  overflow-wrap: normal;
+  line-height: initial !important;
+  -webkit-user-modify: read-only !important;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.hearder-inner-thirddiv-input::-webkit-input-placeholder {
+  color: #c2c8cc;
+}
+
+.hearder-inner-thirddiv-input::placeholder {
+  color: #c2c8cc;
+}
+
+/* 통합검색 옆에 x 버튼 */
+.hearder-inner-thirddiv-div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/* 이 코드 때문에 통합검색 박스가 사라짐 */
+/* @media (min-width: 1024px){
+  .header-fourth-inner-seconddiv {
+      display: none;
+  }
+} */
+
+.header-input-xbutton {
+  display: inline-block;
+  margin: 0px 0px 0px 8px;
+  padding: 0px;
+  border: none;
+  background: none;
+  font: inherit;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  outline: none;
+  color: rgb(130, 140, 148);
+}
+
+.header-input-xbutton:first-of-type {
+  margin-left: 0px;
+}
+
+.header-input-xbutton-span {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.header-input-xbutton-span:before {
+  content: "\e9be";
+}
+
+.header-input-xbutton-span::before {
+  font-family: OhouseIcon;
+  vertical-align: top;
+}

@@ -1,0 +1,2149 @@
+header {
+    display: block;
+}
+
+footer, header, main {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.main-wrap {
+    height: 100%;
+}
+
+.main-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
+    flex-wrap: nowrap;
+}
+
+.main-container, .page, body, html {
+    height: 100%;
+}
+
+.main-container > * {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.realmain-wrap {
+    margin-top: 30px;
+}
+
+.realmain-wrap-container {
+    /* padding: 0 16px; */
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 1256px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.realmain-image-wrap {
+    -webkit-flex: 1 1 847px;
+    -ms-flex: 1 1 847px;
+    flex: 1 1 847px;
+}
+
+.realmain-image-section {
+    overflow: hidden;
+    position: relative;
+    padding-top: 59.976387249114524%;
+    font-size: 0;
+    border-radius: 4px;
+}
+
+.realmain-image-firsta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.realmain-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #EAEDEF;
+    -webkit-transition: .2s -webkit-transform;
+    transition: .2s transform;
+}
+
+.realmain-image:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.realmain-image-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    height: 160px;
+    padding: 0px 30px 30px;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .4));
+    pointer-events: none;
+}
+
+.realmain-image-contentp {
+    overflow: hidden;
+    display: -webkit-box;
+    /* font-size: 24px;
+    line-height: 32px; */
+    color: #FFFFFF;
+    font-weight: 700;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    text-shadow: 0 2px 10px rgba(63, 71, 77, 0.25);
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 32px;
+    line-height: 42px;
+}
+
+.realmain-image-contentspan {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.realmain-image-contentspan-image {
+    /* width: 20px;
+    height: 20px; */
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    border-radius: 100%;
+}
+
+.realmain-image-contentspan-span {
+    /* font-size: 14px;
+    line-height: 20px; */
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.realmain-advertisement-wrap {
+    -webkit-flex: 1 1 269px;
+    -ms-flex: 1 1 269px;
+    flex: 1 1 269px;
+    margin-left: 20px;
+}
+
+.realmain-advertisement-content {
+    position: relative;
+    padding-top: 188.84758364312268%;
+}
+
+.carousel {
+    position: relative;
+}
+
+.realmain-advertisement-content2.realmain-advertisement-content2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.realmain-advertisement-content3 {
+    overflow: hidden;
+    height: 100%;
+    border-radius: 4px;
+    background: #EAEDEF;
+}
+
+.realmain-advertisement-content4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    -moz-flex-wrap: nowrap;
+    -ms-flex-wrap: none;
+    flex-wrap: nowrap;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    -webkit-align-items: stretch;
+    -moz-align-items: stretch;
+    align-items: stretch;
+    min-height: 100%;
+    height: 100%;
+}
+
+.realmain-advertisement-content5 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.realmain-advertisement-link {
+    display: block;
+    height: 100%;
+}
+
+.realmain-advertisement-div {
+    height: 100%;
+    /* display: none; */
+}
+
+.realmain-advertisement-span {
+    height: inherit;
+    display: block;
+    transition: transform 0.2s ease 0s;
+}
+
+.realmain-advertisement-image {
+    width: 270%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #EAEDEF;
+    -webkit-transition: .2s -webkit-transform;
+    transition: .2s transform;
+}
+
+.realmain-advertisement-image:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+/* 이런 사진 찾고 있나요 부분 */
+.realmain-plantRecommend-wrap {
+    /* padding: 0px 16px; */
+    box-sizing: border-box;
+    background: rgb(255, 255, 255);
+    max-width: 1256px;
+    /* margin: 0px auto; */
+    padding: 0px 60px;
+    margin: 40px auto;
+}
+
+.realmain-plantRecommend-latterwrap {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0px;
+    font-size: 0px;
+    line-height: 1;
+}
+
+.realmain-plantRecommend-lattercontent {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 0px;
+}
+
+.realmain-plantRecommend-mainlatter {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.realmain-plantRecommend-stronglatter {
+    overflow: hidden;
+    display: inline-block;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.realmain-plantRecommend-stronglatter:hover {
+    opacity: 0.5;
+}
+
+.realmain-plantRecommend-littlelatter {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    max-width: 100%;
+    margin-top: 4px;
+}
+
+.realmain-plantRecommend-spanlatter {
+    overflow: hidden;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.realmain-seeMore-wrap {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 0px;
+    margin-left: 10px;
+}
+
+.realmain-seeMore {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #134F2C;
+    cursor: pointer;
+}
+
+.realmain-seeMore:hover {
+    opacity: 0.5;
+}
+
+.realmain-plantRecommend-photowrap2 {
+    height: fit-content;
+    position: relative;
+}
+
+.realmain-plantRecommend-photowrap3 {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.realmain-plantRecommend-photoul {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0px;
+    padding: 0px;
+}
+
+.realmain-plantRecommend-photoul > li:last-of-type {
+    margin-right: 0px;
+}
+
+.realmain-plantRecommend-photoli:last-of-type {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.realmain-plantRecommend-photoli {
+    margin: 0px 20px 0px 0px;
+    padding: 0px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: calc(16.6667% - 16.6667px);
+}
+
+.realmain-plantRecommend-photowrapdiv {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-width: 0px;
+    flex-flow: column;
+}
+
+.realmain-plantRecommend-photocontentdiv {
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    width: 176.5px;
+    height: 260px;
+}
+
+realmain-plantRecommend-photocontentdiv::after {
+    content: "";
+    display: block;
+    padding-top: 133.333%
+}
+
+.realmain-plantRecommend-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: transform 0.2s ease 0s;
+}
+
+.realmain-plantRecommend-photo:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.realmain-plantRecommend-profilediv {
+    position: absolute;
+    padding: 8px;
+    font-size: 0px;
+    z-index: 1;
+    left: 0px;
+    bottom: 0px;
+}
+
+.realmain-plantRecommend-profilediv2 {
+    /* display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox; */
+    display: flex;
+    /* -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center; */
+    align-items: center;
+}
+
+.realmain-plantRecommend-profilediv3 {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.realmain-plantRecommend-profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.realmain-plantRecommend-profilespan {
+    overflow: hidden;
+    display: inline-block;
+    max-width: 100px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.realmain-plantRecommend-scrap {
+    position: absolute;
+    padding: 8px;
+    font-size: 0px;
+    z-index: 1;
+    right: 1px;
+    top: -6px;
+}
+
+.scrap-button {
+    margin: 0px -6px -6px 0px;
+    padding: 0px;
+    border: none;
+    background: none;
+    font: inherit;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top:8px;
+    right:6px;
+    z-index: 5;
+}
+
+.realmain-plantRecommend-scrapspan {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    transform: translateZ(0px);
+}
+
+.realmain-plantRecommend-scrapspan > img {
+    filter: drop-shadow(rgba(63, 71, 77, 0.25) 0px 2px 5px);
+}
+
+.scrap-off-img {
+    opacity: 1;
+}
+
+.realmain-plantRecommend-scrapspan > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.realmain-plantRecommend-scrapon {
+    opacity: 0;
+}
+
+.realmain-plantRecommend-profilelink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    inset: 0px;
+    cursor: pointer;
+}
+
+.realmain-plantRecommend-beforebuttonWrap {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 0%;
+    display: none;
+}
+
+.realmain-beforebutton {
+    margin: 0px;
+    border: none;
+    background: none rgb(255, 255, 255);
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    box-sizing: border-box;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding: 0px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 24px;
+    box-shadow: rgba(63, 71, 77, 0.15) 0px 2px 5px;
+}
+
+.realmain-beforebutton:hover {
+    background-color: #F7F9FA;
+}
+
+.realmain-beforebutton-span {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    color: rgb(47, 52, 56);
+}
+
+.realmain-beforebutton-span {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+.realmain-beforebutton-span::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+.realmain-beforebutton-span:before {
+    content: "\e966";
+}
+
+.realmain-plantRecommend-nextbuttonWrap {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 100%;
+}
+
+.realmain-nextbutton {
+    margin: 0px;
+    border: none;
+    background: none rgb(255, 255, 255);
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    box-sizing: border-box;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding: 0px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 24px;
+    box-shadow: rgba(63, 71, 77, 0.15) 0px 2px 5px;
+}
+
+.realmain-nextbutton:hover {
+    background-color: #F7F9FA;
+}
+
+.realmain-nextbutton-span {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    color: rgb(47, 52, 56);
+}
+
+.realmain-nextbutton-span::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+.realmain-nextbutton-span:before {
+    content: "\e96a";
+}
+
+.realmain-plantRecommend-searchmoreA {
+    color: rgb(47, 52, 56);
+    display: inline-block;
+    font-weight: 500;
+    padding: 6px 16px;
+}
+
+.realmain-plantRecommend-searchmorediv {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgb(234, 237, 239);
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.realmain-plantRecommend-searchmorediv:hover {
+    background-color: rgb(218, 221, 224);
+}
+
+.realmain-plantRecommend-searchmorespan {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.realmain-plantRecommend-searchmorespan::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+.realmain-plantRecommend-searchmorespan:before {
+    content: "\e931";
+}
+
+.realmain-plantRecommend-searchmoreletter {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* 따라하기 좋은 40평 이상 집들이 부분 (아마 강의 추천 부분이 될 것 같음) */
+.realmain-lectureRecommend-wrap {
+    padding: 0px 16px;
+    box-sizing: border-box;
+    background: rgb(255, 255, 255);
+    max-width: 1256px;
+    /* margin: 0px auto; */
+    padding: 0px 60px;
+    margin: 40px auto;
+}
+
+.realmain-lectureRecommend-lattercontent {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0px;
+    font-size: 0px;
+    line-height: 1;
+}
+
+.realmain-lectureRecommend-lattercond {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 0px;
+}
+
+.realmain-lectureRecommend-lattercondd {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.realmain-stronglatter {
+    overflow: hidden;
+    display: inline-block;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.realmain-lecture-seeMore-wrap {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 0px;
+    margin-left: 10px;
+}
+
+.realmain-lectureSeeMore {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #134F2C;
+    cursor: pointer;
+}
+
+.realmain-lectureSeeMore:hover {
+    opacity: 0.5;
+}
+
+.realmain-lecture-photoDiv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.realmain-lecture-photoEachdiv {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-width: 0px;
+    flex-flow: column;
+    margin-top: 10px;
+}
+
+.realmain-lecture-photoEachphoto {
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+}
+
+.realmain-lecture-photoEachphoto::after {
+    content: "";
+    display: block;
+    padding-top: 66.6667%;
+}
+
+.realmain-lecture-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: transform 0.2s ease 0s;
+}
+
+.realmain-lecture-why {
+    position: absolute;
+    padding: 8px;
+    font-size: 0px;
+    z-index: 1;
+    left: 0px;
+    bottom: 0px;
+}
+
+.realmain-lecture-whydiv {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.realmain-lecture-scrap {
+    position: absolute;
+    padding: 8px;
+    font-size: 0px;
+    z-index: 1;
+    right: 1px;
+    top: -6px;
+}
+
+.realmain-lecture-scrapbutton {
+    margin: 0px -6px -6px 0px;
+    padding: 0px;
+    border: none;
+    background: none;
+    font: inherit;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    position: relative;
+}
+
+.realmain-lecture-scrapSpan {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    transform: translateZ(0px);
+}
+
+.realmain-lecture-scrapSpan > img {
+    filter: drop-shadow(rgba(63, 71, 77, 0.25) 0px 2px 5px);
+}
+
+.realmain-lecture-scrapSpan > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.realmain-lecture-scrapoff {
+    opacity: 1;
+}
+
+.realmain-lecture-scrapon {
+    opacity: 0;
+}
+
+.realmain-lecture-photoEachphoto::after {
+    content: "";
+    display: block;
+    padding-top: 66.6667%;
+}
+
+.realmain-stronglatter:hover {
+    opacity: 0.5;
+}
+
+.realmain-lecture-explanationDiv {
+    min-width: 0px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: rgb(47, 52, 56);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    /* margin-top: 10px; */
+}
+
+.realmain-lecture-explanationP {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.realmain-lecture-explanationSpan {
+    color: #134F2C;
+    font-weight: 700;
+}
+
+.realmain-lecture-explanationSpan::after {
+    content: " ";
+}
+
+.realmain-lecture-explanationA {
+    position: absolute;
+    inset: 0px;
+    cursor: pointer;
+}
+
+.realmain-todayHotdeal-wrap {
+    /* padding: 0px 16px; */
+    box-sizing: border-box;
+    background: rgb(255, 255, 255);
+    margin: 40px auto;
+    max-width: 1256px;
+    /* margin: 0px auto; */
+    padding: 0px 60px;
+}
+
+.realmain-todayHotdeal-lettercontent {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0px;
+    font-size: 0px;
+    line-height: 1;
+}
+
+.realmain-todayHotdeal-lettercond {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 0px;
+}
+
+.realmain-todayHotdeal-lettercondd {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.realmain-todayHotdeal-letterStrong {
+    overflow: hidden;
+    display: inline-block;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.realmain-todayHotdeal-letterStrong:hover {
+    opacity: 0.5;
+}
+
+.realmain-todayHotdeal-photoWrapd {
+    position: relative;
+}
+
+.realmain-todayHotdeal-photoWrapdd {
+    position: relative;
+    z-index: 0;
+    /* 오버플로우 히든 넣기 */
+    overflow: hidden;
+}
+
+.realmain-todayHotdeal-photoWrapUl {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    /* overflow: hidden; */
+}
+
+.realmain-todayHotdeal-photoWrapli {
+    margin: 0px 20px 0px 0px;
+    padding: 0px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: calc(25% - 15px);
+}
+
+.realmain-todayHotdeal-photoWrapliD {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+}
+
+.realmain-todayHotdeal-article {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    /* display: flex; */
+    position: relative;
+    /* padding: 16px 0; */
+    display: block;
+    padding: 0 10px 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    /* bottom: 12px; */
+    margin-top: 5px;
+    /* right: 12px; */
+    margin: 2px 0 0;
+}
+
+.realmain-todayHotdeal-articlea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.realmain-todayHotdeal-imgdiv {
+    position: relative;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 48%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 48%;
+    -ms-flex: 0 0 48%;
+    flex: 0 0 48%;
+    /* width: 48%; */
+    width: auto;
+    /* margin: 0 -10px; */
+    margin: 0px;
+}
+
+.realmain-todayHotdeal-imgdivdd {
+    position: relative;
+    background-color: #f5f5f5;
+    padding-bottom: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.realmain-todayHotdeal-imgdivdd:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .02);
+}
+
+.realmain-todayHotdeal-imgdivdd > .realmain-todayHotdeal-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    transition: transform .2s;
+}
+
+/*.scrap-button {*/
+/*    position: absolute;*/
+/*    bottom: 8px;*/
+/*    right: 8px;*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    background: none;*/
+/*    border: none;*/
+/*    z-index: 2;*/
+/*    transition: opacity .1s;*/
+/*    top: 9px;*/
+/*    right: 9px;*/
+/*}*/
+
+/*.scrap-button > .realmain-todayHotdeal-scrapimg {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    transition: opacity .1s;*/
+/*}*/
+
+.realmain-todayHotdeal-scrapleftdiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background-color .2s;
+}
+
+.today-deal-item__content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    margin-left: 12px;
+    margin: 0;
+}
+
+.realmain-todayHotdeal-productWraph {
+    margin-top: 9px;
+}
+
+.realmain-todayHotdeal-productSpan {
+    display: block;
+    font-size: 11px;
+    color: #134F2C;
+}
+
+.realmain-todayHotdeal-productSpanS {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #424242;
+    transition: opacity .1s;
+    max-height: 57px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    max-height: 34px;
+    -webkit-line-clamp: 2;
+}
+
+.realmain-todayHotdeal-Mobile {
+    display: none;
+}
+
+.realmain-todayHotdeal-MobileP {
+    font-size: 12px;
+    color: #9e9e9e;
+    line-height: 16px;
+    font-weight: 700;
+}
+
+.realmain-todayHotdeal-MobileP > .Staricon {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 1px;
+    color: #35c5f0;
+    vertical-align: -2px;
+}
+
+.realmain-todayHotdeal-MobileP > .realmain-todayHotdeal-MobileStrong {
+    margin-right: 2px;
+    color: #424242;
+    font-weight: 700;
+}
+
+.realmain-todayHotdeal-priceWrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 17px;
+    line-height: 23px;
+    font-weight: 700;
+    margin: 2px 0 0;
+}
+
+.realmain-todayHotdeal-priceWrapfirst {
+    color: #134F2C;
+    margin-right: 4px;
+}
+
+.realmain-todayHotdeal-realprice {
+    color: #000;
+    margin-right: 4px;
+}
+
+.today-deal-item__stats-pc {
+    /* display: none; */
+    display: block;
+}
+
+.realmain-todayHotdeal-starP {
+    font-size: 12px;
+    color: #9e9e9e;
+    line-height: 16px;
+    font-weight: 700;
+}
+
+.realmain-todayHotdeal-starP > .realStaricon {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 1px;
+    color: #134F2C;
+    vertical-align: -2px;
+}
+
+.realmain-todayHotdeal-starP > .realmain-todayHotdeal-realStrong {
+    margin-right: 2px;
+    color: #424242;
+    font-weight: 700;
+}
+
+.realmain-todayHotdeal-boxWrap {
+    display: flex;
+    margin-top: 3px;
+}
+
+.realmain-todayHotdeal-boxWrapSpan {
+    padding: 5px 6px;
+    border-radius: 4px;
+    background-color: #134F2C;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.realmain-todayHotdeal-boxWrap > .realmain-todayHotdeal-boxWrapSpan {
+    margin-right: 4px;
+}
+
+.realmain-todayHotdeal-photoWrapUl > li:last-of-type {
+    margin-right: 0px;
+}
+
+.realmain-todayHotdeal-photoWrapli:last-of-type {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.realmain-todayHotdeal-photoA {
+    color: rgb(47, 52, 56);
+    display: inline-block;
+    font-weight: 500;
+    padding: 6px 16px;
+}
+
+.realmain-todayHotdeal-photoDiv {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgb(234, 237, 239);
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.realmain-todayHotdeal-photoSpan {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.realmain-todayHotdeal-photoSpan:before {
+    content: "\e931";
+}
+
+.realmain-todayHotdeal-photoSpan::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+.realmain-todayHotdeal-photoDivDiv {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.realmain-todayHotdeal-beforebuttonWrap {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 0%;
+}
+
+.realmain-todayHotdeal-beforbutton {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: auto;
+    height: 50px;
+    border-radius: 4px;
+    padding: 0 16px;
+    font-weight: 700;
+    box-sizing: border-box;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #35C5F0;
+    width: 50px;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(63, 71, 77, 0.15);
+}
+
+.realmain-todayHotdeal-beforeSpan {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    color: #2F3438;
+}
+
+.realmain-todayHotdeal-beforeSpan:before {
+    content: "\e966";
+}
+
+.realmain-todayHotdeal-beforeSpan::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+.realmain-todayHotdeal-nextbuttonWrap {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 100%;
+}
+
+.realmain-todayHotdeal-nextbutton {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: auto;
+    height: 50px;
+    border-radius: 4px;
+    padding: 0 16px;
+    font-weight: 700;
+    box-sizing: border-box;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #35C5F0;
+    width: 50px;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(63, 71, 77, 0.15);
+}
+
+.realmain-todayHotdeal-nextSpan {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    color: #2F3438;
+}
+
+.realmain-todayHotdeal-nextSpan:before {
+    content: "\e96a";
+}
+
+.realmain-todayHotdeal-nextSpan::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+/* 오늘의 딜 부분 사진 확대 축소 */
+.realmain-todayHotdeal-articlea:hover ~ .realmain-todayHotdeal-imgdiv .realmain-todayHotdeal-img {
+    transform: translate(-50%, -50%) scale(1.05)
+}
+
+.realmain-todayHotdeal-beforbutton:hover {
+    background-color: #F7F9FA;
+}
+
+.realmain-todayHotdeal-nextbutton:hover {
+    background-color: #F7F9FA;
+}
+
+.realmain-todayHotdeal-photoDiv:hover {
+    background-color: rgb(218, 221, 224);
+}
+
+.realmain-userReview-wrap {
+    /* padding: 0px 16px; */
+    box-sizing: border-box;
+    background: rgb(255, 255, 255);
+    max-width: 1256px;
+    /* margin: 0px auto; */
+    padding: 0px 60px;
+    margin: 40px auto;
+}
+
+.realmain-userReview-letterContent {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0px;
+    font-size: 0px;
+    line-height: 1;
+}
+
+.realmain-userReview-letterContentD {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 0px;
+}
+
+.realmain-userReview-letterContentDD {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.realmain-userReview-letterStrong {
+    overflow: hidden;
+    display: inline-block;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.realmain-userReview-letterStrong:hover {
+    opacity: 0.5;
+}
+
+.realmain-userReview-photoContent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.realmain-userReview-photoContentD {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-width: 0px;
+    flex-flow: column;
+    margin-top: 10px;
+}
+
+.realmain-userReview-photoContentDD {
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+}
+
+.realmain-userReview-photoContentDD::after {
+    content: "";
+    display: block;
+    padding-top: 66.6667%;
+}
+
+.realmain-userReview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: transform 0.2s ease 0s;
+}
+
+/* 유저들의 강의 평가 호버 부분 테스트 => 안됨 원래 하던대로 해야할 것 같다.*/
+/* .realmain-userReview-img:hover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: transform 0.2s ease 0s;
+    transform: scale(1.05);
+} */
+
+.realmain-userReview-whyDiv {
+    position: absolute;
+    padding: 8px;
+    font-size: 0px;
+    z-index: 1;
+    left: 0px;
+    bottom: 0px;
+}
+
+.realmain-userReview-whyDivD {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.realmain-userReview-contentWrap {
+    min-width: 0px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: rgb(47, 52, 56);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    /* margin-top: 10px; */
+}
+
+.realmain-userReview-contentP {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.realmain-userReview-contentPP {
+    overflow: hidden;
+    display: -webkit-box;
+    margin-top: 2px;
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.realmain-userReview-contentA {
+    position: absolute;
+    inset: 0px;
+    cursor: pointer;
+}
+
+.realmain-bestproduct-Wrap {
+    /* padding: 0px 16px; */
+    box-sizing: border-box;
+    background: rgb(255, 255, 255);
+    max-width: 1256px;
+    margin: 60px auto;
+    padding: 0px 60px;
+}
+
+.realmain-bestproduct-letterContent {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0px;
+    font-size: 0px;
+    line-height: 1;
+}
+
+.realmain-bestproduct-letterContentD {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 0px;
+}
+
+.realmain-bestproduct-letterContentDD {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.realmain-bestproduct-letterContentStrong {
+    overflow: hidden;
+    display: inline-block;
+    font-weight: 700;
+    color: rgb(47, 52, 56);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.realmain-bestproduct-letterContentStrong:hover {
+    opacity: 0.5;
+}
+
+.remain-bestproduct-photoCategoryWrap {
+    margin-bottom: 16px;
+}
+
+.realmain-bestproduct-photoCategoryContent {
+    position: relative;
+}
+
+.realmain-bestproduct-photoCategoryContentD {
+    position: relative;
+    z-index: 0;
+}
+
+.realmain-bestproduct-photoCategoryUl {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.realmain-bestproduct-photoCategoryUl::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+    pointer-events: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.realmain-bestproduct-photoCategoryli {
+    margin: 0px 6px 0px 0px;
+    padding: 0px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+/* 베스트 상품 카테고리 버튼들 색을 바뀌게 해주는 클래스인데 사실상 나는 js로 구현해서 이부분은 필요 없는 코드 */
+/* .realmain-bestproduct-photoCategorylC {
+    display: inline-block;
+    position: relative;
+    height: 32px;
+    border-radius: 16px;
+    padding-left: 9px;
+    padding-right: 12px;
+    line-height: 0;
+    color: rgb(255, 255, 255);
+    background-color: #134F2C;
+    cursor: pointer;
+}
+
+.realmain-bestproduct-photoCategorylC::before {
+    content: "";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+} */
+
+.realmain-bestproduct-photoCategoryip {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+}
+
+.realmain-bestproduct-photoCategorySpan {
+    font-size: 14px;
+    line-height: 18px;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: inherit;
+}
+
+.realmain-bestproduct-photoCategoryNlC {
+    display: inline-block;
+    position: relative;
+    height: 32px;
+    border-radius: 16px;
+    padding-left: 10px;
+    padding-right: 12px;
+    line-height: 0;
+    color: rgb(47, 52, 56);
+    background-color: rgb(247, 249, 250);
+    cursor: pointer;
+}
+
+.realmain-bestproduct-photoCategoryNlC::before {
+    content: "";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* 베스트 상품 카테고리 버튼 토글하려고 만들어 놓은 클래스 */
+.active {
+    color: rgb(255, 255, 255);
+    background-color: #134F2C;
+}
+
+.realmain-bestproduct-realphotoWrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.realmain-bestproduct-realphotoContent {
+    position: relative;
+}
+
+.realmain-bestproduct-realphotoArticle {
+    margin: 2px 0 0;
+    position: relative;
+    padding: 0 0 30px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.realmain-bestproduct-realphotoA {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+.realmain-bestproduct-realphotoDiv {
+    position: relative;
+    background-color: #f5f5f5;
+    padding-bottom: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.realmain-bestproduct-realphotoDiv:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .02);
+}
+
+.realmain-bestproduct-realphotoDiv > .realmain-bestproduct-realphotoimg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    transition: transform .2s;
+}
+
+.realmain-bestproduct-realPhotoScrapbtn {
+    top: 12px;
+    right: 12px;
+    position: absolute;
+    /* bottom: 8px;
+    right: 8px; */
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    z-index: 2;
+    transition: opacity .1s;
+}
+
+.realmain-bestproduct-realPhotoScrapbtn > .realmain-bestproduct-realPhotoScrapOff {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity .1s;
+}
+
+.realmain-bestproduct-realphotosld {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background-color .2s;
+}
+
+.realmain-bestproduct-realphotoContentWrap {
+    padding: 0 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.realmain-bestproduct-contenth {
+    margin: 9px 0 0;
+}
+
+.realmain-bestproduct-contenthead-brand {
+    display: block;
+    color: #134F2C;
+    word-break: break-all;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 13px;
+}
+
+.realmain-bestproduct-contenthead-name {
+    display: block;
+    max-height: 34px;
+    margin-top: 5px;
+    word-break: break-all;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #000;
+    transition: opacity .1s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+}
+
+.realmain-bestproduct-contentbodySpan {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 17px;
+    line-height: 23px;
+    font-weight: 700;
+    margin: 2px 0 0;
+}
+
+.realmain-bestproduct-pricerate {
+    color: #134F2C;
+    margin-right: 4px;
+}
+
+.realmain-bestproduct-price {
+    color: #000;
+    margin-right: 4px;
+}
+
+.realmain-bestproduct-infoP {
+    font-size: 12px;
+    color: #134F2C;
+    line-height: 16px;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.realmain-bestproduct-infoP > .bestporductStaricon {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 1px;
+    color: #134F2C;
+    vertical-align: -2px;
+}
+
+.realmain-bestproduct-infoP > .realmain-bestproduct-strong {
+    margin-right: 2px;
+    color: #424242;
+    font-weight: 700;
+}
+
+.realmain-bestproduct-salepriceSpan {
+    display: flex;
+    gap:2px;
+}
+
+.realmain-bestproduct-salepriceSpan > .salepriceicon {
+    margin-right: 4px;
+}
+
+.realmain-bestproduct-realphotoArticle .realmain-bestproduct-salepriceSpan {
+    margin: 3px 0 0;
+}
+
+.realmain-bestproduct-tagSpan {
+    padding: 5px 6px;
+    border-radius: 4px;
+    background-color: #134F2C;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.realmain-bestproduct-rankdiv {
+    display: inline-block;
+    font-size: 0px;
+    line-height: 1;
+    position: absolute;
+    top: 0px;
+    left: 12px;
+}
+
+.realmain-bestproduct-rank {
+    position: absolute;
+    top: 4px;
+    left: 0px;
+    right: 0px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+/* 베스트 상품 부분 사진 확대 축소 */
+.realmain-bestproduct-realphotoA:hover ~ .realmain-bestproduct-realphotoDiv .realmain-bestproduct-realphotoimg {
+    transform: translate(-50%, -50%) scale(1.05)
+}
+
+
+/* 스크랩북 모달창 css */
+.scrap-popup-wrap {
+    position: fixed;
+    width: 470px;
+    left: calc(50% - 235px);
+    bottom: 40px;
+    z-index: 1400;
+    transform: translateY(200%);
+}
+
+.scrap-popup-cancel-wrap {
+    position: fixed;
+    width: 470px;
+    left: calc(50% - 235px);
+    bottom: 40px;
+    z-index: 1400;
+    transform: translateY(200%);
+}
+
+.scrap-popup-container {
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 4px;
+    color: #f7f9fa;
+    background-color: rgb(47, 52, 56);
+    margin-top: 15px;
+}
+
+@keyframes show-toast {
+    0% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes hide-toast {
+    0% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+}
+
+.show-animation {
+    animation-name: show-toast;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.hide-animation {
+    animation-name: hide-toast;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+}
+
+.scrap-popup-inner {
+    flex: 1 0 0px;
+    display: flex;
+    min-width: 0px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.scrap-popup-text {
+    flex: 1 0 0px;
+    min-width: 0px;
+    margin: 0px;
+    text-align: left;
+    white-space: pre-line;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.scrap-popup-button-container {
+    text-align: right;
+    margin: 0px -3px;
+}
+
+.scrap-link-button {
+    display: inline-block;
+    border: none;
+    background: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    margin: -5px 3px;
+    padding: 5px 8px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #97A38C;
+    font-weight: 700;
+}

@@ -1,0 +1,279 @@
+* {
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body, html {
+    line-height: 1;
+    font-family: Pretendard Variable,Noto Sans KR,Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,sans-serif;
+    font-size: 13px;
+}
+
+footer, header, main {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+}
+
+div {
+    display: block;
+}
+
+blockquote, body, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+
+[role=button], a, button, input[type=button], input[type=reset], input[type=submit] {
+    cursor: pointer;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+div.footer-wrap{
+    margin-top: auto;
+    z-index: 100;
+    padding: 30px 0px;
+    background-color: rgb(247, 249, 250);
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    position: relative;
+}
+
+div.footer-container{
+    padding: 0px 16px;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    box-sizing: border-box;
+    font-size: 12px;
+    line-height: 16px;
+    display: grid;
+    column-gap: 30px;
+}
+
+div.notice-wrap{
+    color: rgb(47, 52, 56);
+    font-size: 12px;
+    line-height: 16px;
+
+}
+
+div.notice-container{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 2px;
+    color: rgb(47, 52, 56);
+    font-size: 12px;
+    line-height: 16px;
+}
+
+a.notice{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+span.notice{
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+}
+
+span.notice::before{
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+
+span.notice:before{
+    content: "\e974";
+}
+
+div.notice-num{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 20px 0px 8px;
+    color: rgb(47, 52, 56);
+    font-size: 12px;
+    line-height: 16px;
+}
+
+a.notice-num{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-right: 6px;
+}
+
+time.notice-time{
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(47, 52, 56);
+}
+
+div.notice-text{
+    font-size: 12px;
+    line-height: 20px;
+    /* white-space: pre-wrap; */
+    margin-bottom: 12px;
+}
+
+div.notice-text-inner{
+    position: relative;
+    padding-left: 20px;
+}
+
+div.notice-text-inner::before{
+    content: "•";
+    position: absolute;
+    font-size: 10px;
+    left: 7px;
+}
+
+div.kakao{
+    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+button.kakao{
+    white-space: normal;
+    margin: 0px;
+    background: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 14px;
+    line-height: 20px;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 32px;
+    border-radius: 4px;
+    padding: 0px 8px;
+    font-weight: 400;
+    box-sizing: border-box;
+    text-align: center;
+    color: rgb(47, 52, 56);
+    border: 1px solid rgb(218, 221, 224);
+    width: fit-content;
+    white-space: nowrap;
+}
+
+div.between-first{
+    grid-column: 1 / 2;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(234, 237, 239);
+}
+
+div.button-cotainer{
+    display: block;
+}
+
+a.option{
+    margin: 8px 12px 8px 0px;
+    font-size: 12px;
+    line-height: 16px;
+    display: inline-block;
+    color: rgb(47, 52, 56);
+    white-space: nowrap;
+}
+
+a.option-bold{
+    margin: 8px 12px 8px 0px;
+    font-size: 12px;
+    line-height: 16px;
+    display: inline-block;
+    color: rgb(47, 52, 56);
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+div.between-second{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(234, 237, 239);
+}
+
+div.under-text{
+    grid-column: 1 / 2;
+    font-size: 10px;
+    line-height: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: rgb(130, 140, 148);
+}
+
+div.company-name{
+    overflow-x: hidden;
+}
+
+button.company-name{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(47, 52, 56);
+    font-weight: 700;
+    display: flex;
+    gap: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+span.company-name{
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+}
+
+a.under-text{
+    font-weight: 700;
+    color: rgb(130, 140, 148);
+}
+
+a.under-button{
+    display: inline-block;
+    margin-right: 14px;
+}
+
+svg.under-button{
+    vertical-align: top;
+    color: rgb(130, 140, 148);
+}

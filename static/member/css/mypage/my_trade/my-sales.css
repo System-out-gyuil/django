@@ -1,0 +1,841 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  margin: 0;
+  font-size: 15px;
+}
+
+a * {
+  border: none;
+}
+
+.whole-page-container {
+  height: 100%;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.whole-page-container > * {
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+}
+
+/* header, footer 제외한 나머지 부분을 감싸는 태그 */
+.main-wrap {
+  position: relative;
+  padding: 0 0 40px;
+}
+
+/* 마이페이지 내 네비게이션 바 */
+.navigation-wrap {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main-category-wrap {
+  border-bottom: 1px solid #ededed;
+  width: 100%;
+  overflow: visible;
+  font-size: 18px;
+}
+
+/* main-category-container 클래스에 적용 */
+.main-category-wrap > ul {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.main-category-item {
+  user-select: none;
+  display: inline-block;
+}
+
+.main-category-item > a {
+  display: block;
+  padding: 0 10px;
+  font-weight: 700;
+  position: relative;
+  height: 60px;
+  line-height: 60px;
+  transition: color 0.15s ease;
+}
+
+/* 메인 카테고리 중에서 현재 active 클래스를 가진 요소에 적용 */
+.main-category-item > a.active {
+  color: #134f2c;
+}
+
+/* active 클래스를 가지지 않은 요소들은 hover되면 같은 스타일 적용 */
+.main-category-item > a:not(.active):hover {
+  color: #134f2c;
+}
+
+/* 메인 카테고리들 중 첫 번째 요소(프로필)이 아닌 객체들에 적용 */
+.main-category-wrap .main-category-item:not(:first-child) {
+  margin-left: 30px;
+}
+
+/* active 클래스를 가지면 가상요소 생성. 거기에 적용되는 스타일 */
+.main-category-wrap .main-category-item > a.active::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  background-color: transparent;
+  margin-left: -5px;
+  border-width: 0 5px 10px;
+  z-index: 1;
+  margin-top: -10px;
+  border-color: transparent transparent #dbdbdb;
+}
+
+.main-category-wrap .main-category-item > a.active::after {
+  bottom: 0;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  background-color: transparent;
+  margin-left: -5px;
+  border-width: 0 5px 10px;
+  z-index: 1;
+  margin-top: -8px;
+  border-color: transparent transparent #fff;
+}
+
+.sub-category-wrap {
+  border-bottom: 1px solid #ededed;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* sub-category-container 클래스에 적용 */
+.sub-category-wrap > ul {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.sub-category-item {
+  user-select: none;
+  display: inline-block;
+}
+
+/* 서브 카테고리들 중 첫 번째가 아닌 객체들에 적용 */
+.sub-category-item:not(:first-child) {
+  margin-left: 15px;
+}
+
+.sub-category-item > a {
+  display: block;
+  padding: 0 10px;
+  font-weight: 700;
+  position: relative;
+  height: 60px;
+  line-height: 60px;
+  transition: color 0.15s ease;
+}
+
+/* 서브 카테고리 중에서 현재 active 클래스를 가진 요소에 적용 */
+.sub-category-item > a.active {
+  color: #134f2c;
+}
+
+/* active 클래스를 가지지 않은 요소들은 hover되면 같은 스타일 적용 */
+.sub-category-item > a:not(.active):hover {
+  color: #134f2c;
+}
+
+/* active 클래스를 가지면 가상요소 생성. 거기에 적용되는 스타일 */
+.sub-category-item > a.active::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #134f2c;
+  left: 0;
+  bottom: 0;
+}
+
+/* 페이지 내용 */
+/* 이 부분 미디어 쿼리 있으니 나중에 따로 파일 만들기 */
+.content-wrap {
+  padding: 0 60px;
+  width: 100%;
+  max-width: 1256px;
+  margin: 0px auto;
+  box-sizing: border-box;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin: 0px -10px;
+}
+
+/* 사이드바 - 태그 자체에 sticky 포지션 달려있음 */
+.sidebar-wrap {
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 25%;
+}
+
+/* 사이드바 안의 내 정보 칸 */
+.my-info-wrap {
+  position: relative;
+  padding: 30px 25px 18px;
+  border-radius: 4px;
+  border: 1px solid rgb(218, 220, 224);
+  box-shadow: rgba(63, 71, 77, 0.06) 0px 2px 4px 0px;
+}
+
+.share-drop-down-wrap {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  z-index: 1;
+  top: 18px;
+  right: 12px;
+}
+
+.share-drop-down-container {
+  position: relative;
+  display: inline-block;
+}
+
+.share-drop-down-button {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background: none;
+  font-style: inherit;
+  font-variant: inherit;
+  font-weight: inherit;
+  font-stretch: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  color: rgb(66, 66, 66);
+  font-size: 24px;
+}
+
+.my-profile-wrap {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0px 0px 20px;
+  min-height: 120px;
+  padding: 0px;
+}
+
+.profile-image-wrap {
+  top: 0px;
+  left: 0px;
+  border-radius: 100%;
+  background-color: rgb(237, 237, 237);
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  margin: 0px auto 24px;
+}
+
+.profile-image-wrap::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 100%;
+}
+
+.profile-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.personal-info-wrap {
+  text-align: center;
+}
+
+.user-nickname {
+  font-weight: bold;
+  color: rgb(41, 41, 41);
+  overflow-wrap: break-word;
+  word-break: break-all;
+  margin: 0px 0px 10px;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.follow-settings-wrap {
+  text-align: center;
+}
+
+.follow-wrap {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19px;
+  color: rgb(130, 140, 148);
+  margin: 0px 0px 13px;
+}
+
+.follow-text {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.follow-count {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: bold;
+  color: rgb(82, 91, 97);
+}
+
+.follow-count:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 9px;
+  margin-left: 10px;
+  background-color: rgb(218, 220, 224);
+}
+
+.follow-num {
+  opacity: 1;
+  transition: opacity 0.1s ease 0s;
+}
+
+.follow-num:hover {
+  opacity: 0.6;
+}
+
+.settings-button-wrap {
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.settings-button {
+  user-select: none;
+  display: inline-block;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  background: none;
+  font-family: Noto Sans KR, Noto Sans CJK KR, ë§‘ì€ ê³ ë”•, Malgun Gothic,
+    sans-serif;
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.1s, background-color 0.1s, border-color 0.1s;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
+  border-color: #dbdbdb;
+  padding: 5px 7px 6px;
+  line-height: 19px;
+  -webkit-font-smoothing: antialiased;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-right: 6px;
+  margin-bottom: 8px;
+  font-weight: normal;
+  font-size: 12px;
+  color: #292929;
+}
+
+.settings-button:hover {
+  background-color: #fafafa;
+}
+
+.scraps-likes-wrap {
+  border-top: 1px solid #eaebef;
+  padding: 24px 0 6px;
+  margin: 0 -8px;
+}
+
+.scraps-likes-container {
+  display: flex;
+  color: #292929;
+}
+
+.scraps-likes-content-wrap {
+  flex: 1 0 0px;
+  display: block;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: center;
+  transition: 0.1s opacity;
+  padding: 0;
+}
+
+.scraps-likes-content-wrap:hover {
+  opacity: 0.7;
+}
+
+.scraps-likes-icon {
+  margin: 0 auto 4px;
+}
+
+/* 스크랩북, 좋아요 등, 사이드바 하단 아이콘들의 크기 지정 */
+.scraps-likes-icon img,
+.scraps-likes-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.scraps-likes-text {
+  line-height: 21px;
+  font-weight: normal;
+  text-align: center;
+  color: #424242;
+  font-size: 13px;
+}
+
+.scraps-likes-count {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: bold;
+  text-align: center;
+  color: #424242;
+}
+
+/* 사이드바 하단의 리워드 받기 */
+.get-reward-wrap {
+  margin-top: 14px;
+}
+
+.get-reward-container {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  color: #2f3438;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: #effbff;
+  transition: 0.1s background-color;
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  height: 44px;
+}
+
+.get-reward-container:hover {
+  background-color: #e5f9ff;
+}
+
+.get-reward-text {
+  color: #009fce;
+}
+
+.get-reward-arrow {
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  color: #009fce;
+}
+
+.get-reward-arrow::before {
+  font-family: OhouseIcon;
+  vertical-align: top;
+  content: "\e968";
+}
+
+.seperator-wrap {
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 8.333333333333332%;
+}
+
+.content-seperator {
+  margin: 0 -10px 20px;
+  border-bottom: 1px solid #ededed;
+}
+
+/* 사진 등의 내용물이 표시되는 공간 */
+.main-content-wrap {
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 66.6667%;
+}
+
+.main-content-container {
+  color: rgb(41, 41, 41);
+}
+
+.menu-bar-wrap {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin: 50px 0px;
+  padding: 0px 0px 10px;
+  border-bottom: 1px solid rgb(237, 237, 237);
+  margin-bottom: 12px;
+}
+
+.trades-tab {
+  display: inline-block;
+  padding: 5px;
+  font-weight: bold;
+  color: rgb(66, 66, 66);
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+/* 현재 선택된 탭에는 폰트색 다르게 적용 */
+.trades-tab.active {
+  color: #134f2c;
+}
+
+.trade-page-link {
+  user-select: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", "Noto Sans CJK KR", "맑은 고딕", "Malgun Gothic",
+    sans-serif;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  margin: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  background: none;
+  text-decoration: none;
+  transition: color 0.1s ease 0s, background-color 0.1s ease 0s,
+    border-color 0.1s ease 0s;
+  border-radius: 4px;
+  background-color: #134f2c;
+  border-color: #134f2c;
+  color: #fff;
+  padding: 9px 10px;
+  font-size: 15px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.trade-page-link:hover {
+  border-color: #97a38c;
+  background-color: #97a38c;
+}
+
+.trade-history-wrap {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.trade-history-wrap > h1 {
+  margin: 0px 0px 5px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: normal;
+  color: rgb(41, 41, 41);
+}
+
+.trade-history-wrap > p {
+  margin: 0px 0px 2px;
+  font-size: 15px;
+  line-height: 25px;
+  color: rgb(117, 117, 117);
+}
+
+/* 구매, 판매 내역 하나하나에 일괄 적용되는 서식 */
+.trade-history-item-wrap {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  padding: 30px 16px;
+}
+
+.trade-history-item-wrap::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.trade-history-link {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+/* 거래 내역 이미지 */
+.trade-item-image-wrap {
+  float: right;
+  background-color: #f7f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 5px -16px 0 30px;
+  width: 110px;
+  height: 110px;
+}
+
+.trade-item-image {
+  width: 100%;
+  border-radius: 8px;
+  transition: 0.1s opacity;
+}
+
+/* 거래 내역 제목 */
+.trade-item-title-wrap {
+  font-weight: bold;
+  color: #2f3438;
+  transition: 0.1s color;
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: initial;
+}
+
+/* 거래 내역 본문 */
+.trade-item-article-wrap {
+  font-size: 14px;
+  line-height: 32px;
+  height: 32px;
+  overflow: hidden;
+  color: #2f3438;
+  transition: 0.1s color;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 0 0 6px;
+  text-align: initial;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 작성자, 조회수, 지역, 태그까지 모두 감싸는 부분 */
+.trade-item-info-wrap {
+  font-size: 12px;
+  line-height: 16px;
+  color: #828c94;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 작성자, 조회수, 지역을 감싸는 부분 */
+.article-info-wrap {
+  display: block;
+  margin: 16px 8px -5px 0;
+}
+
+.user-info-wrap {
+  display: inline-block;
+  margin: 0 0 5px;
+  color: #2f3438;
+  margin-right: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.user-profile-wrap {
+  display: inline-block;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  border-radius: 100%;
+  vertical-align: -5px;
+  background-color: #f7f9fa;
+  overflow: hidden;
+}
+
+.user-profile-image {
+  width: 100%;
+}
+
+/* 올린 시간, 조회수, 지역을 감싸는 부분 */
+.item-info-wrap {
+  display: inline-block;
+  margin: 0 0 5px;
+}
+
+/* 올린 시간, 조회수, 지역 정보 각각에 적용 */
+.item-infos {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* 위 요소들 중 마지막이 아닌 것들은 뒤쪽에 가상요소 추가 */
+.item-infos:not(:last-child)::after {
+  content: "·";
+  margin-left: 8px;
+}
+
+/* 태그 전체를 감싸는 부분 */
+.item-tags-container {
+  display: inline-block;
+  margin: 16px -3px -6px;
+}
+
+.item-tags {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+
+.item-tags-button {
+  background: none;
+  font: inherit;
+  display: inline-block;
+  margin: 0 3px 6px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #2f3438;
+  background-color: #ffffff;
+  border: 1px solid #eaedef;
+  border-radius: 50px;
+  transition: 0.1s opacity;
+  padding: 4px 11px;
+}
+
+/* 태그 각각에 마우스 올리면 스타일 변경 */
+.item-tags-button:hover {
+  opacity: 0.6;
+}
+
+/* 태그 각각에 가상요소로 # 표시 붙여줌 */
+.item-tags-button::before {
+  content: "#";
+  color: #c2c8cc;
+  margin-right: 3px;
+}
+
+/* 각 내역 사이의 구분선 */
+.items-seperator {
+  margin: 0px;
+  padding: 0px;
+  height: 1px;
+  border: none;
+  background-color: rgb(234, 237, 239);
+}
+
+/* 사이드 바의 공유 버튼을 클릭하면 나오는 모달창 */
+.share-modal-wrap {
+  transform-origin: 50% 0;
+  box-sizing: border-box;
+  z-index: 1000;
+  position: relative;
+  pointer-events: auto;
+  margin-top: 17px;
+  opacity: 0;
+  transform: none;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  visibility: hidden;
+}
+
+.share-modal-wrap.enabled {
+  transform-origin: 50% 0;
+  box-sizing: border-box;
+  z-index: 1000;
+  position: relative;
+  pointer-events: auto;
+  margin-top: 17px;
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  visibility: visible;
+}
+
+.share-modal-container {
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 -1px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 300px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin: 0px -6px;
+}
+
+.share-modal-container::after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-style: solid;
+  top: -8px;
+  margin: 0 1px;
+  border-width: 0 9px 9px;
+  border-color: transparent transparent #fff;
+  left: 50%;
+  margin-left: 0;
+  transform: translateX(-50%);
+}
+
+.kakao-share-button,
+.cilpboard-button {
+  width: 40px;
+  height: 40px;
+  margin: 0px 6px;
+  padding: 0px;
+  border: 0px;
+  background: none;
+}
+
+.kakao-share-button > img {
+  width: 40px;
+  height: 40px;
+}
+
+/* 웹에서 보는 화면은 사이드바와 내용물 사이의 공간이 비어있는 것처럼 보임 */
+@media (min-width: 768px) {
+  .content-seperator {
+    display: none;
+  }
+}
+
+
+.current-profile-image{
+  width: 100%;
+  height: 100%;
+}
