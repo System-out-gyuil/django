@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 
 def pre_handle_request(get_response):
     def middleware(request):
+        setattr(request, '_dont_enforce_csrf_checks', True)
         # 요청한 '상대 경로 + 쿼리 스트링' 을 변수에 할당
         uri = request.get_full_path()
 
